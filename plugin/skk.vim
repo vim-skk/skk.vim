@@ -566,6 +566,13 @@ if !exists("skk_zenei_rules")
 	\. "~～\<NL>"
 endif
 
+" 0: IMをオンにする (set noimdisable)
+" 1: IMをオフにする (set imdisable)
+" それ以外: &imdisableを弄らない
+if !exists('skk_imdisable_state')
+  let skk_imdisable_state = 1
+endif
+
 " }}}
 
 " script variables {{{
@@ -806,8 +813,9 @@ function! s:SkkBufInit()
   " 0=■モード 1=▽モード 2=▽モード (送りがな入力中) 3=▼モード
   " 4=選択方式で確定したとき
   let b:skk_abbrev_mode_on = 0	" abbrev モードか？
-  let &imdisable = 1		" 変更したまま元に戻さない
-  "let &iminsert = 0		" 変更したまま元に戻さない
+  if g:skk_imdisable_state == 1 || g:skk_imdisable_state == 2
+    let &imdisable = g:skk_imdisable_state
+  endif
   if !exists("b:skk_fo_save")
     let b:skk_fo_save = &formatoptions
   endif
