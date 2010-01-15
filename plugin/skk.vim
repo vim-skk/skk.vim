@@ -4,26 +4,26 @@
 "
 " Author: Noriaki Yagi <no_yag@yahoo.co.jp>
 " Version: $Id: skk.vim,v 0.22 2006/10/11 09:26:53 noriaki Exp noriaki $
-" Last Change: 11-Oct-2006.
+" Last Change: 2010-01-15.
 "
-" »È¤¤Êı:
-" skk_jisyo ¤ª¤è¤Ó skk_large_jisyo ¤òÅ¬µ¹ÊÑ¹¹¤¹¤ë¡£
+" ä½¿ã„æ–¹:
+" skk_jisyo ãŠã‚ˆã³ skk_large_jisyo ã‚’é©å®œå¤‰æ›´ã™ã‚‹ã€‚
 " :so skk.vim
-" Insert Mode ¤Ç <C-j> (¥Ç¥Õ¥©¥ë¥È¤Ç¤Ï) ¤ò²¡¤¹¤È skk ¤¬µ¯Æ°¤¹¤ë¡£
+" Insert Mode ã§ <C-j> (ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§ã¯) ã‚’æŠ¼ã™ã¨ skk ãŒèµ·å‹•ã™ã‚‹ã€‚
 "
-" ºÇ½é¤Î¤â¤¿¤Ä¤­¤Ï :call SkkAddRulesSection() ¤ò¼Â¹Ô¤¹¤ë¤È¥³¥ó¥Ñ¥¤¥ëºÑ¤Î¥Ç¡¼¥¿
-" ¤ò¤³¤Î¥Õ¥¡¥¤¥ë¤Ë½ñ¤­¹ş¤à¤Î¤Ç¤À¤¤¤Ö¥¹¥È¥ì¥¹¤¬¸º¤ë¡£¤¿¤À¤·¥í¡¼¥Ş»ú¤Î¥ë¡¼¥ë¤òÊÑ
-" ¹¹¤·¤Æ¤â¤½¤ÎÊÑ¹¹¤ÏÈ¿±Ç¤µ¤ì¤Ê¤¤¤Î¤Ç¡¢°ì²ó :call SkkDeleteRulesSection() ¤ò¼Â
-" ¹Ô¤·¤Æ¼¡²óµ¯Æ°»ş°Ê¹ß¤Ë SkkAddRulesSection() ¤ò¼Â¹Ô¤¹¤ëÉ¬Í×¤¬¤¢¤ë¡£
+" æœ€åˆã®ã‚‚ãŸã¤ãã¯ :call SkkAddRulesSection() ã‚’å®Ÿè¡Œã™ã‚‹ã¨ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«æ¸ˆã®ãƒ‡ãƒ¼ã‚¿
+" ã‚’ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãè¾¼ã‚€ã®ã§ã ã„ã¶ã‚¹ãƒˆãƒ¬ã‚¹ãŒæ¸›ã‚‹ã€‚ãŸã ã—ãƒ­ãƒ¼ãƒå­—ã®ãƒ«ãƒ¼ãƒ«ã‚’å¤‰
+" æ›´ã—ã¦ã‚‚ãã®å¤‰æ›´ã¯åæ˜ ã•ã‚Œãªã„ã®ã§ã€ä¸€å› :call SkkDeleteRulesSection() ã‚’å®Ÿ
+" è¡Œã—ã¦æ¬¡å›èµ·å‹•æ™‚ä»¥é™ã« SkkAddRulesSection() ã‚’å®Ÿè¡Œã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚
 "
-" TODO Insert¥â¡¼¥É¤Ç <Esc> ¤ò¥Ş¥Ã¥×¤¹¤ë¤È¥³¥ó¥½¡¼¥ë¤ÇÌğ°õ¥­¡¼¤¬»È¤¨¤Ê¤¤¡£
-" TODO ¼­½ñ¤Î¸õÊä¤Ë Lisp ¤Î¼°¤¬½ñ¤«¤ì¤Æ¤¤¤ë¾ì¹ç¤Î½èÍı
-" TODO undo ¤¬¤°¤Á¤ã¤°¤Á¤ã¤Ë¤Ê¤ë¡£
-" TODO vim7 ¤Ç ff=mac ¤Î¼­½ñ¤ÏÆÉ¤ß¹ş¤ß¡¦½ñ¤­¹ş¤ß¤¬ÃÙ¤¤¡£
+" TODO Insertãƒ¢ãƒ¼ãƒ‰ã§ <Esc> ã‚’ãƒãƒƒãƒ—ã™ã‚‹ã¨ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ã§çŸ¢å°ã‚­ãƒ¼ãŒä½¿ãˆãªã„ã€‚
+" TODO è¾æ›¸ã®å€™è£œã« Lisp ã®å¼ãŒæ›¸ã‹ã‚Œã¦ã„ã‚‹å ´åˆã®å‡¦ç†
+" TODO undo ãŒãã¡ã‚ƒãã¡ã‚ƒã«ãªã‚‹ã€‚
+" TODO vim7 ã§ ff=mac ã®è¾æ›¸ã¯èª­ã¿è¾¼ã¿ãƒ»æ›¸ãè¾¼ã¿ãŒé…ã„ã€‚
 
-scriptencoding euc-jp
+scriptencoding utf-8
 
-" ¥×¥é¥°¥¤¥ó¤ÎÌµ¸ú²½
+" ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã®ç„¡åŠ¹åŒ–
 if exists('plugin_skk_disable')
   finish
 endif
@@ -40,418 +40,418 @@ set cpo&vim
 
 " Global variables {{{
 
-" ¥æ¡¼¥¶¡¼¼­½ñ
+" ãƒ¦ãƒ¼ã‚¶ãƒ¼è¾æ›¸
 if !exists("skk_jisyo")
   let skk_jisyo = "~/.skk-jisyo"
 endif
 
-" ¥æ¡¼¥¶¡¼¼­½ñ¤Î¥Ğ¥Ã¥¯¥¢¥Ã¥×¥Õ¥¡¥¤¥ë
+" ãƒ¦ãƒ¼ã‚¶ãƒ¼è¾æ›¸ã®ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ•ã‚¡ã‚¤ãƒ«
 if !exists("skk_backup_jisyo")
   let skk_backup_jisyo = skk_jisyo . ".BAK"
 endif
 
-" ½ªÎ»»ş¤Ë¼­½ñ¤òÊİÂ¸¤¹¤ë¤«¡© :so skk.vim ¤·¤¿¸å¤Ï
-" :call SkkSetAutoSaveJisyo(nr) ¤ÇÀßÄê¤¹¤ë¡£
-" Éé: ÊİÂ¸¤·¤Ê¤¤¡£0: Ê¹¤¤¤Æ¤«¤éÊİÂ¸¤¹¤ë¡£Àµ: Ê¹¤«¤º¤ËÊİÂ¸¤¹¤ë¡£
+" çµ‚äº†æ™‚ã«è¾æ›¸ã‚’ä¿å­˜ã™ã‚‹ã‹ï¼Ÿ :so skk.vim ã—ãŸå¾Œã¯
+" :call SkkSetAutoSaveJisyo(nr) ã§è¨­å®šã™ã‚‹ã€‚
+" è² : ä¿å­˜ã—ãªã„ã€‚0: èã„ã¦ã‹ã‚‰ä¿å­˜ã™ã‚‹ã€‚æ­£: èã‹ãšã«ä¿å­˜ã™ã‚‹ã€‚
 if !exists("skk_auto_save_jisyo")
   let skk_auto_save_jisyo = 0
 endif
 
-" ¥Î¡¼¥Ş¥ë¥â¡¼¥É¤Ç¼­½ñ¤Î¼êÆ°¥»¡¼¥Ö¤ò¤¹¤ë¥­¡¼ (¶õÇò¤Ê¤é mapping ¤·¤Ê¤¤)
+" ãƒãƒ¼ãƒãƒ«ãƒ¢ãƒ¼ãƒ‰ã§è¾æ›¸ã®æ‰‹å‹•ã‚»ãƒ¼ãƒ–ã‚’ã™ã‚‹ã‚­ãƒ¼ (ç©ºç™½ãªã‚‰ mapping ã—ãªã„)
 if !exists("skk_manual_save_jisyo_keys")
   let skk_manual_save_jisyo_keys = "gS"
 endif
 
-" ¥æ¡¼¥¶¡¼¼­½ñ¤Î¸å¤Ë¸¡º÷¤¹¤ë¼­½ñ (¥½¡¼¥ÈºÑ¤ß¤ÎÉ¬Í×¤¢¤ê)
+" ãƒ¦ãƒ¼ã‚¶ãƒ¼è¾æ›¸ã®å¾Œã«æ¤œç´¢ã™ã‚‹è¾æ›¸ (ã‚½ãƒ¼ãƒˆæ¸ˆã¿ã®å¿…è¦ã‚ã‚Š)
 if !exists("skk_large_jisyo")
   let skk_large_jisyo = "/usr/local/share/skk/SKK-JISYO.L"
 endif
 
-" ¥æ¡¼¥¶¼­½ñ¤Î¸å¤Ë¸¡º÷¤¹¤ë³°Éô¥×¥í¥°¥é¥à (¶õÇò¤Ç¤Ê¤±¤ì¤Ğskk_large_jisyo¤ÏÌµ»ë)
+" ãƒ¦ãƒ¼ã‚¶è¾æ›¸ã®å¾Œã«æ¤œç´¢ã™ã‚‹å¤–éƒ¨ãƒ—ãƒ­ã‚°ãƒ©ãƒ  (ç©ºç™½ã§ãªã‘ã‚Œã°skk_large_jisyoã¯ç„¡è¦–)
 if !exists("skk_external_prog")
   let skk_external_prog = ""
 endif
 
-" <C-j> ¤ÎÆ¯¤­¤ò¤¹¤ë¥­¡¼¡£map ¤ËÅÏ¤¹¤Î¤Ç `\' ¤Ï¤Ä¤±¤Ê¤¤¡£
+" <C-j> ã®åƒãã‚’ã™ã‚‹ã‚­ãƒ¼ã€‚map ã«æ¸¡ã™ã®ã§ `\' ã¯ã¤ã‘ãªã„ã€‚
 if !exists("skk_control_j_key")
   let skk_control_j_key = "<C-j>"
 endif
 
-" abbrev¥â¡¼¥É¤ÇÁ´³Ñ±Ñ¿ô¤ËÊÑ´¹¤¹¤ë¥­¡¼¡£`\' ¤Ï¤Ä¤±¤Ê¤¤¡£
-" ¥³¥ó¥½¡¼¥ë¤Ç <C-q> ¤¬¤³¤Ê¤¤¾ì¹ç¤Ï vim µ¯Æ°Á°¤Ë stty -ixon ¤¹¤ë¤«
-" Â¾¤Î¥­¡¼¤Ë¤¹¤ë¡£
+" abbrevãƒ¢ãƒ¼ãƒ‰ã§å…¨è§’è‹±æ•°ã«å¤‰æ›ã™ã‚‹ã‚­ãƒ¼ã€‚`\' ã¯ã¤ã‘ãªã„ã€‚
+" ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ã§ <C-q> ãŒã“ãªã„å ´åˆã¯ vim èµ·å‹•å‰ã« stty -ixon ã™ã‚‹ã‹
+" ä»–ã®ã‚­ãƒ¼ã«ã™ã‚‹ã€‚
 if !exists("skk_abbrev_to_zenei_key")
   let skk_abbrev_to_zenei_key = "<C-q>"
 endif
 
-" Insert ¥â¡¼¥É¤òÈ´¤±¤ÆºÆ¤Ó Insert ¥â¡¼¥É¤Ë¤·¤¿¤È¤­¤ËÁ°¤Î¾õÂÖ¤ò°İ»ı¤·¤Æ¤ª¤¯¤«¡©
+" Insert ãƒ¢ãƒ¼ãƒ‰ã‚’æŠœã‘ã¦å†ã³ Insert ãƒ¢ãƒ¼ãƒ‰ã«ã—ãŸã¨ãã«å‰ã®çŠ¶æ…‹ã‚’ç¶­æŒã—ã¦ãŠãã‹ï¼Ÿ
 if !exists("skk_keep_state")
   let skk_keep_state = 0
 endif
 
-" skk ¤ò¥ª¥ó¤Ë¤·¤¿¤È¤­¤Î½é´ü¥â¡¼¥É
+" skk ã‚’ã‚ªãƒ³ã«ã—ãŸã¨ãã®åˆæœŸãƒ¢ãƒ¼ãƒ‰
 if !exists("skk_initial_mode")
   let skk_initial_mode = 'hira'
 endif
 
-" ¢¦¥â¡¼¥É¤Î¥Ş¡¼¥¯
+" â–½ãƒ¢ãƒ¼ãƒ‰ã®ãƒãƒ¼ã‚¯
 if !exists("skk_marker_white")
-  let skk_marker_white = '¢¦'
+  let skk_marker_white = 'â–½'
 endif
 
-" ¢§¥â¡¼¥É¤Î¥Ş¡¼¥¯
+" â–¼ãƒ¢ãƒ¼ãƒ‰ã®ãƒãƒ¼ã‚¯
 if !exists("skk_marker_black")
-  let skk_marker_black = '¢§'
+  let skk_marker_black = 'â–¼'
 endif
 
-" Á÷¤ê¤¬¤Ê³«»Ï°ÌÃÖ¤Î¥Ş¡¼¥¯
+" é€ã‚ŠãŒãªé–‹å§‹ä½ç½®ã®ãƒãƒ¼ã‚¯
 if !exists("skk_marker_okuri")
   let skk_marker_okuri = '*'
 endif
 
-" ÊÑ´¹/¼¡¸õÊä¥­¡¼
+" å¤‰æ›/æ¬¡å€™è£œã‚­ãƒ¼
 if !exists("skk_start_henkan_key")
   let skk_start_henkan_key = " "
 endif
 
-" Á°¸õÊä¥­¡¼
+" å‰å€™è£œã‚­ãƒ¼
 if !exists("skk_prev_cand_key")
   let skk_prev_cand_key = "x"
 endif
 
-" ¸½ºß¤Î¸õÊä¤ò¼­½ñ¤«¤éºï½ü¤¹¤ë¥­¡¼
+" ç¾åœ¨ã®å€™è£œã‚’è¾æ›¸ã‹ã‚‰å‰Šé™¤ã™ã‚‹ã‚­ãƒ¼
 if !exists("skk_purge_cand_key")
   let skk_purge_cand_key = "X"
 endif
 
-" ÆşÎÏ¤µ¤ì¤¿¤é¢¦¥â¡¼¥É¤Ë¤¹¤ë¥­¡¼
+" å…¥åŠ›ã•ã‚ŒãŸã‚‰â–½ãƒ¢ãƒ¼ãƒ‰ã«ã™ã‚‹ã‚­ãƒ¼
 if !exists("skk_henkan_point_keys")
   let skk_henkan_point_keys = 'ABCDEFGHIJKMNOPRSTUVWYZ'
 endif
 
-" ÁªÂòÊı¼°¤Î¤È¤­¤ËÁªÂò¤ËÍøÍÑ¤¹¤ë¥­¡¼
+" é¸æŠæ–¹å¼ã®ã¨ãã«é¸æŠã«åˆ©ç”¨ã™ã‚‹ã‚­ãƒ¼
 if !exists("skk_select_cand_keys")
   let skk_select_cand_keys = "ASDFJKL"
 endif
 
-" ²¿²óÌÜ¤ÎÊÑ´¹¤ÇÁªÂòÊı¼°¤Ë¤¹¤ë¤«?
+" ä½•å›ç›®ã®å¤‰æ›ã§é¸æŠæ–¹å¼ã«ã™ã‚‹ã‹?
 if !exists("skk_show_candidates_count")
   let skk_show_candidates_count = 4
 endif
 
-" ¸«½Ğ¤·¸ì¤ÎÊä´°Æ°ºî¤ò¹Ô¤¦¥­¡¼
+" è¦‹å‡ºã—èªã®è£œå®Œå‹•ä½œã‚’è¡Œã†ã‚­ãƒ¼
 if !exists("skk_completion_key")
   let skk_completion_key = "\<Tab>"
 endif
 
-" ¸«½Ğ¤·¸ì¤ÎÊä´°¤Ç¼¡¤Î¸õÊä¤ò½ĞÎÏ¤¹¤ë¥­¡¼
+" è¦‹å‡ºã—èªã®è£œå®Œã§æ¬¡ã®å€™è£œã‚’å‡ºåŠ›ã™ã‚‹ã‚­ãƒ¼
 if !exists("skk_next_comp_key")
   let skk_next_comp_key = "."
 endif
 
-" ¸«½Ğ¤·¸ì¤ÎÊä´°¤ÇÁ°¤Î¸õÊä¤ò½ĞÎÏ¤¹¤ë¥­¡¼
+" è¦‹å‡ºã—èªã®è£œå®Œã§å‰ã®å€™è£œã‚’å‡ºåŠ›ã™ã‚‹ã‚­ãƒ¼
 if !exists("skk_prev_comp_key")
   let skk_prev_comp_key = ","
 endif
 
-" ÀÜÆ¬¼­¡¦ÀÜÈø¼­¤ÎÆşÎÏ¤ò¤¹¤ë¥­¡¼
+" æ¥é ­è¾ãƒ»æ¥å°¾è¾ã®å…¥åŠ›ã‚’ã™ã‚‹ã‚­ãƒ¼
 if !exists("skk_special_midasi_keys")
   let skk_special_midasi_keys = "<>?"
 endif
 
-" ¶çÆÉÅÀ¤Î¥¿¥¤¥×
-" "jp" ¤Ê¤é skk_kutouten_jp ¤ò¸«¤ë¡£"en" ¤Ê¤é skk_kutouten_en ¤ò¸«¤ë¡£
+" å¥èª­ç‚¹ã®ã‚¿ã‚¤ãƒ—
+" "jp" ãªã‚‰ skk_kutouten_jp ã‚’è¦‹ã‚‹ã€‚"en" ãªã‚‰ skk_kutouten_en ã‚’è¦‹ã‚‹ã€‚
 if !exists("skk_kutouten_type")
   let skk_kutouten_type = "jp"
 endif
 
-" ¶çÆÉÅÀ¤Î¥¿¥¤¥× "jp" ¤Î¾ì¹ç (ºÇ½é¤Î°ìÊ¸»ú¤¬¶çÅÀ¡¢ºÇ¸å¤Î°ìÊ¸»ú¤¬ÆÉÅÀ)
+" å¥èª­ç‚¹ã®ã‚¿ã‚¤ãƒ— "jp" ã®å ´åˆ (æœ€åˆã®ä¸€æ–‡å­—ãŒå¥ç‚¹ã€æœ€å¾Œã®ä¸€æ–‡å­—ãŒèª­ç‚¹)
 if !exists("skk_kutouten_jp")
-  let skk_kutouten_jp = "¡£¡¢"
+  let skk_kutouten_jp = "ã€‚ã€"
 endif
 
-" ¶çÆÉÅÀ¤Î¥¿¥¤¥× "en" ¤Î¾ì¹ç (ºÇ½é¤Î°ìÊ¸»ú¤¬¶çÅÀ¡¢ºÇ¸å¤Î°ìÊ¸»ú¤¬ÆÉÅÀ)
+" å¥èª­ç‚¹ã®ã‚¿ã‚¤ãƒ— "en" ã®å ´åˆ (æœ€åˆã®ä¸€æ–‡å­—ãŒå¥ç‚¹ã€æœ€å¾Œã®ä¸€æ–‡å­—ãŒèª­ç‚¹)
 if !exists("skk_kutouten_en")
-  let skk_kutouten_en = "¡¥¡¤"
+  let skk_kutouten_en = "ï¼ï¼Œ"
 endif
 
-" ¿ôÃÍÊÑ´¹¤ò¹Ô¤¦¤«¡©
+" æ•°å€¤å¤‰æ›ã‚’è¡Œã†ã‹ï¼Ÿ
 if !exists("skk_use_numeric_conversion")
   let skk_use_numeric_conversion = 1
 endif
 
-" non-zero¤Ê¤é<CR>¤Ç³ÎÄê¤·¤¿»ş¤Ë²ş¹ÔÊ¸»ú¤ò½ĞÎÏ¤·¤Ê¤¤
+" non-zeroãªã‚‰<CR>ã§ç¢ºå®šã—ãŸæ™‚ã«æ”¹è¡Œæ–‡å­—ã‚’å‡ºåŠ›ã—ãªã„
 if !exists("skk_egg_like_newline")
   let skk_egg_like_newline = 0
 endif
 
-" non-zero¤Ê¤é¸õÊäÁªÂò»ş¤ËÃğ¼á¤òÉ½¼¨¤¹¤ë (¥¤¥ó¥é¥¤¥ó¤Ç¤ÏÌ¤ÂĞ±ş)
+" non-zeroãªã‚‰å€™è£œé¸æŠæ™‚ã«è¨»é‡ˆã‚’è¡¨ç¤ºã™ã‚‹ (ã‚¤ãƒ³ãƒ©ã‚¤ãƒ³ã§ã¯æœªå¯¾å¿œ)
 if !exists("skk_show_annotation")
   let skk_show_annotation = 0
 endif
 
-" non-zero¤Ê¤éÊÑ´¹»ş¤Ë¿§¤òÉÕ¤±¤ë¡£
-" ¤¿¤À¤·ÊÑ´¹»ş¤Ë skk_henkan ¤È¤¤¤¦¥Ï¥¤¥é¥¤¥È¥°¥ë¡¼¥×¤¬¤Ê¤¤¤È 0 ¤Ë¤µ¤ì¤ë¡£
+" non-zeroãªã‚‰å¤‰æ›æ™‚ã«è‰²ã‚’ä»˜ã‘ã‚‹ã€‚
+" ãŸã ã—å¤‰æ›æ™‚ã« skk_henkan ã¨ã„ã†ãƒã‚¤ãƒ©ã‚¤ãƒˆã‚°ãƒ«ãƒ¼ãƒ—ãŒãªã„ã¨ 0 ã«ã•ã‚Œã‚‹ã€‚
 if !exists("skk_use_face")
   let skk_use_face = 0
 endif
 
-" Auto Fill¤Î¥È¥°¥ë¤ò¤¹¤ë¥­¡¼ (¶õÇò¤Ê¤é mapping ¤·¤Ê¤¤) `\' ¤Ï¤Ä¤±¤Ê¤¤¡£
-" format.vim ¤¬ÆÉ¤ß¹ş¤Ş¤ì¤Æ¤¤¤Ê¤¤¤È mapping ¤·¤Ê¤¤¡£
+" Auto Fillã®ãƒˆã‚°ãƒ«ã‚’ã™ã‚‹ã‚­ãƒ¼ (ç©ºç™½ãªã‚‰ mapping ã—ãªã„) `\' ã¯ã¤ã‘ãªã„ã€‚
+" format.vim ãŒèª­ã¿è¾¼ã¾ã‚Œã¦ã„ãªã„ã¨ mapping ã—ãªã„ã€‚
 if !exists("skk_autofill_toggle_key")
   let skk_autofill_toggle_key = "<C-k>"
 endif
 
-" ¥í¡¼¥Ş»ú¤ÎÊÑ´¹¥ë¡¼¥ë
-" ¹ÔÆ¬¤«¤é¥¿¥ÖÊ¸»ú¤Ş¤Ç¤¬¥í¡¼¥Ş»ú¡¢¼¡¤Î¥¿¥Ö¤Ş¤Ç¤¬¤Ò¤é¤¬¤Ê¡¢
-" ¤½¤Î¼¡¤Î¥¿¥Ö¤Ş¤Ç¤¬¥«¥¿¥«¥Ê¡¢¤½¤Î¼¡¤¬»Ä¤¹Ê¸»ú¡¢ºÇ¸å¤Ï \<NL>¡£
-" ¤â¤·¤¢¤ì¤Ğ skk_user_rom_kana_rules ¤¬ÄÉ²Ã¤µ¤ì¤ë¤Î¤Ç¡¢
-" ¤Á¤ç¤Ã¤È¤·¤¿ÄÉ²Ã¤äÊÑ¹¹¤Ê¤é skk_user_rom_kana_rules ¤Ëµ­½Ò¤·¤¿¤Û¤¦¤¬¤¤¤¤¡£
+" ãƒ­ãƒ¼ãƒå­—ã®å¤‰æ›ãƒ«ãƒ¼ãƒ«
+" è¡Œé ­ã‹ã‚‰ã‚¿ãƒ–æ–‡å­—ã¾ã§ãŒãƒ­ãƒ¼ãƒå­—ã€æ¬¡ã®ã‚¿ãƒ–ã¾ã§ãŒã²ã‚‰ãŒãªã€
+" ãã®æ¬¡ã®ã‚¿ãƒ–ã¾ã§ãŒã‚«ã‚¿ã‚«ãƒŠã€ãã®æ¬¡ãŒæ®‹ã™æ–‡å­—ã€æœ€å¾Œã¯ \<NL>ã€‚
+" ã‚‚ã—ã‚ã‚Œã° skk_user_rom_kana_rules ãŒè¿½åŠ ã•ã‚Œã‚‹ã®ã§ã€
+" ã¡ã‚‡ã£ã¨ã—ãŸè¿½åŠ ã‚„å¤‰æ›´ãªã‚‰ skk_user_rom_kana_rules ã«è¨˜è¿°ã—ãŸã»ã†ãŒã„ã„ã€‚
 if !exists("skk_rom_kana_rules")
   let skk_rom_kana_rules = ""
-	\. "a	¤¢	¥¢\<NL>"
-	\. "bb	¤Ã	¥Ã	b\<NL>"
-	\. "ba	¤Ğ	¥Ğ\<NL>"
-	\. "be	¤Ù	¥Ù\<NL>"
-	\. "bi	¤Ó	¥Ó\<NL>"
-	\. "bo	¤Ü	¥Ü\<NL>"
-	\. "bu	¤Ö	¥Ö\<NL>"
-	\. "bya	¤Ó¤ã	¥Ó¥ã\<NL>"
-	\. "bye	¤Ó¤§	¥Ó¥§\<NL>"
-	\. "byi	¤Ó¤£	¥Ó¥£\<NL>"
-	\. "byo	¤Ó¤ç	¥Ó¥ç\<NL>"
-	\. "byu	¤Ó¤å	¥Ó¥å\<NL>"
-	\. "cc	¤Ã	¥Ã	c\<NL>"
-	\. "cha	¤Á¤ã	¥Á¥ã\<NL>"
-	\. "che	¤Á¤§	¥Á¥§\<NL>"
-	\. "chi	¤Á	¥Á\<NL>"
-	\. "cho	¤Á¤ç	¥Á¥ç\<NL>"
-	\. "chu	¤Á¤å	¥Á¥å\<NL>"
-	\. "cya	¤Á¤ã	¥Á¥ã\<NL>"
-	\. "cye	¤Á¤§	¥Á¥§\<NL>"
-	\. "cyi	¤Á¤£	¥Á¥£\<NL>"
-	\. "cyo	¤Á¤ç	¥Á¥ç\<NL>"
-	\. "cyu	¤Á¤å	¥Á¥å\<NL>"
-	\. "dd	¤Ã	¥Ã	d\<NL>"
-	\. "da	¤À	¥À\<NL>"
-	\. "de	¤Ç	¥Ç\<NL>"
-	\. "dha	¤Ç¤ã	¥Ç¥ã\<NL>"
-	\. "dhe	¤Ç¤§	¥Ç¥§\<NL>"
-	\. "dhi	¤Ç¤£	¥Ç¥£\<NL>"
-	\. "dho	¤Ç¤ç	¥Ç¥ç\<NL>"
-	\. "dhu	¤Ç¤å	¥Ç¥å\<NL>"
-	\. "di	¤Â	¥Â\<NL>"
-	\. "do	¤É	¥É\<NL>"
-	\. "du	¤Å	¥Å\<NL>"
-	\. "dya	¤Â¤ã	¥Â¥ã\<NL>"
-	\. "dye	¤Â¤§	¥Â¥§\<NL>"
-	\. "dyi	¤Â¤£	¥Â¥£\<NL>"
-	\. "dyo	¤Â¤ç	¥Â¥ç\<NL>"
-	\. "dyu	¤Â¤å	¥Â¥å\<NL>"
-	\. "e	¤¨	¥¨\<NL>"
-	\. "ff	¤Ã	¥Ã	f\<NL>"
-	\. "fa	¤Õ¤¡	¥Õ¥¡\<NL>"
-	\. "fe	¤Õ¤§	¥Õ¥§\<NL>"
-	\. "fi	¤Õ¤£	¥Õ¥£\<NL>"
-	\. "fo	¤Õ¤©	¥Õ¥©\<NL>"
-	\. "fu	¤Õ	¥Õ\<NL>"
-	\. "fya	¤Õ¤ã	¥Õ¥ã\<NL>"
-	\. "fye	¤Õ¤§	¥Õ¥§\<NL>"
-	\. "fyi	¤Õ¤£	¥Õ¥£\<NL>"
-	\. "fyo	¤Õ¤ç	¥Õ¥ç\<NL>"
-	\. "fyu	¤Õ¤å	¥Õ¥å\<NL>"
-	\. "gg	¤Ã	¥Ã	g\<NL>"
-	\. "ga	¤¬	¥¬\<NL>"
-	\. "ge	¤²	¥²\<NL>"
-	\. "gi	¤®	¥®\<NL>"
-	\. "go	¤´	¥´\<NL>"
-	\. "gu	¤°	¥°\<NL>"
-	\. "gya	¤®¤ã	¥®¥ã\<NL>"
-	\. "gye	¤®¤§	¥®¥§\<NL>"
-	\. "gyi	¤®¤£	¥®¥£\<NL>"
-	\. "gyo	¤®¤ç	¥®¥ç\<NL>"
-	\. "gyu	¤®¤å	¥®¥å\<NL>"
-	\. "ha	¤Ï	¥Ï\<NL>"
-	\. "he	¤Ø	¥Ø\<NL>"
-	\. "hi	¤Ò	¥Ò\<NL>"
-	\. "ho	¤Û	¥Û\<NL>"
-	\. "hu	¤Õ	¥Õ\<NL>"
-	\. "hya	¤Ò¤ã	¥Ò¥ã\<NL>"
-	\. "hye	¤Ò¤§	¥Ò¥§\<NL>"
-	\. "hyi	¤Ò¤£	¥Ò¥£\<NL>"
-	\. "hyo	¤Ò¤ç	¥Ò¥ç\<NL>"
-	\. "hyu	¤Ò¤å	¥Ò¥å\<NL>"
-	\. "i	¤¤	¥¤\<NL>"
-	\. "jj	¤Ã	¥Ã	j\<NL>"
-	\. "ja	¤¸¤ã	¥¸¥ã\<NL>"
-	\. "je	¤¸¤§	¥¸¥§\<NL>"
-	\. "ji	¤¸	¥¸\<NL>"
-	\. "jo	¤¸¤ç	¥¸¥ç\<NL>"
-	\. "ju	¤¸¤å	¥¸¥å\<NL>"
-	\. "jya	¤¸¤ã	¥¸¥ã\<NL>"
-	\. "jye	¤¸¤§	¥¸¥§\<NL>"
-	\. "jyi	¤¸¤£	¥¸¥£\<NL>"
-	\. "jyo	¤¸¤ç	¥¸¥ç\<NL>"
-	\. "jyu	¤¸¤å	¥¸¥å\<NL>"
-	\. "kk	¤Ã	¥Ã	k\<NL>"
-	\. "ka	¤«	¥«\<NL>"
-	\. "ke	¤±	¥±\<NL>"
-	\. "ki	¤­	¥­\<NL>"
-	\. "ko	¤³	¥³\<NL>"
-	\. "ku	¤¯	¥¯\<NL>"
-	\. "kya	¤­¤ã	¥­¥ã\<NL>"
-	\. "kye	¤­¤§	¥­¥§\<NL>"
-	\. "kyi	¤­¤£	¥­¥£\<NL>"
-	\. "kyo	¤­¤ç	¥­¥ç\<NL>"
-	\. "kyu	¤­¤å	¥­¥å\<NL>"
-	\. "ma	¤Ş	¥Ş\<NL>"
-	\. "me	¤á	¥á\<NL>"
-	\. "mi	¤ß	¥ß\<NL>"
-	\. "mo	¤â	¥â\<NL>"
-	\. "mu	¤à	¥à\<NL>"
-	\. "mya	¤ß¤ã	¥ß¥ã\<NL>"
-	\. "mye	¤ß¤§	¥ß¥§\<NL>"
-	\. "myi	¤ß¤£	¥ß¥£\<NL>"
-	\. "myo	¤ß¤ç	¥ß¥ç\<NL>"
-	\. "myu	¤ß¤å	¥ß¥å\<NL>"
-	\. "n	¤ó	¥ó\<NL>"
-	\. "n'	¤ó	¥ó\<NL>"
-	\. "na	¤Ê	¥Ê\<NL>"
-	\. "ne	¤Í	¥Í\<NL>"
-	\. "ni	¤Ë	¥Ë\<NL>"
-	\. "nn	¤ó	¥ó\<NL>"
-	\. "no	¤Î	¥Î\<NL>"
-	\. "nu	¤Ì	¥Ì\<NL>"
-	\. "nya	¤Ë¤ã	¥Ë¥ã\<NL>"
-	\. "nye	¤Ë¤§	¥Ë¥§\<NL>"
-	\. "nyi	¤Ë¤£	¥Ë¥£\<NL>"
-	\. "nyo	¤Ë¤ç	¥Ë¥ç\<NL>"
-	\. "nyu	¤Ë¤å	¥Ë¥å\<NL>"
-	\. "o	¤ª	¥ª\<NL>"
-	\. "pp	¤Ã	¥Ã	p\<NL>"
-	\. "pa	¤Ñ	¥Ñ\<NL>"
-	\. "pe	¤Ú	¥Ú\<NL>"
-	\. "pi	¤Ô	¥Ô\<NL>"
-	\. "po	¤İ	¥İ\<NL>"
-	\. "pu	¤×	¥×\<NL>"
-	\. "pya	¤Ô¤ã	¥Ô¥ã\<NL>"
-	\. "pye	¤Ô¤§	¥Ô¥§\<NL>"
-	\. "pyi	¤Ô¤£	¥Ô¥£\<NL>"
-	\. "pyo	¤Ô¤ç	¥Ô¥ç\<NL>"
-	\. "pyu	¤Ô¤å	¥Ô¥å\<NL>"
-	\. "rr	¤Ã	¥Ã	r\<NL>"
-	\. "ra	¤é	¥é\<NL>"
-	\. "re	¤ì	¥ì\<NL>"
-	\. "ri	¤ê	¥ê\<NL>"
-	\. "ro	¤í	¥í\<NL>"
-	\. "ru	¤ë	¥ë\<NL>"
-	\. "rya	¤ê¤ã	¥ê¥ã\<NL>"
-	\. "rye	¤ê¤§	¥ê¥§\<NL>"
-	\. "ryi	¤ê¤£	¥ê¥£\<NL>"
-	\. "ryo	¤ê¤ç	¥ê¥ç\<NL>"
-	\. "ryu	¤ê¤å	¥ê¥å\<NL>"
-	\. "ss	¤Ã	¥Ã	s\<NL>"
-	\. "sa	¤µ	¥µ\<NL>"
-	\. "se	¤»	¥»\<NL>"
-	\. "sha	¤·¤ã	¥·¥ã\<NL>"
-	\. "she	¤·¤§	¥·¥§\<NL>"
-	\. "shi	¤·	¥·\<NL>"
-	\. "sho	¤·¤ç	¥·¥ç\<NL>"
-	\. "shu	¤·¤å	¥·¥å\<NL>"
-	\. "si	¤·	¥·\<NL>"
-	\. "so	¤½	¥½\<NL>"
-	\. "su	¤¹	¥¹\<NL>"
-	\. "sya	¤·¤ã	¥·¥ã\<NL>"
-	\. "sye	¤·¤§	¥·¥§\<NL>"
-	\. "syi	¤·¤£	¥·¥£\<NL>"
-	\. "syo	¤·¤ç	¥·¥ç\<NL>"
-	\. "syu	¤·¤å	¥·¥å\<NL>"
-	\. "tt	¤Ã	¥Ã	t\<NL>"
-	\. "ta	¤¿	¥¿\<NL>"
-	\. "te	¤Æ	¥Æ\<NL>"
-	\. "tha	¤Æ¤¡	¥Æ¥¡\<NL>"
-	\. "the	¤Æ¤§	¥Æ¥§\<NL>"
-	\. "thi	¤Æ¤£	¥Æ¥£\<NL>"
-	\. "tho	¤Æ¤ç	¥Æ¥ç\<NL>"
-	\. "thu	¤Æ¤å	¥Æ¥å\<NL>"
-	\. "ti	¤Á	¥Á\<NL>"
-	\. "to	¤È	¥È\<NL>"
-	\. "tsu	¤Ä	¥Ä\<NL>"
-	\. "tu	¤Ä	¥Ä\<NL>"
-	\. "tya	¤Á¤ã	¥Á¥ã\<NL>"
-	\. "tye	¤Á¤§	¥Á¥§\<NL>"
-	\. "tyi	¤Á¤£	¥Á¥£\<NL>"
-	\. "tyo	¤Á¤ç	¥Á¥ç\<NL>"
-	\. "tyu	¤Á¤å	¥Á¥å\<NL>"
-	\. "u	¤¦	¥¦\<NL>"
-	\. "vv	¤Ã	¥Ã	v\<NL>"
-	\. "va	¤¦¡«¤¡	¥ô¥¡\<NL>"
-	\. "ve	¤¦¡«¤§	¥ô¥§\<NL>"
-	\. "vi	¤¦¡«¤£	¥ô¥£\<NL>"
-	\. "vo	¤¦¡«¤©	¥ô¥©\<NL>"
-	\. "vu	¤¦¡«	¥ô\<NL>"
-	\. "ww	¤Ã	¥Ã	w\<NL>"
-	\. "wa	¤ï	¥ï\<NL>"
-	\. "we	¤¦¤§	¥¦¥§\<NL>"
-	\. "wi	¤¦¤£	¥¦¥£\<NL>"
-	\. "wo	¤ò	¥ò\<NL>"
-	\. "wu	¤¦	¥¦\<NL>"
-	\. "xx	¤Ã	¥Ã	x\<NL>"
-	\. "xa	¤¡	¥¡\<NL>"
-	\. "xe	¤§	¥§\<NL>"
-	\. "xi	¤£	¥£\<NL>"
-	\. "xka	¤«	¥õ\<NL>"
-	\. "xke	¤±	¥ö\<NL>"
-	\. "xo	¤©	¥©\<NL>"
-	\. "xtsu	¤Ã	¥Ã\<NL>"
-	\. "xtu	¤Ã	¥Ã\<NL>"
-	\. "xu	¤¥	¥¥\<NL>"
-	\. "xwa	¤î	¥î\<NL>"
-	\. "xwe	¤ñ	¥ñ\<NL>"
-	\. "xwi	¤ğ	¥ğ\<NL>"
-	\. "xya	¤ã	¥ã\<NL>"
-	\. "xyo	¤ç	¥ç\<NL>"
-	\. "xyu	¤å	¥å\<NL>"
-	\. "yy	¤Ã	¥Ã	y\<NL>"
-	\. "ya	¤ä	¥ä\<NL>"
-	\. "ye	¤¤¤§	¥¤¥§\<NL>"
-	\. "yo	¤è	¥è\<NL>"
-	\. "yu	¤æ	¥æ\<NL>"
-	\. "zz	¤Ã	¥Ã	z\<NL>"
-	\. "z,	¡Å\<NL>"
-	\. "z-	¡Á\<NL>"
-	\. "z.	¡Ä\<NL>"
-	\. "z/	¡¦\<NL>"
-	\. "z[	¡Ø\<NL>"
-	\. "z]	¡Ù\<NL>"
-	\. "za	¤¶	¥¶\<NL>"
-	\. "ze	¤¼	¥¼\<NL>"
-	\. "zh	¢«\<NL>"
-	\. "zi	¤¸	¥¸\<NL>"
-	\. "zj	¢­\<NL>"
-	\. "zk	¢¬\<NL>"
-	\. "zl	¢ª\<NL>"
-	\. "zo	¤¾	¥¾\<NL>"
-	\. "zu	¤º	¥º\<NL>"
-	\. "zya	¤¸¤ã	¥¸¥ã\<NL>"
-	\. "zye	¤¸¤§	¥¸¥§\<NL>"
-	\. "zyi	¤¸¤£	¥¸¥£\<NL>"
-	\. "zyo	¤¸¤ç	¥¸¥ç\<NL>"
-	\. "zyu	¤¸¤å	¥¸¥å\<NL>"
-	\. "-	¡¼\<NL>"
-	\. ":	¡§\<NL>"
-	\. ";	¡¨\<NL>"
-	\. "!	¡ª\<NL>"
-	\. "?	¡©\<NL>"
-	\. "[	¡Ö\<NL>"
-	\. "]	¡×\<NL>"
+	\. "a	ã‚	ã‚¢\<NL>"
+	\. "bb	ã£	ãƒƒ	b\<NL>"
+	\. "ba	ã°	ãƒ\<NL>"
+	\. "be	ã¹	ãƒ™\<NL>"
+	\. "bi	ã³	ãƒ“\<NL>"
+	\. "bo	ã¼	ãƒœ\<NL>"
+	\. "bu	ã¶	ãƒ–\<NL>"
+	\. "bya	ã³ã‚ƒ	ãƒ“ãƒ£\<NL>"
+	\. "bye	ã³ã‡	ãƒ“ã‚§\<NL>"
+	\. "byi	ã³ãƒ	ãƒ“ã‚£\<NL>"
+	\. "byo	ã³ã‚‡	ãƒ“ãƒ§\<NL>"
+	\. "byu	ã³ã‚…	ãƒ“ãƒ¥\<NL>"
+	\. "cc	ã£	ãƒƒ	c\<NL>"
+	\. "cha	ã¡ã‚ƒ	ãƒãƒ£\<NL>"
+	\. "che	ã¡ã‡	ãƒã‚§\<NL>"
+	\. "chi	ã¡	ãƒ\<NL>"
+	\. "cho	ã¡ã‚‡	ãƒãƒ§\<NL>"
+	\. "chu	ã¡ã‚…	ãƒãƒ¥\<NL>"
+	\. "cya	ã¡ã‚ƒ	ãƒãƒ£\<NL>"
+	\. "cye	ã¡ã‡	ãƒã‚§\<NL>"
+	\. "cyi	ã¡ãƒ	ãƒã‚£\<NL>"
+	\. "cyo	ã¡ã‚‡	ãƒãƒ§\<NL>"
+	\. "cyu	ã¡ã‚…	ãƒãƒ¥\<NL>"
+	\. "dd	ã£	ãƒƒ	d\<NL>"
+	\. "da	ã 	ãƒ€\<NL>"
+	\. "de	ã§	ãƒ‡\<NL>"
+	\. "dha	ã§ã‚ƒ	ãƒ‡ãƒ£\<NL>"
+	\. "dhe	ã§ã‡	ãƒ‡ã‚§\<NL>"
+	\. "dhi	ã§ãƒ	ãƒ‡ã‚£\<NL>"
+	\. "dho	ã§ã‚‡	ãƒ‡ãƒ§\<NL>"
+	\. "dhu	ã§ã‚…	ãƒ‡ãƒ¥\<NL>"
+	\. "di	ã¢	ãƒ‚\<NL>"
+	\. "do	ã©	ãƒ‰\<NL>"
+	\. "du	ã¥	ãƒ…\<NL>"
+	\. "dya	ã¢ã‚ƒ	ãƒ‚ãƒ£\<NL>"
+	\. "dye	ã¢ã‡	ãƒ‚ã‚§\<NL>"
+	\. "dyi	ã¢ãƒ	ãƒ‚ã‚£\<NL>"
+	\. "dyo	ã¢ã‚‡	ãƒ‚ãƒ§\<NL>"
+	\. "dyu	ã¢ã‚…	ãƒ‚ãƒ¥\<NL>"
+	\. "e	ãˆ	ã‚¨\<NL>"
+	\. "ff	ã£	ãƒƒ	f\<NL>"
+	\. "fa	ãµã	ãƒ•ã‚¡\<NL>"
+	\. "fe	ãµã‡	ãƒ•ã‚§\<NL>"
+	\. "fi	ãµãƒ	ãƒ•ã‚£\<NL>"
+	\. "fo	ãµã‰	ãƒ•ã‚©\<NL>"
+	\. "fu	ãµ	ãƒ•\<NL>"
+	\. "fya	ãµã‚ƒ	ãƒ•ãƒ£\<NL>"
+	\. "fye	ãµã‡	ãƒ•ã‚§\<NL>"
+	\. "fyi	ãµãƒ	ãƒ•ã‚£\<NL>"
+	\. "fyo	ãµã‚‡	ãƒ•ãƒ§\<NL>"
+	\. "fyu	ãµã‚…	ãƒ•ãƒ¥\<NL>"
+	\. "gg	ã£	ãƒƒ	g\<NL>"
+	\. "ga	ãŒ	ã‚¬\<NL>"
+	\. "ge	ã’	ã‚²\<NL>"
+	\. "gi	ã	ã‚®\<NL>"
+	\. "go	ã”	ã‚´\<NL>"
+	\. "gu	ã	ã‚°\<NL>"
+	\. "gya	ãã‚ƒ	ã‚®ãƒ£\<NL>"
+	\. "gye	ãã‡	ã‚®ã‚§\<NL>"
+	\. "gyi	ããƒ	ã‚®ã‚£\<NL>"
+	\. "gyo	ãã‚‡	ã‚®ãƒ§\<NL>"
+	\. "gyu	ãã‚…	ã‚®ãƒ¥\<NL>"
+	\. "ha	ã¯	ãƒ\<NL>"
+	\. "he	ã¸	ãƒ˜\<NL>"
+	\. "hi	ã²	ãƒ’\<NL>"
+	\. "ho	ã»	ãƒ›\<NL>"
+	\. "hu	ãµ	ãƒ•\<NL>"
+	\. "hya	ã²ã‚ƒ	ãƒ’ãƒ£\<NL>"
+	\. "hye	ã²ã‡	ãƒ’ã‚§\<NL>"
+	\. "hyi	ã²ãƒ	ãƒ’ã‚£\<NL>"
+	\. "hyo	ã²ã‚‡	ãƒ’ãƒ§\<NL>"
+	\. "hyu	ã²ã‚…	ãƒ’ãƒ¥\<NL>"
+	\. "i	ã„	ã‚¤\<NL>"
+	\. "jj	ã£	ãƒƒ	j\<NL>"
+	\. "ja	ã˜ã‚ƒ	ã‚¸ãƒ£\<NL>"
+	\. "je	ã˜ã‡	ã‚¸ã‚§\<NL>"
+	\. "ji	ã˜	ã‚¸\<NL>"
+	\. "jo	ã˜ã‚‡	ã‚¸ãƒ§\<NL>"
+	\. "ju	ã˜ã‚…	ã‚¸ãƒ¥\<NL>"
+	\. "jya	ã˜ã‚ƒ	ã‚¸ãƒ£\<NL>"
+	\. "jye	ã˜ã‡	ã‚¸ã‚§\<NL>"
+	\. "jyi	ã˜ãƒ	ã‚¸ã‚£\<NL>"
+	\. "jyo	ã˜ã‚‡	ã‚¸ãƒ§\<NL>"
+	\. "jyu	ã˜ã‚…	ã‚¸ãƒ¥\<NL>"
+	\. "kk	ã£	ãƒƒ	k\<NL>"
+	\. "ka	ã‹	ã‚«\<NL>"
+	\. "ke	ã‘	ã‚±\<NL>"
+	\. "ki	ã	ã‚­\<NL>"
+	\. "ko	ã“	ã‚³\<NL>"
+	\. "ku	ã	ã‚¯\<NL>"
+	\. "kya	ãã‚ƒ	ã‚­ãƒ£\<NL>"
+	\. "kye	ãã‡	ã‚­ã‚§\<NL>"
+	\. "kyi	ããƒ	ã‚­ã‚£\<NL>"
+	\. "kyo	ãã‚‡	ã‚­ãƒ§\<NL>"
+	\. "kyu	ãã‚…	ã‚­ãƒ¥\<NL>"
+	\. "ma	ã¾	ãƒ\<NL>"
+	\. "me	ã‚	ãƒ¡\<NL>"
+	\. "mi	ã¿	ãƒŸ\<NL>"
+	\. "mo	ã‚‚	ãƒ¢\<NL>"
+	\. "mu	ã‚€	ãƒ \<NL>"
+	\. "mya	ã¿ã‚ƒ	ãƒŸãƒ£\<NL>"
+	\. "mye	ã¿ã‡	ãƒŸã‚§\<NL>"
+	\. "myi	ã¿ãƒ	ãƒŸã‚£\<NL>"
+	\. "myo	ã¿ã‚‡	ãƒŸãƒ§\<NL>"
+	\. "myu	ã¿ã‚…	ãƒŸãƒ¥\<NL>"
+	\. "n	ã‚“	ãƒ³\<NL>"
+	\. "n'	ã‚“	ãƒ³\<NL>"
+	\. "na	ãª	ãƒŠ\<NL>"
+	\. "ne	ã­	ãƒ\<NL>"
+	\. "ni	ã«	ãƒ‹\<NL>"
+	\. "nn	ã‚“	ãƒ³\<NL>"
+	\. "no	ã®	ãƒ\<NL>"
+	\. "nu	ã¬	ãƒŒ\<NL>"
+	\. "nya	ã«ã‚ƒ	ãƒ‹ãƒ£\<NL>"
+	\. "nye	ã«ã‡	ãƒ‹ã‚§\<NL>"
+	\. "nyi	ã«ãƒ	ãƒ‹ã‚£\<NL>"
+	\. "nyo	ã«ã‚‡	ãƒ‹ãƒ§\<NL>"
+	\. "nyu	ã«ã‚…	ãƒ‹ãƒ¥\<NL>"
+	\. "o	ãŠ	ã‚ª\<NL>"
+	\. "pp	ã£	ãƒƒ	p\<NL>"
+	\. "pa	ã±	ãƒ‘\<NL>"
+	\. "pe	ãº	ãƒš\<NL>"
+	\. "pi	ã´	ãƒ”\<NL>"
+	\. "po	ã½	ãƒ\<NL>"
+	\. "pu	ã·	ãƒ—\<NL>"
+	\. "pya	ã´ã‚ƒ	ãƒ”ãƒ£\<NL>"
+	\. "pye	ã´ã‡	ãƒ”ã‚§\<NL>"
+	\. "pyi	ã´ãƒ	ãƒ”ã‚£\<NL>"
+	\. "pyo	ã´ã‚‡	ãƒ”ãƒ§\<NL>"
+	\. "pyu	ã´ã‚…	ãƒ”ãƒ¥\<NL>"
+	\. "rr	ã£	ãƒƒ	r\<NL>"
+	\. "ra	ã‚‰	ãƒ©\<NL>"
+	\. "re	ã‚Œ	ãƒ¬\<NL>"
+	\. "ri	ã‚Š	ãƒª\<NL>"
+	\. "ro	ã‚	ãƒ­\<NL>"
+	\. "ru	ã‚‹	ãƒ«\<NL>"
+	\. "rya	ã‚Šã‚ƒ	ãƒªãƒ£\<NL>"
+	\. "rye	ã‚Šã‡	ãƒªã‚§\<NL>"
+	\. "ryi	ã‚Šãƒ	ãƒªã‚£\<NL>"
+	\. "ryo	ã‚Šã‚‡	ãƒªãƒ§\<NL>"
+	\. "ryu	ã‚Šã‚…	ãƒªãƒ¥\<NL>"
+	\. "ss	ã£	ãƒƒ	s\<NL>"
+	\. "sa	ã•	ã‚µ\<NL>"
+	\. "se	ã›	ã‚»\<NL>"
+	\. "sha	ã—ã‚ƒ	ã‚·ãƒ£\<NL>"
+	\. "she	ã—ã‡	ã‚·ã‚§\<NL>"
+	\. "shi	ã—	ã‚·\<NL>"
+	\. "sho	ã—ã‚‡	ã‚·ãƒ§\<NL>"
+	\. "shu	ã—ã‚…	ã‚·ãƒ¥\<NL>"
+	\. "si	ã—	ã‚·\<NL>"
+	\. "so	ã	ã‚½\<NL>"
+	\. "su	ã™	ã‚¹\<NL>"
+	\. "sya	ã—ã‚ƒ	ã‚·ãƒ£\<NL>"
+	\. "sye	ã—ã‡	ã‚·ã‚§\<NL>"
+	\. "syi	ã—ãƒ	ã‚·ã‚£\<NL>"
+	\. "syo	ã—ã‚‡	ã‚·ãƒ§\<NL>"
+	\. "syu	ã—ã‚…	ã‚·ãƒ¥\<NL>"
+	\. "tt	ã£	ãƒƒ	t\<NL>"
+	\. "ta	ãŸ	ã‚¿\<NL>"
+	\. "te	ã¦	ãƒ†\<NL>"
+	\. "tha	ã¦ã	ãƒ†ã‚¡\<NL>"
+	\. "the	ã¦ã‡	ãƒ†ã‚§\<NL>"
+	\. "thi	ã¦ãƒ	ãƒ†ã‚£\<NL>"
+	\. "tho	ã¦ã‚‡	ãƒ†ãƒ§\<NL>"
+	\. "thu	ã¦ã‚…	ãƒ†ãƒ¥\<NL>"
+	\. "ti	ã¡	ãƒ\<NL>"
+	\. "to	ã¨	ãƒˆ\<NL>"
+	\. "tsu	ã¤	ãƒ„\<NL>"
+	\. "tu	ã¤	ãƒ„\<NL>"
+	\. "tya	ã¡ã‚ƒ	ãƒãƒ£\<NL>"
+	\. "tye	ã¡ã‡	ãƒã‚§\<NL>"
+	\. "tyi	ã¡ãƒ	ãƒã‚£\<NL>"
+	\. "tyo	ã¡ã‚‡	ãƒãƒ§\<NL>"
+	\. "tyu	ã¡ã‚…	ãƒãƒ¥\<NL>"
+	\. "u	ã†	ã‚¦\<NL>"
+	\. "vv	ã£	ãƒƒ	v\<NL>"
+	\. "va	ã†ã‚›ã	ãƒ´ã‚¡\<NL>"
+	\. "ve	ã†ã‚›ã‡	ãƒ´ã‚§\<NL>"
+	\. "vi	ã†ã‚›ãƒ	ãƒ´ã‚£\<NL>"
+	\. "vo	ã†ã‚›ã‰	ãƒ´ã‚©\<NL>"
+	\. "vu	ã†ã‚›	ãƒ´\<NL>"
+	\. "ww	ã£	ãƒƒ	w\<NL>"
+	\. "wa	ã‚	ãƒ¯\<NL>"
+	\. "we	ã†ã‡	ã‚¦ã‚§\<NL>"
+	\. "wi	ã†ãƒ	ã‚¦ã‚£\<NL>"
+	\. "wo	ã‚’	ãƒ²\<NL>"
+	\. "wu	ã†	ã‚¦\<NL>"
+	\. "xx	ã£	ãƒƒ	x\<NL>"
+	\. "xa	ã	ã‚¡\<NL>"
+	\. "xe	ã‡	ã‚§\<NL>"
+	\. "xi	ãƒ	ã‚£\<NL>"
+	\. "xka	ã‹	ãƒµ\<NL>"
+	\. "xke	ã‘	ãƒ¶\<NL>"
+	\. "xo	ã‰	ã‚©\<NL>"
+	\. "xtsu	ã£	ãƒƒ\<NL>"
+	\. "xtu	ã£	ãƒƒ\<NL>"
+	\. "xu	ã…	ã‚¥\<NL>"
+	\. "xwa	ã‚	ãƒ®\<NL>"
+	\. "xwe	ã‚‘	ãƒ±\<NL>"
+	\. "xwi	ã‚	ãƒ°\<NL>"
+	\. "xya	ã‚ƒ	ãƒ£\<NL>"
+	\. "xyo	ã‚‡	ãƒ§\<NL>"
+	\. "xyu	ã‚…	ãƒ¥\<NL>"
+	\. "yy	ã£	ãƒƒ	y\<NL>"
+	\. "ya	ã‚„	ãƒ¤\<NL>"
+	\. "ye	ã„ã‡	ã‚¤ã‚§\<NL>"
+	\. "yo	ã‚ˆ	ãƒ¨\<NL>"
+	\. "yu	ã‚†	ãƒ¦\<NL>"
+	\. "zz	ã£	ãƒƒ	z\<NL>"
+	\. "z,	â€¥\<NL>"
+	\. "z-	ï½\<NL>"
+	\. "z.	â€¦\<NL>"
+	\. "z/	ãƒ»\<NL>"
+	\. "z[	ã€\<NL>"
+	\. "z]	ã€\<NL>"
+	\. "za	ã–	ã‚¶\<NL>"
+	\. "ze	ãœ	ã‚¼\<NL>"
+	\. "zh	â†\<NL>"
+	\. "zi	ã˜	ã‚¸\<NL>"
+	\. "zj	â†“\<NL>"
+	\. "zk	â†‘\<NL>"
+	\. "zl	â†’\<NL>"
+	\. "zo	ã	ã‚¾\<NL>"
+	\. "zu	ãš	ã‚º\<NL>"
+	\. "zya	ã˜ã‚ƒ	ã‚¸ãƒ£\<NL>"
+	\. "zye	ã˜ã‡	ã‚¸ã‚§\<NL>"
+	\. "zyi	ã˜ãƒ	ã‚¸ã‚£\<NL>"
+	\. "zyo	ã˜ã‚‡	ã‚¸ãƒ§\<NL>"
+	\. "zyu	ã˜ã‚…	ã‚¸ãƒ¥\<NL>"
+	\. "-	ãƒ¼\<NL>"
+	\. ":	ï¼š\<NL>"
+	\. ";	ï¼›\<NL>"
+	\. "!	ï¼\<NL>"
+	\. "?	ï¼Ÿ\<NL>"
+	\. "[	ã€Œ\<NL>"
+	\. "]	ã€\<NL>"
 endif
 
-" ¤Ò¤é¤¬¤Ê¡¦¥«¥¿¥«¥Ê¥â¡¼¥É¤Î¤È¤­´Ø¿ô¤ò¸Æ¤Ó½Ğ¤¹¥¿¥¤¥×¤Î¥ë¡¼¥ë
-" ¹ÔÆ¬¤«¤é¥¿¥ÖÊ¸»ú¤Ş¤Ç¤¬¥í¡¼¥Ş»ú¡¢¼¡¤«¤é \<NL> ¤Ş¤Ç¤¬´Ø¿ô¸Æ½Ğ¤·¡£
-" ¤³¤Î¥í¡¼¥Ş»ú¤¬ÆşÎÏ¤µ¤ì¤¿¤È¤­¤Ï¤³¤Î´Ø¿ô¤ÎÌá¤êÃÍ¤¬ÊÖ¤ë¡£
-" ¤«¤Ê¤Ç¤â´Ø¿ô¤Ç¤â»Ò¤¬¤¢¤ë¾ì¹ç¤Ï¤³¤Î´Ø¿ô¤Ï¼Â¹Ô¤µ¤ì¤Ê¤¤¡£
-" ¤â¤·¤¢¤ì¤Ğ skk_user_rom_func_rules ¤¬ÄÉ²Ã¤µ¤ì¤ë¡£
+" ã²ã‚‰ãŒãªãƒ»ã‚«ã‚¿ã‚«ãƒŠãƒ¢ãƒ¼ãƒ‰ã®ã¨ãé–¢æ•°ã‚’å‘¼ã³å‡ºã™ã‚¿ã‚¤ãƒ—ã®ãƒ«ãƒ¼ãƒ«
+" è¡Œé ­ã‹ã‚‰ã‚¿ãƒ–æ–‡å­—ã¾ã§ãŒãƒ­ãƒ¼ãƒå­—ã€æ¬¡ã‹ã‚‰ \<NL> ã¾ã§ãŒé–¢æ•°å‘¼å‡ºã—ã€‚
+" ã“ã®ãƒ­ãƒ¼ãƒå­—ãŒå…¥åŠ›ã•ã‚ŒãŸã¨ãã¯ã“ã®é–¢æ•°ã®æˆ»ã‚Šå€¤ãŒè¿”ã‚‹ã€‚
+" ã‹ãªã§ã‚‚é–¢æ•°ã§ã‚‚å­ãŒã‚ã‚‹å ´åˆã¯ã“ã®é–¢æ•°ã¯å®Ÿè¡Œã•ã‚Œãªã„ã€‚
+" ã‚‚ã—ã‚ã‚Œã° skk_user_rom_func_rules ãŒè¿½åŠ ã•ã‚Œã‚‹ã€‚
 if !exists("skk_rom_func_rules")
   let skk_rom_func_rules = ""
 	\. ".	SkkCurrentKuten(kana)\<NL>"
@@ -463,124 +463,124 @@ if !exists("skk_rom_func_rules")
 	\. "/	SkkAbbrevMode(kana)\<NL>"
 endif
 
-" Á´³Ñ±Ñ¿ôÊÑ´¹¥ë¡¼¥ë
-" ³Æ¹Ô¤Î1¥Ğ¥¤¥ÈÌÜ¤ÎÆşÎÏ¤ò2¥Ğ¥¤¥È°Ê¹ß <NL> ¤ÎÁ°¤Ş¤Ç¤ËÊÑ´¹¤¹¤ë
-" ¤â¤·¤¢¤ì¤Ğ skk_user_zenei_rules ¤¬ÄÉ²Ã¤µ¤ì¤ë¡£
-" SkkAscii2Zenei ¤Ç¤â»È¤¦¡£
+" å…¨è§’è‹±æ•°å¤‰æ›ãƒ«ãƒ¼ãƒ«
+" å„è¡Œã®1ãƒã‚¤ãƒˆç›®ã®å…¥åŠ›ã‚’2ãƒã‚¤ãƒˆä»¥é™ <NL> ã®å‰ã¾ã§ã«å¤‰æ›ã™ã‚‹
+" ã‚‚ã—ã‚ã‚Œã° skk_user_zenei_rules ãŒè¿½åŠ ã•ã‚Œã‚‹ã€‚
+" SkkAscii2Zenei ã§ã‚‚ä½¿ã†ã€‚
 if !exists("skk_zenei_rules")
   let skk_zenei_rules = ""
-	\. " ¡¡\<NL>"
-	\. "!¡ª\<NL>"
-	\. "\"¡É\<NL>"
-	\. "#¡ô\<NL>"
-	\. "$¡ğ\<NL>"
-	\. "%¡ó\<NL>"
-	\. "&¡õ\<NL>"
-	\. "'¡Ç\<NL>"
-	\. "(¡Ê\<NL>"
-	\. ")¡Ë\<NL>"
-	\. "*¡ö\<NL>"
-	\. "+¡Ü\<NL>"
-	\. ",¡¤\<NL>"
-	\. "-¡İ\<NL>"
-	\. ".¡¥\<NL>"
-	\. "/¡¿\<NL>"
-	\. "0£°\<NL>"
-	\. "1£±\<NL>"
-	\. "2£²\<NL>"
-	\. "3£³\<NL>"
-	\. "4£´\<NL>"
-	\. "5£µ\<NL>"
-	\. "6£¶\<NL>"
-	\. "7£·\<NL>"
-	\. "8£¸\<NL>"
-	\. "9£¹\<NL>"
-	\. ":¡§\<NL>"
-	\. ";¡¨\<NL>"
-	\. "<¡ã\<NL>"
-	\. "=¡á\<NL>"
-	\. ">¡ä\<NL>"
-	\. "?¡©\<NL>"
-	\. "@¡÷\<NL>"
-	\. "A£Á\<NL>"
-	\. "B£Â\<NL>"
-	\. "C£Ã\<NL>"
-	\. "D£Ä\<NL>"
-	\. "E£Å\<NL>"
-	\. "F£Æ\<NL>"
-	\. "G£Ç\<NL>"
-	\. "H£È\<NL>"
-	\. "I£É\<NL>"
-	\. "J£Ê\<NL>"
-	\. "K£Ë\<NL>"
-	\. "L£Ì\<NL>"
-	\. "M£Í\<NL>"
-	\. "N£Î\<NL>"
-	\. "O£Ï\<NL>"
-	\. "P£Ğ\<NL>"
-	\. "Q£Ñ\<NL>"
-	\. "R£Ò\<NL>"
-	\. "S£Ó\<NL>"
-	\. "T£Ô\<NL>"
-	\. "U£Õ\<NL>"
-	\. "V£Ö\<NL>"
-	\. "W£×\<NL>"
-	\. "X£Ø\<NL>"
-	\. "Y£Ù\<NL>"
-	\. "Z£Ú\<NL>"
-	\. "[¡Î\<NL>"
-	\. "\\¡ï\<NL>"
-	\. "]¡Ï\<NL>"
-	\. "^¡°\<NL>"
-	\. "_¡²\<NL>"
-	\. "`¡Æ\<NL>"
-	\. "a£á\<NL>"
-	\. "b£â\<NL>"
-	\. "c£ã\<NL>"
-	\. "d£ä\<NL>"
-	\. "e£å\<NL>"
-	\. "f£æ\<NL>"
-	\. "g£ç\<NL>"
-	\. "h£è\<NL>"
-	\. "i£é\<NL>"
-	\. "j£ê\<NL>"
-	\. "k£ë\<NL>"
-	\. "l£ì\<NL>"
-	\. "m£í\<NL>"
-	\. "n£î\<NL>"
-	\. "o£ï\<NL>"
-	\. "p£ğ\<NL>"
-	\. "q£ñ\<NL>"
-	\. "r£ò\<NL>"
-	\. "s£ó\<NL>"
-	\. "t£ô\<NL>"
-	\. "u£õ\<NL>"
-	\. "v£ö\<NL>"
-	\. "w£÷\<NL>"
-	\. "x£ø\<NL>"
-	\. "y£ù\<NL>"
-	\. "z£ú\<NL>"
-	\. "{¡Ğ\<NL>"
-	\. "|¡Ã\<NL>"
-	\. "}¡Ñ\<NL>"
-	\. "~¡Á\<NL>"
+	\. " ã€€\<NL>"
+	\. "!ï¼\<NL>"
+	\. "\"â€\<NL>"
+	\. "#ï¼ƒ\<NL>"
+	\. "$ï¼„\<NL>"
+	\. "%ï¼…\<NL>"
+	\. "&ï¼†\<NL>"
+	\. "'â€™\<NL>"
+	\. "(ï¼ˆ\<NL>"
+	\. ")ï¼‰\<NL>"
+	\. "*ï¼Š\<NL>"
+	\. "+ï¼‹\<NL>"
+	\. ",ï¼Œ\<NL>"
+	\. "-ï¼\<NL>"
+	\. ".ï¼\<NL>"
+	\. "/ï¼\<NL>"
+	\. "0ï¼\<NL>"
+	\. "1ï¼‘\<NL>"
+	\. "2ï¼’\<NL>"
+	\. "3ï¼“\<NL>"
+	\. "4ï¼”\<NL>"
+	\. "5ï¼•\<NL>"
+	\. "6ï¼–\<NL>"
+	\. "7ï¼—\<NL>"
+	\. "8ï¼˜\<NL>"
+	\. "9ï¼™\<NL>"
+	\. ":ï¼š\<NL>"
+	\. ";ï¼›\<NL>"
+	\. "<ï¼œ\<NL>"
+	\. "=ï¼\<NL>"
+	\. ">ï¼\<NL>"
+	\. "?ï¼Ÿ\<NL>"
+	\. "@ï¼ \<NL>"
+	\. "Aï¼¡\<NL>"
+	\. "Bï¼¢\<NL>"
+	\. "Cï¼£\<NL>"
+	\. "Dï¼¤\<NL>"
+	\. "Eï¼¥\<NL>"
+	\. "Fï¼¦\<NL>"
+	\. "Gï¼§\<NL>"
+	\. "Hï¼¨\<NL>"
+	\. "Iï¼©\<NL>"
+	\. "Jï¼ª\<NL>"
+	\. "Kï¼«\<NL>"
+	\. "Lï¼¬\<NL>"
+	\. "Mï¼­\<NL>"
+	\. "Nï¼®\<NL>"
+	\. "Oï¼¯\<NL>"
+	\. "Pï¼°\<NL>"
+	\. "Qï¼±\<NL>"
+	\. "Rï¼²\<NL>"
+	\. "Sï¼³\<NL>"
+	\. "Tï¼´\<NL>"
+	\. "Uï¼µ\<NL>"
+	\. "Vï¼¶\<NL>"
+	\. "Wï¼·\<NL>"
+	\. "Xï¼¸\<NL>"
+	\. "Yï¼¹\<NL>"
+	\. "Zï¼º\<NL>"
+	\. "[ï¼»\<NL>"
+	\. "\\ï¿¥\<NL>"
+	\. "]ï¼½\<NL>"
+	\. "^ï¼¾\<NL>"
+	\. "_ï¼¿\<NL>"
+	\. "`â€˜\<NL>"
+	\. "aï½\<NL>"
+	\. "bï½‚\<NL>"
+	\. "cï½ƒ\<NL>"
+	\. "dï½„\<NL>"
+	\. "eï½…\<NL>"
+	\. "fï½†\<NL>"
+	\. "gï½‡\<NL>"
+	\. "hï½ˆ\<NL>"
+	\. "iï½‰\<NL>"
+	\. "jï½Š\<NL>"
+	\. "kï½‹\<NL>"
+	\. "lï½Œ\<NL>"
+	\. "mï½\<NL>"
+	\. "nï½\<NL>"
+	\. "oï½\<NL>"
+	\. "pï½\<NL>"
+	\. "qï½‘\<NL>"
+	\. "rï½’\<NL>"
+	\. "sï½“\<NL>"
+	\. "tï½”\<NL>"
+	\. "uï½•\<NL>"
+	\. "vï½–\<NL>"
+	\. "wï½—\<NL>"
+	\. "xï½˜\<NL>"
+	\. "yï½™\<NL>"
+	\. "zï½š\<NL>"
+	\. "{ï½›\<NL>"
+	\. "|ï½œ\<NL>"
+	\. "}ï½\<NL>"
+	\. "~ï½\<NL>"
 endif
 
 " }}}
 
 " script variables {{{
 
-let s:skk_rule_compiled = 0	" ¥ë¡¼¥ë¤ò²òÀÏºÑ¤ß¤«¡©
-let s:skk_in_cmdline = 0	" ¥³¥Ş¥ó¥É¥é¥¤¥óÆşÎÏÃæ¤«¡©
-let s:skk_jisyo_modified = 0	" ¥æ¡¼¥¶¼­½ñ¤òÊÑ¹¹¤·¤¿¤«¡©
-let s:skk_saved_ru = &ruler		" ruler ¤òÊÑ¹¹¤¹¤ë¤¿¤áÊİÂ¸¤·¤Æ¤ª¤¯¡£
-let s:skk_saved_ruf = &rulerformat	" rulerformat ¤òÊÑ¹¹¤¹¤ë¤¿¤áÊİÂ¸¤·¤Æ¤ª¤¯¡£
-" s:skk_hiragana ¤È s:skk_katakana ¤Ï¤Ò¤é¤¬¤Ê<->¥«¥¿¥«¥ÊÊÑ´¹¤Ç»È¤¦¡£
-let s:skk_hiragana = "¤¡¤¢¤£¤¤¤¥¤¦¤§¤¨¤©¤ª¤«¤¬¤­¤®¤¯¤°¤±¤²¤³¤´¤µ¤¶¤·¤¸¤¹¤º¤»¤¼¤½¤¾¤¿¤À¤Á¤Â¤Ã¤Ä¤Å¤Æ¤Ç¤È¤É¤Ê¤Ë¤Ì¤Í¤Î¤Ï¤Ğ¤Ñ¤Ò¤Ó¤Ô¤Õ¤Ö¤×¤Ø¤Ù¤Ú¤Û¤Ü¤İ¤Ş¤ß¤à¤á¤â¤ã¤ä¤å¤æ¤ç¤è¤é¤ê¤ë¤ì¤í¤î¤ï¤ğ¤ñ¤ò¤ó"
-let s:skk_katakana = "¥¡¥¢¥£¥¤¥¥¥¦¥§¥¨¥©¥ª¥«¥¬¥­¥®¥¯¥°¥±¥²¥³¥´¥µ¥¶¥·¥¸¥¹¥º¥»¥¼¥½¥¾¥¿¥À¥Á¥Â¥Ã¥Ä¥Å¥Æ¥Ç¥È¥É¥Ê¥Ë¥Ì¥Í¥Î¥Ï¥Ğ¥Ñ¥Ò¥Ó¥Ô¥Õ¥Ö¥×¥Ø¥Ù¥Ú¥Û¥Ü¥İ¥Ş¥ß¥à¥á¥â¥ã¥ä¥å¥æ¥ç¥è¥é¥ê¥ë¥ì¥í¥î¥ï¥ğ¥ñ¥ò¥ó"
-" ¥³¥Ş¥ó¥É¥é¥¤¥ó¤Ç¤Ïºï½ü¤¬¹Ô¤ï¤ì¤¿¤È¤­¤Ë
-" s:skk_cmdline_str s:skk_cmdline_pos ¤¬ let ¤µ¤ì¡¢ÆşÎÏ¤Î¤¿¤Ó¤Ë unlet ¤µ¤ì¤ë¡£
-" ¾åµ­¤ÎÊÑ¿ô¤¬Â¸ºß¤·¤Æ¤¤¤ì¤Ğ s:SkkGetline() s:SkkCursorCol() ¤¬¤½¤ÎÃÍ¤òÊÖ¤¹¡£
+let s:skk_rule_compiled = 0	" ãƒ«ãƒ¼ãƒ«ã‚’è§£ææ¸ˆã¿ã‹ï¼Ÿ
+let s:skk_in_cmdline = 0	" ã‚³ãƒãƒ³ãƒ‰ãƒ©ã‚¤ãƒ³å…¥åŠ›ä¸­ã‹ï¼Ÿ
+let s:skk_jisyo_modified = 0	" ãƒ¦ãƒ¼ã‚¶è¾æ›¸ã‚’å¤‰æ›´ã—ãŸã‹ï¼Ÿ
+let s:skk_saved_ru = &ruler		" ruler ã‚’å¤‰æ›´ã™ã‚‹ãŸã‚ä¿å­˜ã—ã¦ãŠãã€‚
+let s:skk_saved_ruf = &rulerformat	" rulerformat ã‚’å¤‰æ›´ã™ã‚‹ãŸã‚ä¿å­˜ã—ã¦ãŠãã€‚
+" s:skk_hiragana ã¨ s:skk_katakana ã¯ã²ã‚‰ãŒãª<->ã‚«ã‚¿ã‚«ãƒŠå¤‰æ›ã§ä½¿ã†ã€‚
+let s:skk_hiragana = "ãã‚ãƒã„ã…ã†ã‡ãˆã‰ãŠã‹ãŒããããã‘ã’ã“ã”ã•ã–ã—ã˜ã™ãšã›ãœãããŸã ã¡ã¢ã£ã¤ã¥ã¦ã§ã¨ã©ãªã«ã¬ã­ã®ã¯ã°ã±ã²ã³ã´ãµã¶ã·ã¸ã¹ãºã»ã¼ã½ã¾ã¿ã‚€ã‚ã‚‚ã‚ƒã‚„ã‚…ã‚†ã‚‡ã‚ˆã‚‰ã‚Šã‚‹ã‚Œã‚ã‚ã‚ã‚ã‚‘ã‚’ã‚“"
+let s:skk_katakana = "ã‚¡ã‚¢ã‚£ã‚¤ã‚¥ã‚¦ã‚§ã‚¨ã‚©ã‚ªã‚«ã‚¬ã‚­ã‚®ã‚¯ã‚°ã‚±ã‚²ã‚³ã‚´ã‚µã‚¶ã‚·ã‚¸ã‚¹ã‚ºã‚»ã‚¼ã‚½ã‚¾ã‚¿ãƒ€ãƒãƒ‚ãƒƒãƒ„ãƒ…ãƒ†ãƒ‡ãƒˆãƒ‰ãƒŠãƒ‹ãƒŒãƒãƒãƒãƒãƒ‘ãƒ’ãƒ“ãƒ”ãƒ•ãƒ–ãƒ—ãƒ˜ãƒ™ãƒšãƒ›ãƒœãƒãƒãƒŸãƒ ãƒ¡ãƒ¢ãƒ£ãƒ¤ãƒ¥ãƒ¦ãƒ§ãƒ¨ãƒ©ãƒªãƒ«ãƒ¬ãƒ­ãƒ®ãƒ¯ãƒ°ãƒ±ãƒ²ãƒ³"
+" ã‚³ãƒãƒ³ãƒ‰ãƒ©ã‚¤ãƒ³ã§ã¯å‰Šé™¤ãŒè¡Œã‚ã‚ŒãŸã¨ãã«
+" s:skk_cmdline_str s:skk_cmdline_pos ãŒ let ã•ã‚Œã€å…¥åŠ›ã®ãŸã³ã« unlet ã•ã‚Œã‚‹ã€‚
+" ä¸Šè¨˜ã®å¤‰æ•°ãŒå­˜åœ¨ã—ã¦ã„ã‚Œã° s:SkkGetline() s:SkkCursorCol() ãŒãã®å€¤ã‚’è¿”ã™ã€‚
 let s:bs_save = &backspace
 let s:thisfile = expand("<sfile>")	" for RULES section
 
@@ -589,8 +589,8 @@ let s:thisfile = expand("<sfile>")	" for RULES section
 " Helper Functions {{{
 
 " ValidVarChar
-" Ê¸»úÎó¤ò¼õ¤±¼è¤ê¡¢ÊÑ¿ô¤Ë»È¤¨¤ë·Á¤Ë¤·¤ÆÊÖ¤¹¡£
-" ÊÑ¿ô¤Ë»È¤¨¤Ê¤¤Ê¸»ú¤Ï __Ê¸»ú¥³¡¼¥É__ ¤Î·Á¤ÇÊÖ¤¹¡£
+" æ–‡å­—åˆ—ã‚’å—ã‘å–ã‚Šã€å¤‰æ•°ã«ä½¿ãˆã‚‹å½¢ã«ã—ã¦è¿”ã™ã€‚
+" å¤‰æ•°ã«ä½¿ãˆãªã„æ–‡å­—ã¯ __æ–‡å­—ã‚³ãƒ¼ãƒ‰__ ã®å½¢ã§è¿”ã™ã€‚
 function! s:ValidVarChar(str)
   let result = ''
   let i = 0
@@ -606,14 +606,14 @@ function! s:ValidVarChar(str)
 endfunction
 
 " IsInclude
-" parent ¤Î»Ò¤Ë ch ¤¬´Ş¤Ş¤ì¤Æ¤¤¤ë¤«?
+" parent ã®å­ã« ch ãŒå«ã¾ã‚Œã¦ã„ã‚‹ã‹?
 function! s:IsInclude(parent, ch)
   return s:HasChild(a:parent) && a:ch != '' &&
 	\stridx(s:skk_rules_{a:parent}_child, a:ch) != -1
 endfunction
 
 " DoInclude
-" parent ¤Î»Ò¤Ë ch ¤ò´Ş¤á¤ë
+" parent ã®å­ã« ch ã‚’å«ã‚ã‚‹
 function! s:DoInclude(parent, ch)
   if !s:HasChild(a:parent)
     let s:skk_rules_{a:parent}_child = a:ch
@@ -623,13 +623,13 @@ function! s:DoInclude(parent, ch)
 endfunction
 
 " HasChild
-" parent ¤Ë»Ò¤¬¤¢¤ë¤«?
+" parent ã«å­ãŒã‚ã‚‹ã‹?
 function! s:HasChild(parent)
   return exists("s:skk_rules_{a:parent}_child")
 endfunction
 
 " GetRest
-" rom ¤Î»Ä¤¹Ê¸»ú¤òÊÖ¤¹¡£¤Ê¤±¤ì¤Ğ¶õÊ¸»ú¡£
+" rom ã®æ®‹ã™æ–‡å­—ã‚’è¿”ã™ã€‚ãªã‘ã‚Œã°ç©ºæ–‡å­—ã€‚
 function! s:GetRest(rom)
   if exists("s:skk_rules_{a:rom}_rest")
     return s:skk_rules_{a:rom}_rest
@@ -639,13 +639,13 @@ function! s:GetRest(rom)
 endfunction
 
 " SkkDowncase
-" ¸½»şÅÀ¤Ç¤Ï¤¿¤À¾®Ê¸»ú¤òÊÖ¤¹¡£
+" ç¾æ™‚ç‚¹ã§ã¯ãŸã å°æ–‡å­—ã‚’è¿”ã™ã€‚
 function! s:SkkDowncase(ch)
   return tolower(a:ch)
 endfunction
 
 " SkkGetKana
-" ¥â¡¼¥É¤Ë¤è¤ê¤Ò¤é¤¬¤Ê¤«¥«¥¿¥«¥Ê¤òÊÖ¤¹¡£
+" ãƒ¢ãƒ¼ãƒ‰ã«ã‚ˆã‚Šã²ã‚‰ãŒãªã‹ã‚«ã‚¿ã‚«ãƒŠã‚’è¿”ã™ã€‚
 function! s:SkkGetKana(elem)
   if b:skk_mode == 'hira'
     let result = matchstr(a:elem, '^[^\t]*')
@@ -658,7 +658,7 @@ function! s:SkkGetKana(elem)
   return result
 endfunction
 
-" SkkGetLine (Äã¥ì¥Ù¥ë¥Õ¥¡¥ó¥¯¥·¥ç¥ó¡§ cmdline ¤Î¤³¤È¤òÃÎ¤Ã¤Æ¤¤¤ë¡£)
+" SkkGetLine (ä½ãƒ¬ãƒ™ãƒ«ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³ï¼š cmdline ã®ã“ã¨ã‚’çŸ¥ã£ã¦ã„ã‚‹ã€‚)
 function! s:SkkGetLine(lnum)
   if s:skk_in_cmdline == 0
     return getline(a:lnum)
@@ -671,7 +671,7 @@ function! s:SkkGetLine(lnum)
   endif
 endfunction
 
-" SkkCursorLine (Äã¥ì¥Ù¥ë¥Õ¥¡¥ó¥¯¥·¥ç¥ó¡§ cmdline ¤Î¤³¤È¤òÃÎ¤Ã¤Æ¤¤¤ë¡£)
+" SkkCursorLine (ä½ãƒ¬ãƒ™ãƒ«ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³ï¼š cmdline ã®ã“ã¨ã‚’çŸ¥ã£ã¦ã„ã‚‹ã€‚)
 function! s:SkkCursorLine()
   if s:skk_in_cmdline == 0
     return exists("s:skk_cur_line") ? s:skk_cur_line : line(".")
@@ -680,7 +680,7 @@ function! s:SkkCursorLine()
   endif
 endfunction
 
-" SkkCursorCol (Äã¥ì¥Ù¥ë¥Õ¥¡¥ó¥¯¥·¥ç¥ó¡§ cmdline ¤Î¤³¤È¤òÃÎ¤Ã¤Æ¤¤¤ë¡£)
+" SkkCursorCol (ä½ãƒ¬ãƒ™ãƒ«ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³ï¼š cmdline ã®ã“ã¨ã‚’çŸ¥ã£ã¦ã„ã‚‹ã€‚)
 function! s:SkkCursorCol()
   if s:skk_in_cmdline == 0
     return exists("s:skk_cur_col") ? s:skk_cur_col : col(".")
@@ -693,7 +693,7 @@ function! s:SkkCursorCol()
   endif
 endfunction
 
-" SkkWait secÉÃ´ÖÂÔ¤Ä¡£²¿¤«ÆşÎÏ¤¬¤¢¤ì¤Ğ¡¢¤½¤ÎÊ¸»ú¤òÊÖ¤¹¡£
+" SkkWait secç§’é–“å¾…ã¤ã€‚ä½•ã‹å…¥åŠ›ãŒã‚ã‚Œã°ã€ãã®æ–‡å­—ã‚’è¿”ã™ã€‚
 function! s:SkkWait(sec)
   let i = a:sec * 10
   while i > 0
@@ -707,7 +707,7 @@ function! s:SkkWait(sec)
   return ""
 endfunction
 
-" msg ¤ËÂĞ¤·¤Æ yes ¤Ê¤é 1 ¤ò no ¤Ê¤é 0 ¤òÊÖ¤¹¡£
+" msg ã«å¯¾ã—ã¦ yes ãªã‚‰ 1 ã‚’ no ãªã‚‰ 0 ã‚’è¿”ã™ã€‚
 function! s:SkkYesNo(msg)
   let text = ""
   let prompt = a:msg . "(yes or no) "
@@ -747,7 +747,7 @@ function! s:SkkEcho(msg, highlight, wait)
   return a:wait ? s:SkkWait(a:wait) : ""
 endfunction
 
-" // ¤Ç¶èÀÚ¤é¤ì¤¿s1¤Ès2¤ÎÏÂ½¸¹ç¤òÊÖ¤¹¡£
+" // ã§åŒºåˆ‡ã‚‰ã‚ŒãŸs1ã¨s2ã®å’Œé›†åˆã‚’è¿”ã™ã€‚
 function! s:SkkMerge(s1, s2)
   if a:s1 == ""
     return a:s2
@@ -768,7 +768,7 @@ function! s:SkkMerge(s1, s2)
   return result
 endfunction
 
-" s1¤Ë´Ş¤Ş¤ì¡¢s2¤Ë´Ş¤Ş¤ì¤Æ¤¤¤Ê¤¤Í×ÁÇ¤Î½¸¹ç¤òÊÖ¤¹¡£
+" s1ã«å«ã¾ã‚Œã€s2ã«å«ã¾ã‚Œã¦ã„ãªã„è¦ç´ ã®é›†åˆã‚’è¿”ã™ã€‚
 function! s:SkkPurge(s1, s2)
   if a:s2 == ""
     return a:s1
@@ -794,43 +794,43 @@ endfunction
 " Initialization {{{
 
 " SkkBufInit
-" ¥Ğ¥Ã¥Õ¥¡ÊÑ¿ô¤ò½é´ü²½¤¹¤ë
+" ãƒãƒƒãƒ•ã‚¡å¤‰æ•°ã‚’åˆæœŸåŒ–ã™ã‚‹
 function! s:SkkBufInit()
   let b:skk_on = 0		" 0=off 1=on
   let b:skk_mode = g:skk_initial_mode	" hira|kata|zenei|ascii
-  let b:skk_line = 0		" ¸½ºß¤Î¹Ô (hira|kata ¤À¤±¤Ç»È¤¦)
-  let b:skk_rom = ""		" ÆşÎÏÅÓÃæ¤Î¥í¡¼¥Ş»ú (hira|kata ¤À¤±¤Ç»È¤¦)
-  let b:skk_romv = ""		" ÆşÎÏÅÓÃæ¤Î¥í¡¼¥Ş»ú ÊÑ¿ôÌ¾
-  let b:skk_rstart = 0		" ¥í¡¼¥Ş»ú¤Î¥¹¥¿¡¼¥È·å (hira|kata ¤À¤±¤Ç»È¤¦)
+  let b:skk_line = 0		" ç¾åœ¨ã®è¡Œ (hira|kata ã ã‘ã§ä½¿ã†)
+  let b:skk_rom = ""		" å…¥åŠ›é€”ä¸­ã®ãƒ­ãƒ¼ãƒå­— (hira|kata ã ã‘ã§ä½¿ã†)
+  let b:skk_romv = ""		" å…¥åŠ›é€”ä¸­ã®ãƒ­ãƒ¼ãƒå­— å¤‰æ•°å
+  let b:skk_rstart = 0		" ãƒ­ãƒ¼ãƒå­—ã®ã‚¹ã‚¿ãƒ¼ãƒˆæ¡ (hira|kata ã ã‘ã§ä½¿ã†)
   let b:skk_henkan_mode = 0
-  " 0=¢£¥â¡¼¥É 1=¢¦¥â¡¼¥É 2=¢¦¥â¡¼¥É (Á÷¤ê¤¬¤ÊÆşÎÏÃæ) 3=¢§¥â¡¼¥É
-  " 4=ÁªÂòÊı¼°¤Ç³ÎÄê¤·¤¿¤È¤­
-  let b:skk_abbrev_mode_on = 0	" abbrev ¥â¡¼¥É¤«¡©
-  let &imdisable = 1		" ÊÑ¹¹¤·¤¿¤Ş¤Ş¸µ¤ËÌá¤µ¤Ê¤¤
-  "let &iminsert = 0		" ÊÑ¹¹¤·¤¿¤Ş¤Ş¸µ¤ËÌá¤µ¤Ê¤¤
+  " 0=â– ãƒ¢ãƒ¼ãƒ‰ 1=â–½ãƒ¢ãƒ¼ãƒ‰ 2=â–½ãƒ¢ãƒ¼ãƒ‰ (é€ã‚ŠãŒãªå…¥åŠ›ä¸­) 3=â–¼ãƒ¢ãƒ¼ãƒ‰
+  " 4=é¸æŠæ–¹å¼ã§ç¢ºå®šã—ãŸã¨ã
+  let b:skk_abbrev_mode_on = 0	" abbrev ãƒ¢ãƒ¼ãƒ‰ã‹ï¼Ÿ
+  let &imdisable = 1		" å¤‰æ›´ã—ãŸã¾ã¾å…ƒã«æˆ»ã•ãªã„
+  "let &iminsert = 0		" å¤‰æ›´ã—ãŸã¾ã¾å…ƒã«æˆ»ã•ãªã„
   if !exists("b:skk_fo_save")
     let b:skk_fo_save = &formatoptions
   endif
-  let b:skk_autofill = 0	" Auto Fill ¥â¡¼¥É¤«¡©
+  let b:skk_autofill = 0	" Auto Fill ãƒ¢ãƒ¼ãƒ‰ã‹ï¼Ÿ
   if !exists("b:skk_map_silent")
-    let b:skk_map_silent = 2	" <silent> ÉÕ¤­¤Ç¥Ş¥Ã¥×¤·¤¿¤«¡©
+    let b:skk_map_silent = 2	" <silent> ä»˜ãã§ãƒãƒƒãƒ—ã—ãŸã‹ï¼Ÿ
   endif
 endfunction
 
 " SkkRuleCompile
-" skk_rom_kana_rules ¤ò²òÀÏ¤·¤ÆÌÚ¹½Â¤¤é¤·¤­¤â¤Î¤Ë¤¹¤ë¡£
-" Îã¤¨¤Ğ ba	¤Ğ	¥Ğ\<NL> ¤È¤¤¤¦¹Ô¤¬¤¢¤Ã¤¿¤È¤¹¤ë¤È
+" skk_rom_kana_rules ã‚’è§£æã—ã¦æœ¨æ§‹é€ ã‚‰ã—ãã‚‚ã®ã«ã™ã‚‹ã€‚
+" ä¾‹ãˆã° ba	ã°	ãƒ\<NL> ã¨ã„ã†è¡ŒãŒã‚ã£ãŸã¨ã™ã‚‹ã¨
 " skk_rules_b_child = "a"
-" skk_rules_ba = "¤Ğ	¥Ğ"
-" ¤È¤¤¤¦¤è¤¦¤ËÊÑ¿ô¤òºî¤Ã¤Æ¤¤¤¯¡£
-" skk_rules_b_child ¤È¤¤¤¦¤Î¤Ï `b' ¤Î¸å¤Ë¤Ä¤Ê¤¬¤ë¥¢¥ë¥Õ¥¡¥Ù¥Ã¥È¤Ç
-" ba bi bu be bo bya ... ¤È¤¤¤¦¥í¡¼¥Ş»ú¤¬¤¢¤ì¤Ğ "aiueoy" ¤È¤Ê¤ë¡£
-" skk_rules_ba ¤È¤¤¤¦¤Î¤Ï
-" `ba' ¤¬ÆşÎÏ¤µ¤ì¤¿¤é³ÎÄê¤¹¤ëÍ×ÁÇ¤¬¤¢¤ë¤È¤¤¤¦¤³¤È¤ò¼¨¤¹¡£
-" skk_rules_dd_rest ¤È¤¤¤¦¤Î¤Ï `dd' ¤È¤¤¤¦ÆşÎÏ¤¬¤¢¤Ã¤¿¤È¤­¤Ë
-" `¤Ã' ¤È¤¤¤¦³ÎÄêÍ×ÁÇ¤ÎÂ¾¤Ë»Ä¤¹Ê¸»úÎó¡£
+" skk_rules_ba = "ã°	ãƒ"
+" ã¨ã„ã†ã‚ˆã†ã«å¤‰æ•°ã‚’ä½œã£ã¦ã„ãã€‚
+" skk_rules_b_child ã¨ã„ã†ã®ã¯ `b' ã®å¾Œã«ã¤ãªãŒã‚‹ã‚¢ãƒ«ãƒ•ã‚¡ãƒ™ãƒƒãƒˆã§
+" ba bi bu be bo bya ... ã¨ã„ã†ãƒ­ãƒ¼ãƒå­—ãŒã‚ã‚Œã° "aiueoy" ã¨ãªã‚‹ã€‚
+" skk_rules_ba ã¨ã„ã†ã®ã¯
+" `ba' ãŒå…¥åŠ›ã•ã‚ŒãŸã‚‰ç¢ºå®šã™ã‚‹è¦ç´ ãŒã‚ã‚‹ã¨ã„ã†ã“ã¨ã‚’ç¤ºã™ã€‚
+" skk_rules_dd_rest ã¨ã„ã†ã®ã¯ `dd' ã¨ã„ã†å…¥åŠ›ãŒã‚ã£ãŸã¨ãã«
+" `ã£' ã¨ã„ã†ç¢ºå®šè¦ç´ ã®ä»–ã«æ®‹ã™æ–‡å­—åˆ—ã€‚
 function! SkkRuleCompile()
-  " ¥í¡¼¥Ş»ú¢ª¤«¤Ê¤Î½èÍı
+  " ãƒ­ãƒ¼ãƒå­—â†’ã‹ãªã®å‡¦ç†
   if exists("g:skk_rom_kana_rules")
     let ptr = g:skk_rom_kana_rules
     if exists("g:skk_user_rom_kana_rules")
@@ -862,7 +862,7 @@ function! SkkRuleCompile()
     endwhile
     unlet g:skk_rom_kana_rules
   endif
-  " ¥í¡¼¥Ş»ú¢ª´Ø¿ô¤Î½èÍı
+  " ãƒ­ãƒ¼ãƒå­—â†’é–¢æ•°ã®å‡¦ç†
   if exists("g:skk_rom_func_rules")
     let ptr = g:skk_rom_func_rules
     if exists("g:skk_user_rom_func_rules")
@@ -890,7 +890,7 @@ function! SkkRuleCompile()
     endwhile
     unlet g:skk_rom_func_rules
   endif
-  " ¥¢¥ë¥Õ¥¡¥Ù¥Ã¥È¢ªÁ´³Ñ±Ñ¿ô¤Î½èÍı
+  " ã‚¢ãƒ«ãƒ•ã‚¡ãƒ™ãƒƒãƒˆâ†’å…¨è§’è‹±æ•°ã®å‡¦ç†
   if exists("g:skk_zenei_rules")
     let ptr = g:skk_zenei_rules
     if exists("g:skk_user_zenei_rules")
@@ -919,7 +919,7 @@ if g:skk_manual_save_jisyo_keys != ""
   exe "nnoremap <silent> " . g:skk_manual_save_jisyo_keys . " :call <SID>SkkSaveJisyo(1, 0)<CR>"
 endif
 
-" ½ªÎ»»ş¤Ë¼­½ñ¤ÎÊİÂ¸
+" çµ‚äº†æ™‚ã«è¾æ›¸ã®ä¿å­˜
 function! SkkSetAutoSaveJisyo(nr)
   augroup skk
     autocmd!
@@ -934,7 +934,7 @@ endfunction
 
 call SkkSetAutoSaveJisyo(g:skk_auto_save_jisyo)
 
-" ²Ë¤Ê¤È¤­¤Ë»ş´Ö¤Î¤«¤«¤ë¤³¤È¤ò¤ä¤Ã¤Æ¤·¤Ş¤¦¡£
+" æš‡ãªã¨ãã«æ™‚é–“ã®ã‹ã‹ã‚‹ã“ã¨ã‚’ã‚„ã£ã¦ã—ã¾ã†ã€‚
 augroup skk-setup
   autocmd!
   autocmd CursorHold * call s:SkkSetup()
@@ -960,7 +960,7 @@ function! s:SkkOn()
 endfunction
 
 " SkkMode
-" skk ¤ò on/off ¤¹¤ë¡£
+" skk ã‚’ on/off ã™ã‚‹ã€‚
 function! SkkMode(on)
   if !exists("b:skk_on")
     call s:SkkBufInit()
@@ -999,9 +999,9 @@ function! SkkMode(on)
 endfunction
 
 " SkkToggleKana
-" ¢£¥â¡¼¥É¡¦¢§¥â¡¼¥É»ş¤Ë¤Ï¤Ò¤é¤¬¤ÊÆşÎÏ¥â¡¼¥É¡¦¥«¥¿¥«¥ÊÆşÎÏ¥â¡¼¥É¤òÀÚ¤êÂØ¤¨¤ë¡£
-" ¢¦¥â¡¼¥É»ş¤Ë¤Ï b:skk_hstart ¤«¤é¥«¡¼¥½¥ë¤Î´Ö¤ò¤Ò¤é¤¬¤ÊÆşÎÏ¥â¡¼¥É¤Î¤È¤­¤Ë¤Ï
-" ¥«¥¿¥«¥Ê¤Ë¡¢¥«¥¿¥«¥ÊÆşÎÏ¥â¡¼¥É¤Î¤È¤­¤Ë¤Ï¤Ò¤é¤¬¤Ê¤ËÊÑ´¹¤¹¤ë¡£
+" â– ãƒ¢ãƒ¼ãƒ‰ãƒ»â–¼ãƒ¢ãƒ¼ãƒ‰æ™‚ã«ã¯ã²ã‚‰ãŒãªå…¥åŠ›ãƒ¢ãƒ¼ãƒ‰ãƒ»ã‚«ã‚¿ã‚«ãƒŠå…¥åŠ›ãƒ¢ãƒ¼ãƒ‰ã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹ã€‚
+" â–½ãƒ¢ãƒ¼ãƒ‰æ™‚ã«ã¯ b:skk_hstart ã‹ã‚‰ã‚«ãƒ¼ã‚½ãƒ«ã®é–“ã‚’ã²ã‚‰ãŒãªå…¥åŠ›ãƒ¢ãƒ¼ãƒ‰ã®ã¨ãã«ã¯
+" ã‚«ã‚¿ã‚«ãƒŠã«ã€ã‚«ã‚¿ã‚«ãƒŠå…¥åŠ›ãƒ¢ãƒ¼ãƒ‰ã®ã¨ãã«ã¯ã²ã‚‰ãŒãªã«å¤‰æ›ã™ã‚‹ã€‚
 function! SkkToggleKana(kana)
   if b:skk_henkan_mode == 1 || b:skk_henkan_mode == 2
     let kana = a:kana . s:SkkCleanRom()
@@ -1030,7 +1030,7 @@ function! SkkAbbrev2Zenei()
 endfunction
 
 " SkkHiraMode
-" ¤Ò¤é¤¬¤ÊÆşÎÏ¥â¡¼¥É¤Ë¤¹¤ë¡£
+" ã²ã‚‰ãŒãªå…¥åŠ›ãƒ¢ãƒ¼ãƒ‰ã«ã™ã‚‹ã€‚
 function! SkkHiraMode(kana)
   let kana = a:kana . s:SkkKakutei()
   let b:skk_mode = 'hira'
@@ -1038,7 +1038,7 @@ function! SkkHiraMode(kana)
 endfunction
 
 " SkkKataMode
-" ¥«¥¿¥«¥ÊÆşÎÏ¥â¡¼¥É¤Ë¤¹¤ë¡£
+" ã‚«ã‚¿ã‚«ãƒŠå…¥åŠ›ãƒ¢ãƒ¼ãƒ‰ã«ã™ã‚‹ã€‚
 function! SkkKataMode(kana)
   let kana = a:kana . s:SkkKakutei()
   let b:skk_mode = 'kata'
@@ -1046,7 +1046,7 @@ function! SkkKataMode(kana)
 endfunction
 
 " SkkZeneiMode
-" Á´³Ñ±Ñ¿ôÆşÎÏ¥â¡¼¥É¤Ë¤¹¤ë¡£
+" å…¨è§’è‹±æ•°å…¥åŠ›ãƒ¢ãƒ¼ãƒ‰ã«ã™ã‚‹ã€‚
 function! SkkZeneiMode(kana)
   let kana = a:kana . s:SkkKakutei()
   let b:skk_mode = 'zenei'
@@ -1054,7 +1054,7 @@ function! SkkZeneiMode(kana)
 endfunction
 
 " SkkAsciiMode
-" ASCIIÄ¾ÀÜÆşÎÏ¥â¡¼¥É¤Ë¤¹¤ë¡£
+" ASCIIç›´æ¥å…¥åŠ›ãƒ¢ãƒ¼ãƒ‰ã«ã™ã‚‹ã€‚
 function! SkkAsciiMode(kana)
   let kana = a:kana . s:SkkKakutei()
   let b:skk_mode = 'ascii'
@@ -1063,7 +1063,7 @@ endfunction
 
 function! SkkAbbrevMode(kana)
   if b:skk_henkan_mode == 1 || b:skk_henkan_mode == 2
-    call s:SkkEcho("Already in ¢¦ mode", "WarningMsg", 1)
+    call s:SkkEcho("Already in â–½ mode", "WarningMsg", 1)
     return ""
   endif
   let kana = SkkSetHenkanPoint1(a:kana)
@@ -1071,11 +1071,11 @@ function! SkkAbbrevMode(kana)
   return kana
 endfunction
 
-" rulerformat ¤ÇÉ½¼¨¤¹¤ë¸½ºß¤Î¥â¡¼¥É
+" rulerformat ã§è¡¨ç¤ºã™ã‚‹ç¾åœ¨ã®ãƒ¢ãƒ¼ãƒ‰
 function! SkkGetModeStr()
   let m = stridx("iRc", mode())		" 0..1=Insert 2=cmdline
   if !exists("b:skk_on") "|| b:skk_on == 0
-    let str = " "	" ¶õÊ¸»ú¤À¤ÈÉı¤¬¤º¤ì¤ë¡£
+    let str = " "	" ç©ºæ–‡å­—ã ã¨å¹…ãŒãšã‚Œã‚‹ã€‚
   elseif m == -1
     let str = " "
   elseif m < 2 && &iminsert == 0
@@ -1083,13 +1083,13 @@ function! SkkGetModeStr()
   elseif m == 2 && s:skk_in_cmdline == 0
     let str = " "
   elseif b:skk_abbrev_mode_on == 1
-    let str = "[SKK:a¤¢]"
+    let str = "[SKK:aã‚]"
   elseif b:skk_mode == "hira"
-    let str = "[SKK:¤¢]"
+    let str = "[SKK:ã‚]"
   elseif b:skk_mode == "kata"
-    let str = "[SKK:¥¢]"
+    let str = "[SKK:ã‚¢]"
   elseif b:skk_mode == "zenei"
-    let str = "[SKK:£Á]"
+    let str = "[SKK:ï¼¡]"
   else
     let str = "[SKK:aA]"
   endif
@@ -1102,7 +1102,7 @@ endfunction
 
 " Erase {{{
 
-" n¸Ä¤Î <C-h> ¤òÊÖ¤¹¡£
+" nå€‹ã® <C-h> ã‚’è¿”ã™ã€‚
 function! s:SkkMakeBS(n)
   let i = 0
   let bs = ""
@@ -1113,7 +1113,7 @@ function! s:SkkMakeBS(n)
   return bs
 endfunction
 
-" <C-h> ¤ÇÁÈ¤ßÎ©¤Æ¤é¤ì¤ë¤«¡© ºï½ü¥İ¥¤¥ó¥È¤¬¥«¡¼¥½¥ë°ÌÃÖ¤è¤êÁ°¤Ê¤é²Ä¡£
+" <C-h> ã§çµ„ã¿ç«‹ã¦ã‚‰ã‚Œã‚‹ã‹ï¼Ÿ å‰Šé™¤ãƒã‚¤ãƒ³ãƒˆãŒã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚ˆã‚Šå‰ãªã‚‰å¯ã€‚
 function! s:SkkCanBS(dell, delc, curl, curc)
   if a:dell == a:curl
     return a:delc <= a:curc
@@ -1122,8 +1122,8 @@ function! s:SkkCanBS(dell, delc, curl, curc)
   endif
 endfunction
 
-" SkkDeleteRange line¹Ô¤Î start ¤«¤é end ¤Ş¤Ç¤òºï½ü¤¹¤ë¡£
-" (Äã¥ì¥Ù¥ë¥Õ¥¡¥ó¥¯¥·¥ç¥ó¡§ cmdline ¤Î¤³¤È¤òÃÎ¤Ã¤Æ¤¤¤ë¡£)
+" SkkDeleteRange lineè¡Œã® start ã‹ã‚‰ end ã¾ã§ã‚’å‰Šé™¤ã™ã‚‹ã€‚
+" (ä½ãƒ¬ãƒ™ãƒ«ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³ï¼š cmdline ã®ã“ã¨ã‚’çŸ¥ã£ã¦ã„ã‚‹ã€‚)
 function! s:SkkDeleteRange(line, start, end)
   if a:start >= a:end
     return
@@ -1173,7 +1173,7 @@ function! s:SkkDeleteRange(line, start, end)
 endfunction
 
 " SkkEraseRom
-" ¥í¡¼¥Ş»ú¤òºï½ü¤¹¤ë¡£
+" ãƒ­ãƒ¼ãƒå­—ã‚’å‰Šé™¤ã™ã‚‹ã€‚
 function! s:SkkEraseRom()
   if b:skk_rom_erased
     return
@@ -1185,7 +1185,7 @@ function! s:SkkEraseRom()
 endfunction
 
 " SkkCleanRom
-" ³ÎÄê¤Ç¤­¤ë¤â¤Î¤¬¤¢¤ì¤Ğ¤½¤ì¤òÊÖ¤·¤Æ skk_rom ¤ò¶õ¤Ë¤¹¤ë¡£
+" ç¢ºå®šã§ãã‚‹ã‚‚ã®ãŒã‚ã‚Œã°ãã‚Œã‚’è¿”ã—ã¦ skk_rom ã‚’ç©ºã«ã™ã‚‹ã€‚
 function! s:SkkCleanRom()
   let kana = ''
   if b:skk_rom != ''
@@ -1202,7 +1202,7 @@ function! s:SkkCleanRom()
 endfunction
 
 " SkkEraseYomi
-" skk_hstart ¤«¤é¥«¡¼¥½¥ë°ÌÃÖ¤Ş¤Çºï½ü¤¹¤ë¡£
+" skk_hstart ã‹ã‚‰ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã¾ã§å‰Šé™¤ã™ã‚‹ã€‚
 function! s:SkkEraseYomi()
   let lnum = s:SkkCursorLine()
   if b:skk_line == lnum
@@ -1212,7 +1212,7 @@ function! s:SkkEraseYomi()
   endif
 endfunction
 
-" SkkEraseYomi2 Ê£¿ô¹Ô¥Ğ¡¼¥¸¥ç¥ó
+" SkkEraseYomi2 è¤‡æ•°è¡Œãƒãƒ¼ã‚¸ãƒ§ãƒ³
 function! s:SkkEraseYomi2(lstart, start, lend, end)
   let str = strpart(getline(a:lstart), a:start - 1) . "\n"
   let i = a:lstart + 1
@@ -1235,9 +1235,9 @@ endfunction
 " mapping functions {{{
 
 " SkkControlJ
-" lmap ¤ÎÃæ¤«¤é¸Æ¤Ğ¤ì¤ë¡£skk ¤ò on ¤Ë¤¹¤ë¤³¤È¤Ï¤Ê¤¤¡£
-" b:skk_mode == 'hira'|'kata' && Ì¤³ÎÄêÍ×ÁÇ¤¬¤¢¤ë -> ³ÎÄê
-" b:skk_mode == 'hira'|'kata' && Ì¤³ÎÄêÍ×ÁÇ¤¬¤Ê¤¤ -> b:skk_on = 0
+" lmap ã®ä¸­ã‹ã‚‰å‘¼ã°ã‚Œã‚‹ã€‚skk ã‚’ on ã«ã™ã‚‹ã“ã¨ã¯ãªã„ã€‚
+" b:skk_mode == 'hira'|'kata' && æœªç¢ºå®šè¦ç´ ãŒã‚ã‚‹ -> ç¢ºå®š
+" b:skk_mode == 'hira'|'kata' && æœªç¢ºå®šè¦ç´ ãŒãªã„ -> b:skk_on = 0
 " b:skk_mode == 'zenei'|'ascii' -> b:skk_mode = 'hira'
 function! s:SkkControlJ()
   if b:skk_mode =~ 'hira\|kata'
@@ -1252,10 +1252,10 @@ function! s:SkkControlJ()
 endfunction
 
 " SkkBackspace
-" ¢¦¥â¡¼¥É¤Ç¢¦¤è¤êÁ°¤Ê¤é³ÎÄê¤¹¤ë¡£
-" ¢§¥â¡¼¥É¤Ê¤é³ÎÄê¤·¤ÆÄ¾Á°¤ÎÊ¸»ú¤òºï½ü¤¹¤ë¡£
-" ¥í¡¼¥Ş»úÆşÎÏÃæ¤Ê¤éÄ¾Á°¤Î¥í¡¼¥Ş»ú¤ò¾Ã¤¹¡£
-" ÆşÎÏÅÓÃæ¤Î¥í¡¼¥Ş»ú¤¬¤Ê¤±¤ì¤ĞÁ°¤Î¤«¤Ê¤ò¾Ã¤¹¡£
+" â–½ãƒ¢ãƒ¼ãƒ‰ã§â–½ã‚ˆã‚Šå‰ãªã‚‰ç¢ºå®šã™ã‚‹ã€‚
+" â–¼ãƒ¢ãƒ¼ãƒ‰ãªã‚‰ç¢ºå®šã—ã¦ç›´å‰ã®æ–‡å­—ã‚’å‰Šé™¤ã™ã‚‹ã€‚
+" ãƒ­ãƒ¼ãƒå­—å…¥åŠ›ä¸­ãªã‚‰ç›´å‰ã®ãƒ­ãƒ¼ãƒå­—ã‚’æ¶ˆã™ã€‚
+" å…¥åŠ›é€”ä¸­ã®ãƒ­ãƒ¼ãƒå­—ãŒãªã‘ã‚Œã°å‰ã®ã‹ãªã‚’æ¶ˆã™ã€‚
 function! s:SkkBackspace()
   if b:skk_mode =~ 'hira\|kata'
     if strlen(b:skk_rom) > 0
@@ -1282,7 +1282,7 @@ function! s:SkkCancel()
     call s:SkkEraseYomi()
     return g:skk_marker_white . key
   endif
-  call s:SkkCleanRom()	" Ìá¤êÃÍ¤Ï¼Î¤Æ¤ë¡£
+  call s:SkkCleanRom()	" æˆ»ã‚Šå€¤ã¯æ¨ã¦ã‚‹ã€‚
   if b:skk_henkan_mode == 0
   elseif b:skk_henkan_mode == 1 || b:skk_henkan_mode == 2
     call s:SkkEraseYomi()
@@ -1348,7 +1348,7 @@ function! s:SkkMapCR()
   endif
 endfunction
 
-" f ¤ä r ¤Ê¤É¤¬¤¢¤ë¤¿¤áÉ¬Í×
+" f ã‚„ r ãªã©ãŒã‚ã‚‹ãŸã‚å¿…è¦
 function! s:SkkMapNormal()
   let keys = "iIaAoOcCsSR"
   let i = 0
@@ -1356,7 +1356,7 @@ function! s:SkkMapNormal()
     exe "nnoremap <silent> <buffer> " . keys[i] . " :call SkkMap(1)<CR>:let &iminsert = 1<CR>" . keys[i]
     let i = i + 1
   endwhile
-  call SkkMap(0)	" ¥³¥Ş¥ó¥É¥é¥¤¥óÂ¦¤Ë¥»¥Ã¥È¤·¤Æ¤ª¤¯¡£
+  call SkkMap(0)	" ã‚³ãƒãƒ³ãƒ‰ãƒ©ã‚¤ãƒ³å´ã«ã‚»ãƒƒãƒˆã—ã¦ãŠãã€‚
 endfunction
 
 function! s:SkkUnmapNormal()
@@ -1441,7 +1441,7 @@ endfunction
 
 " Insert functions {{{
 
-" ÆşÎÏ¤ÎÂç¸µ¡£¤³¤³¤Ç¾õÂÖ¡¢¥­¡¼¤ò¸«¤Æ¤½¤ì¤¾¤ì¤Î´Ø¿ô¤ò¸Æ¤Ó½Ğ¤¹¡£
+" å…¥åŠ›ã®å¤§å…ƒã€‚ã“ã“ã§çŠ¶æ…‹ã€ã‚­ãƒ¼ã‚’è¦‹ã¦ãã‚Œãã‚Œã®é–¢æ•°ã‚’å‘¼ã³å‡ºã™ã€‚
 function! s:SkkInsert(char)
   if b:skk_mode == 'ascii'
     return a:char
@@ -1480,7 +1480,7 @@ function! s:SkkInsert(char)
 endfunction
 
 " SkkInsertKana
-" ¤Ò¤é¤¬¤Ê¡¢¥«¥¿¥«¥Ê¤òÆşÎÏ¤¹¤ë¡£
+" ã²ã‚‰ãŒãªã€ã‚«ã‚¿ã‚«ãƒŠã‚’å…¥åŠ›ã™ã‚‹ã€‚
 function! s:SkkInsertKana(char)
   call s:SkkEraseRom()
   if b:skk_rstart == 0 || b:skk_line != s:SkkCursorLine()
@@ -1497,7 +1497,7 @@ function! s:SkkInsertKana(char)
       exe "return " . s:skk_rules_{curv}_func
     elseif exists("s:skk_rules_{curv}")
       if !s:HasChild(curv)
-	" ³ÎÄê¤¹¤ë
+	" ç¢ºå®šã™ã‚‹
 	let s = s:SkkGetKana(s:skk_rules_{curv})
 	let kana = kana . s
 	let cur = s:GetRest(curv)
@@ -1505,7 +1505,7 @@ function! s:SkkInsertKana(char)
 	let b:skk_rstart = b:skk_rstart + strlen(s)
 	let kana = kana . cur
       else
-	" ³ÎÄêÍ×ÁÇ¤Ï¤¢¤ë¤¬¤Ş¤ÀÂ³¤¯²ÄÇ½À­¤â¤¢¤ë
+	" ç¢ºå®šè¦ç´ ã¯ã‚ã‚‹ãŒã¾ã ç¶šãå¯èƒ½æ€§ã‚‚ã‚ã‚‹
 	let kana = kana . cur
       endif
     elseif b:skk_rom != ''
@@ -1514,7 +1514,7 @@ function! s:SkkInsertKana(char)
 	  " do nothing
 	  let kana = kana . cur
 	else
-	  " rom ³ÎÄê char »Ä¤¹
+	  " rom ç¢ºå®š char æ®‹ã™
 	  let s = s:SkkGetKana(s:skk_rules_{b:skk_romv})
 	  let kana = kana . s
 	  let cur = s:GetRest(b:skk_romv) . a:char
@@ -1522,19 +1522,19 @@ function! s:SkkInsertKana(char)
 	  let b:skk_rom = ''
 	  let b:skk_romv = ''
 	  let b:skk_rstart = b:skk_rstart + strlen(s)
-	  continue	" ¼¡¤Î¥ë¡¼¥×¤Ø
+	  continue	" æ¬¡ã®ãƒ«ãƒ¼ãƒ—ã¸
 	endif
       else
 	if s:IsInclude(b:skk_romv, a:char)
 	  " do nothing
 	  let kana = kana . cur
 	else
-	  " maybe TYPO º£¤Ş¤Ç¤Î¥í¡¼¥Ş»ú¤ò¼Î¤Æ¤Æ char ¤«¤é»Ï¤á¤ë
+	  " maybe TYPO ä»Šã¾ã§ã®ãƒ­ãƒ¼ãƒå­—ã‚’æ¨ã¦ã¦ char ã‹ã‚‰å§‹ã‚ã‚‹
 	  let b:skk_rom = ''
 	  let b:skk_romv = ''
 	  let cur = a:char
 	  let curv = s:ValidVarChar(cur)
-	  continue	" ¼¡¤Î¥ë¡¼¥×¤Ø
+	  continue	" æ¬¡ã®ãƒ«ãƒ¼ãƒ—ã¸
 	endif
       endif
     else	" b:skk_rom == ''
@@ -1542,14 +1542,14 @@ function! s:SkkInsertKana(char)
 	" do nothing
 	let kana = kana . cur
       else
-	" rules ¤Ë¤Ê¤¤Ã±°ì¤ÎÊ¸»ú (¤½¤Î¤Ş¤ŞÆşÎÏ)
+	" rules ã«ãªã„å˜ä¸€ã®æ–‡å­— (ãã®ã¾ã¾å…¥åŠ›)
 	let cur = ''
 	let curv = ''
 	let kana = kana . a:char
 	let b:skk_rstart = b:skk_rstart + strlen(a:char)
       endif
     endif
-    " continue | return °Ê³°¤Ï¤¹¤Ù¤Æ¤³¤³¤ËÍè¤ë¡£
+    " continue | return ä»¥å¤–ã¯ã™ã¹ã¦ã“ã“ã«æ¥ã‚‹ã€‚
     break
   endwhile
   let b:skk_rom = cur
@@ -1558,7 +1558,7 @@ function! s:SkkInsertKana(char)
 endfunction
 
 " SkkInsertZenei
-" Á´³Ñ±Ñ¿ô¤òÆşÎÏ¤¹¤ë¡£
+" å…¨è§’è‹±æ•°ã‚’å…¥åŠ›ã™ã‚‹ã€‚
 function! s:SkkInsertZenei(char)
   let nr = char2nr(a:char)
   if exists("s:skk_zenei_rules_{nr}")
@@ -1583,16 +1583,16 @@ endfunction
 
 " Henkan functions {{{
 
-" ¥Ş¡¼¥«¡¼¤Î¥Á¥§¥Ã¥¯ Äü¤á¤¬Áá¤¤¡£
-" ¥Ş¡¼¥«¡¼¤è¤êÁ°¤Çºï½ü¡¦ÁŞÆş¤¬¹Ô¤ï¤ì¤¿¤È¤­¤Ï¸«ÉÕ¤±¤é¤ì¤Ê¤¤¡£
+" ãƒãƒ¼ã‚«ãƒ¼ã®ãƒã‚§ãƒƒã‚¯ è«¦ã‚ãŒæ—©ã„ã€‚
+" ãƒãƒ¼ã‚«ãƒ¼ã‚ˆã‚Šå‰ã§å‰Šé™¤ãƒ»æŒ¿å…¥ãŒè¡Œã‚ã‚ŒãŸã¨ãã¯è¦‹ä»˜ã‘ã‚‰ã‚Œãªã„ã€‚
 function! s:SkkCheckMarker(mark, point)
   let line = strpart(s:SkkGetLine("."), a:point - 1)
   return stridx(line, a:mark) == 0
 endfunction
 
-" ÊÑ´¹¤Î¾õÂÖ¤òÊÑ²½¤µ¤»¤ë¡£
-" ¢£¥â¡¼¥É¤Ê¤é¢¦¥â¡¼¥É¤Ë¡¢¢¦¥â¡¼¥É¤Ê¤é¢¦¥â¡¼¥É(Á÷¤ê¤¬¤ÊÆşÎÏÃæ)¤ËÊÑ²½¤µ¤»¤ë¡£
-" ¢¦¥â¡¼¥É(Á÷¤ê¤¬¤ÊÆşÎÏÃæ)¤Ë¥í¡¼¥Ş»ú¤¬¶õ¤Ë¤Ê¤Ã¤¿¤éÊÑ´¹¤ò³«»Ï¤¹¤ë¡£
+" å¤‰æ›ã®çŠ¶æ…‹ã‚’å¤‰åŒ–ã•ã›ã‚‹ã€‚
+" â– ãƒ¢ãƒ¼ãƒ‰ãªã‚‰â–½ãƒ¢ãƒ¼ãƒ‰ã«ã€â–½ãƒ¢ãƒ¼ãƒ‰ãªã‚‰â–½ãƒ¢ãƒ¼ãƒ‰(é€ã‚ŠãŒãªå…¥åŠ›ä¸­)ã«å¤‰åŒ–ã•ã›ã‚‹ã€‚
+" â–½ãƒ¢ãƒ¼ãƒ‰(é€ã‚ŠãŒãªå…¥åŠ›ä¸­)ã«ãƒ­ãƒ¼ãƒå­—ãŒç©ºã«ãªã£ãŸã‚‰å¤‰æ›ã‚’é–‹å§‹ã™ã‚‹ã€‚
 function! SkkSetHenkanPoint(char)
   if b:skk_henkan_mode == 0
     let kana = SkkSetHenkanPoint1("")
@@ -1604,9 +1604,9 @@ function! SkkSetHenkanPoint(char)
     endif
     let kana = s:SkkInsertKana(s:SkkDowncase(a:char))
     if b:skk_rom == ''
-      " ÊÑ´¹³«»Ï
+      " å¤‰æ›é–‹å§‹
       let b:skk_ostart = s:SkkCursorCol()
-      " for KAnji  ¢¦*¤« ¢ª ¢¦¤«¤ó¤¸
+      " for KAnji  â–½*ã‹ â†’ â–½ã‹ã‚“ã˜
       if b:skk_ostart == b:skk_hstart + strlen(g:skk_marker_white)
 	let b:skk_ostart = 0
 	return kana
@@ -1617,7 +1617,7 @@ function! SkkSetHenkanPoint(char)
       let b:skk_ostart = b:skk_rstart
       let b:skk_rstart = b:skk_rstart + strlen(g:skk_marker_okuri)
       let b:skk_henkan_mode = 2
-      " for KanJi  ¢¦¤«*¤ó¤¸ ¢ª ¢¦¤«¤ó*¤¸
+      " for KanJi  â–½ã‹*ã‚“ã˜ â†’ â–½ã‹ã‚“*ã˜
       if b:skk_ostart > s:SkkCursorCol()
 	let p = b:skk_ostart - s:SkkCursorCol()
 	return strpart(kana, 0, p) . g:skk_marker_okuri . strpart(kana, p)
@@ -1645,10 +1645,10 @@ function! SkkSetHenkanPoint(char)
       let c = s:SkkEcho("No okurigana!", "WarningMsg", 1)
       return c == "" ? "" : SkkSetHenkanPoint(c)
     endif
-    " for KanJI  ¢¦¤«¤ó*j ¢ª ¢¦¤«¤ó*I ¢ª ¢¦¤«¤ó*¤¸
+    " for KanJI  â–½ã‹ã‚“*j â†’ â–½ã‹ã‚“*I â†’ â–½ã‹ã‚“*ã˜
     let kana = s:SkkInsertKana(s:SkkDowncase(a:char))
     if b:skk_rom == ''
-      " ÊÑ´¹³«»Ï
+      " å¤‰æ›é–‹å§‹
       let b:skk_okurigana = strpart(s:SkkGetLine("."), b:skk_ostart, s:SkkCursorCol() - b:skk_ostart - 1) . kana
       return SkkStartHenkan()
     else
@@ -1657,7 +1657,7 @@ function! SkkSetHenkanPoint(char)
   endif
 endfunction
 
-" kana ¤ÎÆşÎÏ¸å¤Ë¢¦¥â¡¼¥É¤Ë¤¹¤ë¡£
+" kana ã®å…¥åŠ›å¾Œã«â–½ãƒ¢ãƒ¼ãƒ‰ã«ã™ã‚‹ã€‚
 function! SkkSetHenkanPoint1(kana)
   if b:skk_henkan_mode == 0
     call s:SkkEraseRom()
@@ -1697,7 +1697,7 @@ function! s:SkkAscii2Zenei(str)
 endfunction
 
 function! s:SkkHira2Kata(str)
-  let str = substitute(a:str, "¤¦¡«", "¥ô", "g")
+  let str = substitute(a:str, "ã†ã‚›", "ãƒ´", "g")
   let i = 0
   let result = ''
   let char = matchstr(str, ".", 0)
@@ -1719,8 +1719,8 @@ function! s:SkkKata2Hira(str)
   let result = ''
   let char = matchstr(a:str, ".", 0)
   while char != ''
-    if char == "¥ô"
-      let result = result . "¤¦¡«"
+    if char == "ãƒ´"
+      let result = result . "ã†ã‚›"
     else
       let pos = stridx(s:skk_katakana, char)
       if pos != -1
@@ -1738,8 +1738,8 @@ endfunction
 function! s:SkkGetHenkanKey(midasi, okuri)
   let table = "xaxixuxexokgkgkgkgkgszsjszszsztdtdttdtdtdnnnnnhbphbphbphbphbpmmmmmxyxyxyrrrrrxwxxwn"
   let head = matchstr(a:okuri, ".")
-  if head >= "¤¡" && head <= "¤ó"
-    let ch = table[char2nr(head) - char2nr("¤¡")]
+  if head >= "ã" && head <= "ã‚“"
+    let ch = table[char2nr(head) - char2nr("ã")]
   else
     let ch = ''
   endif
@@ -1747,19 +1747,19 @@ function! s:SkkGetHenkanKey(midasi, okuri)
   return g:skk_use_numeric_conversion ? s:SkkGetNumHenkanKey(key) : key
 endfunction
 
-" ÊÑ´¹³«»ÏËô¤Ï¼¡¤Î¸õÊä
-" °ú¿ô¤ò¸«¤ë¤Î¤Ï½é¤á¤Æ¤ÎÊÑ´¹¤Î¤È¤­¤À¤±¡£
+" å¤‰æ›é–‹å§‹åˆã¯æ¬¡ã®å€™è£œ
+" å¼•æ•°ã‚’è¦‹ã‚‹ã®ã¯åˆã‚ã¦ã®å¤‰æ›ã®ã¨ãã ã‘ã€‚
 function! SkkStartHenkan(...)
   if b:skk_henkan_mode == 3
-    " 2²óÌÜ°Ê¹ß¤ÎÊÑ´¹
+    " 2å›ç›®ä»¥é™ã®å¤‰æ›
     if b:skk_current_cand >= b:skk_cand_count - 1
       if !b:skk_large_jisyo_searched
 	call s:SkkAddCandidates(s:SkkSearch(1))
 	return SkkStartHenkan()
       endif
-      " Ã±¸ìÅĞÏ¿
+      " å˜èªç™»éŒ²
       call s:SkkEraseYomi()
-      " ¥­¥ã¥ó¥»¥ë¤µ¤ì¤¿¾ì¹ç¤Ë SkkPreviousCand ¤Ç¸µ¤ËÌá¤ì¤ë¤è¤¦¤Ë¡£
+      " ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚ŒãŸå ´åˆã« SkkPreviousCand ã§å…ƒã«æˆ»ã‚Œã‚‹ã‚ˆã†ã«ã€‚
       let b:skk_current_cand = b:skk_current_cand + 1
       return s:SkkTourokuMode()
     endif
@@ -1776,7 +1776,7 @@ function! SkkStartHenkan(...)
       return g:skk_marker_black . cand . b:skk_okurigana
     endif
   else
-    " ½é¤á¤Æ¤ÎÊÑ´¹
+    " åˆã‚ã¦ã®å¤‰æ›
     if !s:SkkCheckMarker(g:skk_marker_white, b:skk_hstart)
       let b:skk_henkan_mode = 0
       throw "skk cannot find " . g:skk_marker_white . " mark"
@@ -1811,7 +1811,7 @@ function! SkkStartHenkan(...)
 	call s:SkkAddCandidates(s:SkkSearch(1))
       endif
       if b:skk_cand_count == 0
-	" Ã±¸ìÅĞÏ¿
+	" å˜èªç™»éŒ²
 	return s:SkkTourokuMode()
       else
 	let cand = s:SkkGetCandStrConverted(0)
@@ -1842,19 +1842,19 @@ endfunction
 
 function! SkkHenkan(char)
   if a:char ==# g:skk_start_henkan_key
-    " ¼¡¸õÊä
+    " æ¬¡å€™è£œ
     return SkkStartHenkan()
   elseif a:char ==# g:skk_prev_cand_key
-    " Á°¸õÊä
+    " å‰å€™è£œ
     return SkkPreviousCand()
   elseif a:char ==# g:skk_purge_cand_key
     return SkkPurgeFromJisyo()
   elseif stridx(g:skk_special_midasi_keys, a:char) != -1
-    " TODO ÀÜÈø¼­ÆşÎÏ: ">" ¤È¤¤¤¦¥í¡¼¥Ş»ú¤¬¤Ê¤¤¤³¤È¤òÁ°Äó¤Ë¤·¤Æ¤¤¤ë¡£
+    " TODO æ¥å°¾è¾å…¥åŠ›: ">" ã¨ã„ã†ãƒ­ãƒ¼ãƒå­—ãŒãªã„ã“ã¨ã‚’å‰æã«ã—ã¦ã„ã‚‹ã€‚
     call s:SkkKakutei()
     return SkkSetHenkanPoint(">")
   else
-    " ³ÎÄê & charÆşÎÏ
+    " ç¢ºå®š & charå…¥åŠ›
     call s:SkkKakutei()
     return s:SkkInsert(a:char)
   endif
@@ -1869,7 +1869,7 @@ function! s:SkkKakutei()
     let end = b:skk_hstart + strlen(g:skk_marker_white)
     call s:SkkDeleteRange(b:skk_line, b:skk_hstart, end)
   elseif b:skk_henkan_mode == 2
-    " Á÷¤ê²¾Ì¾¤âºï½ü¤¹¤ë
+    " é€ã‚Šä»®åã‚‚å‰Šé™¤ã™ã‚‹
     call s:SkkDeleteRange(b:skk_line, b:skk_ostart, s:SkkCursorCol())
     let end = b:skk_hstart + strlen(g:skk_marker_white)
     call s:SkkDeleteRange(b:skk_line, b:skk_hstart, end)
@@ -1877,7 +1877,7 @@ function! s:SkkKakutei()
     call s:SkkFaceOff()
     let end = b:skk_hstart + strlen(g:skk_marker_black)
     call s:SkkDeleteRange(b:skk_line, b:skk_hstart, end)
-    " ¼­½ñ¤Ë½ñ¤­¹ş¤à¤Î¤Ï¾õÂÖ3¤È4¤À¤±¡£
+    " è¾æ›¸ã«æ›¸ãè¾¼ã‚€ã®ã¯çŠ¶æ…‹3ã¨4ã ã‘ã€‚
     call s:SkkUpdateJisyo(b:skk_cand_{b:skk_current_cand})
   elseif b:skk_henkan_mode == 4
     call s:SkkFaceOff()
@@ -1891,10 +1891,10 @@ function! s:SkkKakutei()
   return kana
 endfunction
 
-" ÁªÂòÊı¼°¤Ç¸õÊä¤òÁªÂò¤¹¤ë¡£
+" é¸æŠæ–¹å¼ã§å€™è£œã‚’é¸æŠã™ã‚‹ã€‚
 function! s:SkkSelectCandidate()
   try
-    let &ruler = 0	" Hit ENTER ¤ÎÉ½¼¨¤òÈò¤±¤ë¤¿¤á
+    let &ruler = 0	" Hit ENTER ã®è¡¨ç¤ºã‚’é¿ã‘ã‚‹ãŸã‚
     call s:SkkUnmapNormal()
     let str = ''
     let keys = toupper(g:skk_select_cand_keys)
@@ -1902,7 +1902,7 @@ function! s:SkkSelectCandidate()
     let i = 0
     let cand = (b:skk_current_cand - g:skk_show_candidates_count) * keyslen + g:skk_show_candidates_count
     if cand >= b:skk_cand_count
-      " Ã±¸ìÅĞÏ¿
+      " å˜èªç™»éŒ²
       return s:SkkTourokuMode()
     endif
     while cand < b:skk_cand_count && i < keyslen
@@ -1915,7 +1915,7 @@ function! s:SkkSelectCandidate()
       let cand = cand + 1
     endwhile
     let rest = b:skk_cand_count - cand
-    let str = str . "[»Ä¤ê " . rest . "]"
+    let str = str . "[æ®‹ã‚Š " . rest . "]"
     let lines = (strlen(str) + &columns) / &columns
     if lines > &cmdheight
       let saved_cmdheight = &cmdheight
@@ -1923,7 +1923,7 @@ function! s:SkkSelectCandidate()
     endif
     echo str
     while 1
-      " TODO ¤³¤³¤Ç´Ø¿ô¤ÎÆş¤ì»Ò¤¬¿¼¤¯¤Ê¤Ã¤Æ¤·¤Ş¤¦¤Î¤ò¤Ê¤ó¤È¤«¤·¤¿¤¤¡£
+      " TODO ã“ã“ã§é–¢æ•°ã®å…¥ã‚Œå­ãŒæ·±ããªã£ã¦ã—ã¾ã†ã®ã‚’ãªã‚“ã¨ã‹ã—ãŸã„ã€‚
       let key = nr2char(getchar())
       if key ==# g:skk_start_henkan_key
 	let b:skk_current_cand = b:skk_current_cand + 1
@@ -1940,7 +1940,7 @@ function! s:SkkSelectCandidate()
       endif
       let select = stridx(keys, toupper(key))
       if select == -1 || select >= i
-	" TODO ²¿¤«¥á¥Ã¥»¡¼¥¸¤ò½Ğ¤·¤¿¤Û¤¦¤¬¤¤¤¤¤«¡©
+	" TODO ä½•ã‹ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å‡ºã—ãŸã»ã†ãŒã„ã„ã‹ï¼Ÿ
 	continue
       endif
       let nr = cand - i + select
@@ -2005,7 +2005,7 @@ function! s:SkkRestoreEnv(env)
   endwhile
 endfunction
 
-" Ã±¸ìÅĞÏ¿¥â¡¼¥É¤ËÆş¤ë¡£
+" å˜èªç™»éŒ²ãƒ¢ãƒ¼ãƒ‰ã«å…¥ã‚‹ã€‚
 function! s:SkkTourokuMode()
   let str = b:skk_midasi
   if g:skk_use_numeric_conversion
@@ -2060,7 +2060,7 @@ function! s:SkkTourokuMode()
     call s:SkkRestoreEnv(env)
     return SkkPreviousCand()
   finally
-    " skk ¤ò off ¤Ë¤µ¤ì¤¿¤È¤­¤Î¤¿¤á
+    " skk ã‚’ off ã«ã•ã‚ŒãŸã¨ãã®ãŸã‚
     if b:skk_on == 0
       call s:SkkOn()
     end
@@ -2081,8 +2081,8 @@ endfunction
 
 " dictionary functions {{{
 
-" Ê£¿ô¤Î vim ¤ÇÆ±¤¸¼­½ñ¤ò³«¤¤¤Æ¤âÂç¾æÉ×¤Ê (swapfile ¤Î·Ù¹ğ¤¬½Ğ¤Ê¤¤) ¤è¤¦¤Ë
-" ²¾¤Î¥Ğ¥Ã¥Õ¥¡¤òºî¤Ã¤Æ¤½¤³¤ËÆÉ¤ß¹ş¤à¡£
+" è¤‡æ•°ã® vim ã§åŒã˜è¾æ›¸ã‚’é–‹ã„ã¦ã‚‚å¤§ä¸ˆå¤«ãª (swapfile ã®è­¦å‘ŠãŒå‡ºãªã„) ã‚ˆã†ã«
+" ä»®ã®ãƒãƒƒãƒ•ã‚¡ã‚’ä½œã£ã¦ãã“ã«èª­ã¿è¾¼ã‚€ã€‚
 function! s:SkkGetJisyoBuf(var)
   if exists("s:{a:var}_bufnr")
     if bufexists(s:{a:var}_bufnr)
@@ -2101,17 +2101,17 @@ function! s:SkkGetJisyoBuf(var)
     silent! exe "r " . g:{a:var}
     silent exe "bw " . g:{a:var}
     normal! gg"_dd
-    " 1¹ÔÌÜ¤Ë okuri-ari entries. ¤¬¤¢¤ë¤È¸«¤Ä¤±¤é¤ì¤Ê¤¤¤¿¤á¤³¤Î½ç½ø¤Ë¤·¤¿¡£
+    " 1è¡Œç›®ã« okuri-ari entries. ãŒã‚ã‚‹ã¨è¦‹ã¤ã‘ã‚‰ã‚Œãªã„ãŸã‚ã“ã®é †åºã«ã—ãŸã€‚
     let b:skk_okuri_nasi_line = search("^;; okuri-nasi entries.$", "W")
     let b:skk_okuri_ari_line = search("^;; okuri-ari entries.$", "bW")
     if b:skk_okuri_nasi_line == 0 && b:skk_okuri_ari_line == 0 && line("$") == 1
-      " ¿·µ¬¥Õ¥¡¥¤¥ë
+      " æ–°è¦ãƒ•ã‚¡ã‚¤ãƒ«
       call setline(1, ";; okuri-ari entries.")
       call append(1, ";; okuri-nasi entries.")
       let b:skk_okuri_ari_line = 1
       let b:skk_okuri_nasi_line = 2
     endif
-    " TODO ÉÔÀµ¤Ê¥Õ¥¡¥¤¥ë¤Î½èÍı
+    " TODO ä¸æ­£ãªãƒ•ã‚¡ã‚¤ãƒ«ã®å‡¦ç†
     setlocal nobuflisted buftype=nowrite bufhidden=hide
     return s:{a:var}_bufnr
   finally
@@ -2128,7 +2128,7 @@ function! s:SkkRestoreWincol(cnum)
   endif
 endfunction
 
-" ¸½ºß¤Î¥Ğ¥Ã¥Õ¥¡¤ËÌá¤ë¤¿¤á¤Î¥³¥Ş¥ó¥É¤òÊÖ¤¹¡£
+" ç¾åœ¨ã®ãƒãƒƒãƒ•ã‚¡ã«æˆ»ã‚‹ãŸã‚ã®ã‚³ãƒãƒ³ãƒ‰ã‚’è¿”ã™ã€‚
 function! s:SkkShowBuf(buf)
   let cmd = bufnr("%") . "buffer"
   let cur = "|call cursor(" . line(".") . ", " . col(".") . ")"
@@ -2169,7 +2169,7 @@ endfunction
 
 function! s:SkkSearchBuf(buf, limit)
   let okuri = strlen(b:skk_okurigana)
-  let key = "^" . b:skk_henkan_key	" ¥Ğ¥Ã¥Õ¥¡¤¬ÊÑ¤ï¤ë¤Î¤ÇÊİÂ¸¤·¤Æ¤ª¤¯¡£
+  let key = "^" . b:skk_henkan_key	" ãƒãƒƒãƒ•ã‚¡ãŒå¤‰ã‚ã‚‹ã®ã§ä¿å­˜ã—ã¦ãŠãã€‚
   let cmd = s:SkkShowBuf(a:buf)
   try
     if a:limit == 0
@@ -2182,9 +2182,9 @@ function! s:SkkSearchBuf(buf, limit)
   endtry
 endfunction
 
-" ¥ê¥Ë¥¢¥µ¡¼¥Á ¥½¡¼¥È¤·¤Æ¤¤¤Ê¤¤¥Õ¥¡¥¤¥ëÍÑ
-" Á÷¤ê¤Ê¤·¥¨¥ó¥È¥ê¤ÎÀèÆ¬¤Ë°ÜÆ°¤·¤ÆÁ÷¤ê¤¢¤ê¤Ê¤éÀèÆ¬Êı¸ş¤Ë
-" Á÷¤ê¤Ê¤·¤Ê¤éËöÈøÊı¸ş¤Ë¸¡º÷¤¹¤ë¡£
+" ãƒªãƒ‹ã‚¢ã‚µãƒ¼ãƒ ã‚½ãƒ¼ãƒˆã—ã¦ã„ãªã„ãƒ•ã‚¡ã‚¤ãƒ«ç”¨
+" é€ã‚Šãªã—ã‚¨ãƒ³ãƒˆãƒªã®å…ˆé ­ã«ç§»å‹•ã—ã¦é€ã‚Šã‚ã‚Šãªã‚‰å…ˆé ­æ–¹å‘ã«
+" é€ã‚Šãªã—ãªã‚‰æœ«å°¾æ–¹å‘ã«æ¤œç´¢ã™ã‚‹ã€‚
 function! SkkSearchLinear(key, okuri)
   if b:skk_okuri_nasi_line
     if a:okuri != ""
@@ -2203,10 +2203,10 @@ function! SkkSearchLinear(key, okuri)
   return substitute(getline(b:skk_found_lnum), key, '', '')
 endfunction
 
-" ¥Ğ¥¤¥Ê¥ê¥µ¡¼¥Á ¥½¡¼¥ÈºÑ¥Õ¥¡¥¤¥ëÍÑ
-" Á÷¤ê¤¢¤ê¥¨¥ó¥È¥ê¤Ï¹ß½ç¤Ë¡¢Á÷¤ê¤Ê¤·¥¨¥ó¥È¥ê¤Ï¾º½ç¤Ë¥½¡¼¥È¤µ¤ì¤Æ¤¤¤ëÉ¬Í×¤¬¤¢¤ë¡£
-" ¸¡º÷ÈÏ°Ï¤¬ limit °Ê²¼¤Ë¤Ê¤ë¤Ş¤ÇÆóÊ¬¸¡º÷¤ò¹Ô¤¤¡¢¤½¤Î¸å¡¢¥ê¥Ë¥¢¥µ¡¼¥Á¤¹¤ë¡£
-" search() ¤¬ºÇ¸å¤Ş¤Ç¸¡º÷¤·¤Æ¤·¤Ş¤¦¤¿¤áºÇ°­¤Î¾ì¹ç¤Ï SkkSearchLinear ¤è¤êÃÙ¤¤¡£
+" ãƒã‚¤ãƒŠãƒªã‚µãƒ¼ãƒ ã‚½ãƒ¼ãƒˆæ¸ˆãƒ•ã‚¡ã‚¤ãƒ«ç”¨
+" é€ã‚Šã‚ã‚Šã‚¨ãƒ³ãƒˆãƒªã¯é™é †ã«ã€é€ã‚Šãªã—ã‚¨ãƒ³ãƒˆãƒªã¯æ˜‡é †ã«ã‚½ãƒ¼ãƒˆã•ã‚Œã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚
+" æ¤œç´¢ç¯„å›²ãŒ limit ä»¥ä¸‹ã«ãªã‚‹ã¾ã§äºŒåˆ†æ¤œç´¢ã‚’è¡Œã„ã€ãã®å¾Œã€ãƒªãƒ‹ã‚¢ã‚µãƒ¼ãƒã™ã‚‹ã€‚
+" search() ãŒæœ€å¾Œã¾ã§æ¤œç´¢ã—ã¦ã—ã¾ã†ãŸã‚æœ€æ‚ªã®å ´åˆã¯ SkkSearchLinear ã‚ˆã‚Šé…ã„ã€‚
 function! SkkSearchBinary(key, okuri, limit)
   if b:skk_okuri_nasi_line == 0
     return SkkSearchLinear(a:key, a:okuri)
@@ -2238,11 +2238,11 @@ function! SkkSearchBinary(key, okuri, limit)
   endwhile
   if a:okuri
     let flag = "bW"
-    let max = max + 1	" max ¹Ô¤ò´Ş¤á¤ë¤¿¤á
+    let max = max + 1	" max è¡Œã‚’å«ã‚ã‚‹ãŸã‚
     exe "normal! " . max . "G0"
   else
     let flag = "W"
-    let min = min - 1	" min ¹Ô¤ò´Ş¤á¤ë¤¿¤á
+    let min = min - 1	" min è¡Œã‚’å«ã‚ã‚‹ãŸã‚
     exe "normal! " . min . "G$"
   endif
   let key = escape(a:key, '$.*\[]') . '\m'
@@ -2250,17 +2250,17 @@ function! SkkSearchBinary(key, okuri, limit)
   return substitute(getline(b:skk_found_lnum), key, '', '')
 endfunction
 
-" annotation ¤ò¼è¤ê½ü¤¯¡£
+" annotation ã‚’å–ã‚Šé™¤ãã€‚
 function! s:SkkRemoveAnnotation(str)
   return substitute(a:str, ';.*', '', '')
 endfunction
 
-" ¸õÊä¤Î annotation ¤ò¼è¤ê½ü¤¤¤¿ËÜÂÎ¤òÊÖ¤¹¡£
+" å€™è£œã® annotation ã‚’å–ã‚Šé™¤ã„ãŸæœ¬ä½“ã‚’è¿”ã™ã€‚
 function! s:SkkGetCand(nr)
   return s:SkkRemoveAnnotation(b:skk_cand_{a:nr})
 endfunction
 
-" ¿ôÃÍÊÑ´¹ºÑ¤ß¤Î¸õÊä¤¬¤¢¤ì¤Ğ¤½¤ì¤òÊÖ¤¹¡£¤Ê¤±¤ì¤Ğ SkkGetCand ¤ÈÆ±¤¸¡£
+" æ•°å€¤å¤‰æ›æ¸ˆã¿ã®å€™è£œãŒã‚ã‚Œã°ãã‚Œã‚’è¿”ã™ã€‚ãªã‘ã‚Œã° SkkGetCand ã¨åŒã˜ã€‚
 function! s:SkkGetCandStr(nr)
   if exists("b:skk_cand_{a:nr}_str")
     return s:SkkRemoveAnnotation(b:skk_cand_{a:nr}_str)
@@ -2269,7 +2269,7 @@ function! s:SkkGetCandStr(nr)
   endif
 endfunction
 
-" SkkGetCandStr() ¤ÈÆ±ÍÍ¤À¤¬¡¢annotation¤ò½üµî¤·¤Ê¤¤¡£
+" SkkGetCandStr() ã¨åŒæ§˜ã ãŒã€annotationã‚’é™¤å»ã—ãªã„ã€‚
 function! s:SkkGetCandStrWithAnnotation(nr)
   if exists("b:skk_cand_{a:nr}_str")
     let str = b:skk_cand_{a:nr}_str
@@ -2279,21 +2279,21 @@ function! s:SkkGetCandStrWithAnnotation(nr)
   return b:skk_mode == 'kata' ? s:SkkHira2Kata(str) : str
 endfunction
 
-" SkkGetCandStr() ¤ÈÆ±ÍÍ¤À¤¬¡¢skk_mode ¤ò¸«¤ÆÉ¬Í×¤¬¤¢¤ì¤Ğ¥«¥¿¥«¥ÊÊÑ´¹¤¹¤ë¡£
+" SkkGetCandStr() ã¨åŒæ§˜ã ãŒã€skk_mode ã‚’è¦‹ã¦å¿…è¦ãŒã‚ã‚Œã°ã‚«ã‚¿ã‚«ãƒŠå¤‰æ›ã™ã‚‹ã€‚
 function! s:SkkGetCandStrConverted(nr)
   let str = s:SkkGetCandStr(a:nr)
   return b:skk_mode == 'kata' ? s:SkkHira2Kata(str) : str
 endfunction
 
-" (concat "") ¤Î½èÍı (·ë²Ì¤ÎÊ¸»úÎó¤òÊÖ¤¹)
+" (concat "") ã®å‡¦ç† (çµæœã®æ–‡å­—åˆ—ã‚’è¿”ã™)
 function! s:SkkConcat(str)
   let cand = ""
   let quote1 = match(a:str, '"', 0)
   let quote2 = match(a:str, '\\\@<!"', quote1 + 1)
   while quote1 != -1 && quote2 != -1
     let s = strpart(a:str, quote1, quote2 - quote1 + 1)
-    if strlen(s) > 2	" \"\" ¤ò´Ş¤à¤¿¤á
-      " quote ¤µ¤ì¤Æ¤¤¤ë¤â¤Î¤òÉü¸µ¤¹¤ë¤¿¤á exe ¤ò»È¤¦¡£
+    if strlen(s) > 2	" \"\" ã‚’å«ã‚€ãŸã‚
+      " quote ã•ã‚Œã¦ã„ã‚‹ã‚‚ã®ã‚’å¾©å…ƒã™ã‚‹ãŸã‚ exe ã‚’ä½¿ã†ã€‚
       exe "let s = " . s
       let cand = cand . s
     endif
@@ -2303,17 +2303,17 @@ function! s:SkkConcat(str)
   return cand
 endfunction
 
-" (skk-ignore-dic-word "") ¤Î½èÍı
+" (skk-ignore-dic-word "") ã®å‡¦ç†
 function! s:SkkIgnoreWords(words)
   let quote1 = match(a:words, '"', 0)
   let quote2 = match(a:words, '\\\@<!"', quote1 + 1)
   while quote1 != -1 && quote2 != -1
     let s = strpart(a:words, quote1, quote2 - quote1 + 1)
-    if strlen(s) > 2	" \"\" ¤ò´Ş¤à¤¿¤á
-      " quote ¤µ¤ì¤Æ¤¤¤ë¤â¤Î¤òÉü¸µ¤¹¤ë¤¿¤á exe ¤ò»È¤¦¡£
+    if strlen(s) > 2	" \"\" ã‚’å«ã‚€ãŸã‚
+      " quote ã•ã‚Œã¦ã„ã‚‹ã‚‚ã®ã‚’å¾©å…ƒã™ã‚‹ãŸã‚ exe ã‚’ä½¿ã†ã€‚
       exe "let b:skk_ignore_{b:skk_ignore_count} = " . s
-      " (concat "") ¤¬´Ş¤Ş¤ì¤Æ¤¤¤¿¤È¤·¤Æ¤â SkkConcat ¤ò½èÍı¤¹¤ëÁ°¤Ë
-      " SkkNotIgnoreWord ¤ÇÈæ³Ó¤µ¤ì¤ë¤Î¤ÇÌäÂê¤Ê¤¤¡£
+      " (concat "") ãŒå«ã¾ã‚Œã¦ã„ãŸã¨ã—ã¦ã‚‚ SkkConcat ã‚’å‡¦ç†ã™ã‚‹å‰ã«
+      " SkkNotIgnoreWord ã§æ¯”è¼ƒã•ã‚Œã‚‹ã®ã§å•é¡Œãªã„ã€‚
       let b:skk_ignore_count = b:skk_ignore_count + 1
     endif
     let quote1 = match(a:words, '"', quote2 + 1)
@@ -2332,7 +2332,7 @@ function! s:SkkNotIgnoreWord(word)
   return 1
 endfunction
 
-" ½ÅÊ£¤¹¤ëÍ×ÁÇ¤ò½ü¤¤¤Æ¸õÊä¤òÄÉ²Ã¤·¤Æ¤¤¤¯¡£
+" é‡è¤‡ã™ã‚‹è¦ç´ ã‚’é™¤ã„ã¦å€™è£œã‚’è¿½åŠ ã—ã¦ã„ãã€‚
 function! s:SkkAddCand(cand, str, compare)
   let i = 0
   if a:str != ""
@@ -2376,13 +2376,13 @@ function! s:SkkSplitCandidates(str)
   endwhile
 endfunction
 
-" ½é´ü²½¤·¤Ê¤¤¤Ç¸õÊä¤òÄÉ²Ã¤¹¤ë¡£
+" åˆæœŸåŒ–ã—ãªã„ã§å€™è£œã‚’è¿½åŠ ã™ã‚‹ã€‚
 function! s:SkkAddCandidates(str)
-  let str = substitute(a:str, '/\[[^]]*/\]', '', 'g') " Á÷¤ê¤¬¤Ê¤Î»ØÄê¤ÏÌµ»ë¤¹¤ë¡£
+  let str = substitute(a:str, '/\[[^]]*/\]', '', 'g') " é€ã‚ŠãŒãªã®æŒ‡å®šã¯ç„¡è¦–ã™ã‚‹ã€‚
   call s:SkkSplitCandidates(str)
 endfunction
 
-" ¿·¤¿¤Ë¸õÊä¤ò¥¼¥í¤«¤éºî¤ë¡£
+" æ–°ãŸã«å€™è£œã‚’ã‚¼ãƒ­ã‹ã‚‰ä½œã‚‹ã€‚
 function! s:SkkMakeCandidates(str)
   call s:SkkCleanupCandidates()
   call s:SkkAddCandidates(a:str)
@@ -2442,7 +2442,7 @@ function! s:SkkMakeNewEntry(key, cand, line)
   return entry
 endfunction
 
-" ³ÎÄê¤·¤¿¸õÊä¤ò¼­½ñ¥Ğ¥Ã¥Õ¥¡¤Ë½ñ¤­¹ş¤à¡£
+" ç¢ºå®šã—ãŸå€™è£œã‚’è¾æ›¸ãƒãƒƒãƒ•ã‚¡ã«æ›¸ãè¾¼ã‚€ã€‚
 function! s:SkkUpdateJisyo(word)
   let buf = s:SkkGetJisyoBuf("skk_jisyo")
   if getbufvar(buf, "&readonly") || a:word == ""
@@ -2452,7 +2452,7 @@ function! s:SkkUpdateJisyo(word)
   let okuri= strlen(b:skk_okurigana)
   let cmd = s:SkkShowBuf(buf)
   try
-    " ½ÅÊ£¤òÈò¤±¤ë¤¿¤á¡¢¤â¤¦°ì²ó¸¡º÷¤¹¤ë¡£
+    " é‡è¤‡ã‚’é¿ã‘ã‚‹ãŸã‚ã€ã‚‚ã†ä¸€å›æ¤œç´¢ã™ã‚‹ã€‚
     let line = SkkSearchLinear("^" . key, okuri)
     let str = s:SkkMakeNewEntry(key, s:SkkValidCand(a:word), line)
     if b:skk_found_lnum
@@ -2493,7 +2493,7 @@ function! SkkPurgeFromJisyo()
     return ""
   endif
   let word = s:SkkValidCand(b:skk_cand_{b:skk_current_cand})
-  " ¤³¤Î»şÅÀ¤Ç¤Ï´û¤Ë SkkIgnoreWords ¤Ï½èÍı¤µ¤ì¤Æ¤¤¤ë¤Ï¤º¡£
+  " ã“ã®æ™‚ç‚¹ã§ã¯æ—¢ã« SkkIgnoreWords ã¯å‡¦ç†ã•ã‚Œã¦ã„ã‚‹ã¯ãšã€‚
   let i = 0
   let s = "(skk-ignore-dic-word \"" . s:SkkQuoteChar(word) . "\""
   let ex = "/" . word . "/"
@@ -2578,7 +2578,7 @@ function! s:SkkSaveJisyo(confirm, silent)
     let need = s:skk_jisyo_bufnr != -1 && bufexists(s:skk_jisyo_bufnr) && s:skk_jisyo_modified
   else		" vim7
     let need = exists("s:skk_jisyo_list") && s:skk_jisyo_modified
-    let s:skk_jisyo_bufnr = 0	" SkkShowBuf ¤Î¥¨¥é¡¼ÂĞºö
+    let s:skk_jisyo_bufnr = 0	" SkkShowBuf ã®ã‚¨ãƒ©ãƒ¼å¯¾ç­–
   endif
   if need
     let cmd = s:SkkShowBuf(s:skk_jisyo_bufnr)
@@ -2616,7 +2616,7 @@ function! s:SkkSaveJisyo(confirm, silent)
 	set buftype=
 	silent exe "write " . g:skk_jisyo
 	set buftype=nowrite
-	" swapfile ¤ò»Ä¤µ¤Ê¤¤¤¿¤á
+	" swapfile ã‚’æ®‹ã•ãªã„ãŸã‚
 	silent exe "bw " . g:skk_jisyo
       else	" vim7
 	call rename(tmp, jisyo)
@@ -2641,7 +2641,7 @@ endfunction
 
 " cmdline functions {{{
 
-" <C-r>= ¤À¤È setcmdpos() ¤¬»×¤Ã¤¿¤è¤¦¤ËÆ°¤«¤Ê¤¤¤¿¤á¼«Á°¤ÇÁÈ¤ßÎ©¤Æ¤ë¡£
+" <C-r>= ã ã¨ setcmdpos() ãŒæ€ã£ãŸã‚ˆã†ã«å‹•ã‹ãªã„ãŸã‚è‡ªå‰ã§çµ„ã¿ç«‹ã¦ã‚‹ã€‚
 function! s:SkkMakeCmdStr(str)
   if v:version >= 603
     redrawstatus
@@ -2661,7 +2661,7 @@ function! s:SkkMakeCmdStr(str)
   return result . a:str
 endfunction
 
-" ¥«¡¼¥½¥ë°ÌÃÖ¤Ë str ¤òÁŞÆş¤·¤Æ¹ÔÁ´ÂÎ¤òÊÖ¤¹¡£¥«¡¼¥½¥ë°ÌÃÖ¤âÄ´À°¤¹¤ë¡£
+" ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã« str ã‚’æŒ¿å…¥ã—ã¦è¡Œå…¨ä½“ã‚’è¿”ã™ã€‚ã‚«ãƒ¼ã‚½ãƒ«ä½ç½®ã‚‚èª¿æ•´ã™ã‚‹ã€‚
 function! s:SkkConcatCmdStr(str)
   let line = s:SkkGetLine(0)
   unlet! s:skk_cmdline_str
@@ -2684,9 +2684,9 @@ endfunction
 
 " Completion {{{
 
-" b:skk_comp_key ¤Ï SkkCompletion(1) ¤Î¤È¤­¤Ë let ¤µ¤ì
-" SkkCleanRom SkkBackspace SkkCancel ¤ÎÃæ¤Ç unlet ¤µ¤ì¤ë¡£
-" ¤³¤ì¤ÇÂ¾¤ÎÆ°ºî¤¬¹Ô¤ï¤ì¤¿¤È¤­¤Ë unlet ¤µ¤ì¤ë¤Ï¤º¡£
+" b:skk_comp_key ã¯ SkkCompletion(1) ã®ã¨ãã« let ã•ã‚Œ
+" SkkCleanRom SkkBackspace SkkCancel ã®ä¸­ã§ unlet ã•ã‚Œã‚‹ã€‚
+" ã“ã‚Œã§ä»–ã®å‹•ä½œãŒè¡Œã‚ã‚ŒãŸã¨ãã« unlet ã•ã‚Œã‚‹ã¯ãšã€‚
 function! s:SkkInCompletion()
   return exists("b:skk_comp_key")
 endfunction
@@ -2749,20 +2749,20 @@ endfunction
 
 " numeric conversion {{{
 
-" ¿ô»úÊÑ´¹ÍÑ¤Ë¿ô»ú¤ÎÏ¢¤Ê¤ê¤òÊİÂ¸¤·¤Æ°ì¤Ä¤Î # ¤ËÊÑ¤¨¤ë¡£
+" æ•°å­—å¤‰æ›ç”¨ã«æ•°å­—ã®é€£ãªã‚Šã‚’ä¿å­˜ã—ã¦ä¸€ã¤ã® # ã«å¤‰ãˆã‚‹ã€‚
 function! s:SkkGetNumHenkanKey(key)
   let num = '[0-9]\+'
   let key = a:key
-  let key = substitute(key, "£°", "0", "g")
-  let key = substitute(key, "£±", "1", "g")
-  let key = substitute(key, "£²", "2", "g")
-  let key = substitute(key, "£³", "3", "g")
-  let key = substitute(key, "£´", "4", "g")
-  let key = substitute(key, "£µ", "5", "g")
-  let key = substitute(key, "£¶", "6", "g")
-  let key = substitute(key, "£·", "7", "g")
-  let key = substitute(key, "£¸", "8", "g")
-  let key = substitute(key, "£¹", "9", "g")
+  let key = substitute(key, "ï¼", "0", "g")
+  let key = substitute(key, "ï¼‘", "1", "g")
+  let key = substitute(key, "ï¼’", "2", "g")
+  let key = substitute(key, "ï¼“", "3", "g")
+  let key = substitute(key, "ï¼”", "4", "g")
+  let key = substitute(key, "ï¼•", "5", "g")
+  let key = substitute(key, "ï¼–", "6", "g")
+  let key = substitute(key, "ï¼—", "7", "g")
+  let key = substitute(key, "ï¼˜", "8", "g")
+  let key = substitute(key, "ï¼™", "9", "g")
   let i = 0
   let pos = match(key, num, 0)
   while pos != -1
@@ -2795,8 +2795,8 @@ function! s:SkkProcessNumCandidate(cand)
   exe "call s:SkkAllCombination(" . args . ")"
 endfunction
 
-" Âè3°ú¿ô¤¬¤Ê¤¯¤Ê¤ë¤Ş¤ÇºÆµ¢Åª¤Ë¸Æ¤Ó½Ğ¤·¤ÆÁÈ¤ß¹ç¤ï¤»¤òºî¤ê
-" Âè3°ú¿ô¤¬¤Ê¤¯¤Ê¤Ã¤¿»şÅÀ¤ÇÅĞÏ¿¤¹¤ë¡£
+" ç¬¬3å¼•æ•°ãŒãªããªã‚‹ã¾ã§å†å¸°çš„ã«å‘¼ã³å‡ºã—ã¦çµ„ã¿åˆã‚ã›ã‚’ä½œã‚Š
+" ç¬¬3å¼•æ•°ãŒãªããªã£ãŸæ™‚ç‚¹ã§ç™»éŒ²ã™ã‚‹ã€‚
 function! s:SkkAllCombination(cand, combi, ...)
   if a:0 == 0
     call s:SkkAddCand(a:cand, a:combi, b:skk_cand_count)
@@ -2811,11 +2811,11 @@ function! s:SkkAllCombination(cand, combi, ...)
     let i = i + 1
   endwhile
   if list[0] != "/"
-    " ¸õÊä¤Ï°ì¤Ä¤À¤±
+    " å€™è£œã¯ä¸€ã¤ã ã‘
     let combi = substitute(a:combi, numexp, list, "")
     exe 'call s:SkkAllCombination("' . a:cand . '", "' . combi . '"' . args . ')'
   else
-    " ¸õÊä¤ÏÊ£¿ô¤¢¤ë¡£
+    " å€™è£œã¯è¤‡æ•°ã‚ã‚‹ã€‚
     let sla1 = match(list, '/', 0)
     let sla2 = match(list, '/', sla1 + 1)
     while sla2 != -1
@@ -2828,12 +2828,12 @@ function! s:SkkAllCombination(cand, combi, ...)
   endif
 endfunction
 
-let s:skk_num_type1 = "0£°1£±2£²3£³4£´5£µ6£¶7£·8£¸9£¹"
-let s:skk_num_type2 = "0¡»1°ì2Æó3»°4»Í5¸Ş6Ï»7¼·8È¬9¶å"
-let s:skk_num_type3 = s:skk_num_type2 . "10½½100É´1000Àé10000Ëü100000000²¯1000000000000Ãû10000000000000000µş"
-let s:skk_num_type5 = "0Îí1°í2Æõ3»²4»Í5¸à6Ï»7¼·8È¬9¶å10½¦100É´1000ïô10000èß100000000²¯1000000000000Ãû10000000000000000µş"
+let s:skk_num_type1 = "0ï¼1ï¼‘2ï¼’3ï¼“4ï¼”5ï¼•6ï¼–7ï¼—8ï¼˜9ï¼™"
+let s:skk_num_type2 = "0ã€‡1ä¸€2äºŒ3ä¸‰4å››5äº”6å…­7ä¸ƒ8å…«9ä¹"
+let s:skk_num_type3 = s:skk_num_type2 . "10å100ç™¾1000åƒ10000ä¸‡100000000å„„1000000000000å…†10000000000000000äº¬"
+let s:skk_num_type5 = "0é›¶1å£±2å¼3å‚4å››5ä¼6å…­7ä¸ƒ8å…«9ä¹10æ‹¾100ç™¾1000é˜¡10000è¬100000000å„„1000000000000å…†10000000000000000äº¬"
 
-" num ¤ËÂĞ±ş¤¹¤ë´Á»ú°ìÊ¸»ú¤òÊÖ¤¹¡£
+" num ã«å¯¾å¿œã™ã‚‹æ¼¢å­—ä¸€æ–‡å­—ã‚’è¿”ã™ã€‚
 function! s:SkkGetNumKanji(num, type)
   let pos = stridx(s:skk_num_type{a:type}, a:num)
   if pos == -1
@@ -2843,9 +2843,9 @@ function! s:SkkGetNumKanji(num, type)
   return matchstr(s:skk_num_type{a:type}, ".", pos)
 endfunction
 
-" type ¤Î·Á¼°¤Ë½¾¤Ã¤Æ num ¤ò°Ì¼è¤ê´Á»ú¤ËÊÑ´¹¤¹¤ë¡£conv1¤Ï`1'¤òÊÑ´¹¤¹¤ë¤«¡©
+" type ã®å½¢å¼ã«å¾“ã£ã¦ num ã‚’ä½å–ã‚Šæ¼¢å­—ã«å¤‰æ›ã™ã‚‹ã€‚conv1ã¯`1'ã‚’å¤‰æ›ã™ã‚‹ã‹ï¼Ÿ
 function! s:SkkNum2Kanji(num, type, conv1)
-  " ¸å¤í¤«¤é4·å¤º¤Ä½èÍı¤·¤Æ¤¤¤¯¡£
+  " å¾Œã‚ã‹ã‚‰4æ¡ãšã¤å‡¦ç†ã—ã¦ã„ãã€‚
   let pos = strlen(a:num) - 4
   let tail = strpart(a:num, pos)
   let result = ""
@@ -2856,17 +2856,17 @@ function! s:SkkNum2Kanji(num, type, conv1)
       if base != 1
 	let basestr = s:SkkGetNumKanji(base, a:type)
 	if basestr == ""
-	  " Ì¤ÃÎ¤Î·å¿ô¤ËÆÍÆş¤·¤¿!
+	  " æœªçŸ¥ã®æ¡æ•°ã«çªå…¥ã—ãŸ!
 	  return ""
 	endif
 	let result = basestr . result
       endif
-      " °ì¤Î°Ì
+      " ä¸€ã®ä½
       let i = tail[len - 1]
       if i != 0
 	let result = s:SkkGetNumKanji(i, a:type) . result
       endif
-      " ½½¤Î°Ì
+      " åã®ä½
       let i = tail[len - 2]
       if i != 0
 	let result = s:SkkGetNumKanji(10, a:type) . result
@@ -2874,7 +2874,7 @@ function! s:SkkNum2Kanji(num, type, conv1)
 	  let result = s:SkkGetNumKanji(i, a:type) . result
 	endif
       endif
-      " É´¤Î°Ì
+      " ç™¾ã®ä½
       let i = tail[len - 3]
       if i != 0
 	let result = s:SkkGetNumKanji(100, a:type) . result
@@ -2882,11 +2882,11 @@ function! s:SkkNum2Kanji(num, type, conv1)
 	  let result = s:SkkGetNumKanji(i, a:type) . result
 	endif
       endif
-      " Àé¤Î°Ì
+      " åƒã®ä½
       let i = tail[len - 4]
       if i != 0
 	let result = s:SkkGetNumKanji(1000, a:type) . result
-	if i != 1 || a:conv1 || (tail == 1000 && base != 1) " °ìÀéËü °ìÀé²¯ ...
+	if i != 1 || a:conv1 || (tail == 1000 && base != 1) " ä¸€åƒä¸‡ ä¸€åƒå„„ ...
 	  let result = s:SkkGetNumKanji(i, a:type) . result
 	endif
       endif
@@ -2902,12 +2902,12 @@ function! s:SkkNum2Kanji(num, type, conv1)
   return result == "" ? s:SkkGetNumKanji(0, a:type) : result
 endfunction
 
-" ¥¿¥¤¥×0 ÌµÊÑ´¹
+" ã‚¿ã‚¤ãƒ—0 ç„¡å¤‰æ›
 function! s:SkkNum0(num)
   return a:num
 endfunction
 
-" ¥¿¥¤¥×1 Á´³Ñ¿ô»ú
+" ã‚¿ã‚¤ãƒ—1 å…¨è§’æ•°å­—
 function! s:SkkNum1(num)
   let result = ""
   let i = 0
@@ -2918,7 +2918,7 @@ function! s:SkkNum1(num)
   return result
 endfunction
 
-" ¥¿¥¤¥×2 ´Á¿ô»ú¤Ç°Ì¼è¤ê¤Ê¤·
+" ã‚¿ã‚¤ãƒ—2 æ¼¢æ•°å­—ã§ä½å–ã‚Šãªã—
 function! s:SkkNum2(num)
   let result = ""
   let i = 0
@@ -2929,14 +2929,14 @@ function! s:SkkNum2(num)
   return result
 endfunction
 
-" ¥¿¥¤¥×3 ´Á¿ô»ú¤Ç°Ì¼è¤ê¤¢¤ê
+" ã‚¿ã‚¤ãƒ—3 æ¼¢æ•°å­—ã§ä½å–ã‚Šã‚ã‚Š
 function! s:SkkNum3(num)
   return s:SkkNum2Kanji(a:num, 3, 0)
 endfunction
 
-" ¥¿¥¤¥×4 ¿ôÃÍºÆÊÑ´¹
+" ã‚¿ã‚¤ãƒ—4 æ•°å€¤å†å¤‰æ›
 function! s:SkkNum4(num)
-  " TODO ¤³¤ÎÍ×ÁÇ¤Ç³ÎÄê¤·¤¿¤È¤­¼­½ñÅĞÏ¿¤¬¤Ç¤­¤Ê¤¤¡£
+  " TODO ã“ã®è¦ç´ ã§ç¢ºå®šã—ãŸã¨ãè¾æ›¸ç™»éŒ²ãŒã§ããªã„ã€‚
   let saved_key = b:skk_henkan_key
   try
     let b:skk_henkan_key = a:num . " "
@@ -2948,12 +2948,12 @@ function! s:SkkNum4(num)
   endtry
 endfunction
 
-" ¥¿¥¤¥×5 ¾®ÀÚ¼ê¤ä¼ê·Á¤Î¶â³Ûµ­Æş¤ÎºİÍÑ¤¤¤é¤ì¤ëÉ½µ­
+" ã‚¿ã‚¤ãƒ—5 å°åˆ‡æ‰‹ã‚„æ‰‹å½¢ã®é‡‘é¡è¨˜å…¥ã®éš›ç”¨ã„ã‚‰ã‚Œã‚‹è¡¨è¨˜
 function! s:SkkNum5(num)
   return s:SkkNum2Kanji(a:num, 5, 1)
 endfunction
 
-" ¥¿¥¤¥×9 ¾­´ı¤Î´ıÉè¤ÎÆşÎÏÍÑ
+" ã‚¿ã‚¤ãƒ—9 å°†æ£‹ã®æ£‹è­œã®å…¥åŠ›ç”¨
 function! s:SkkNum9(num)
   if strlen(a:num) != 2
     return ""
@@ -3017,7 +3017,7 @@ function! s:SkkDoAutoFill()
   endif
   let line = line(".")
   let str = getline(line)
-  " ¿·¤·¤¯Æş¤ëÊ¸»ú¤Î¾ì½ê¤ò "x" ¤Ç³ÎÊİ¤·¤Æ¤ª¤¯¡£
+  " æ–°ã—ãå…¥ã‚‹æ–‡å­—ã®å ´æ‰€ã‚’ "x" ã§ç¢ºä¿ã—ã¦ãŠãã€‚
   let trail = "x" . strpart(str, col(".") - 1)
   call setline(line, strpart(str, 0, col(".") - 1) . trail)
   let lcount = line("$")
@@ -3038,7 +3038,7 @@ function! s:SkkDoAutoFill()
       let j = j - 1
     endwhile
     if i < 0
-      " j ¤Ï "x" ¤Î1Ê¸»úÁ°¤ò»Ø¤·¤Æ¤¤¤ë¡£
+      " j ã¯ "x" ã®1æ–‡å­—å‰ã‚’æŒ‡ã—ã¦ã„ã‚‹ã€‚
       call setline(line + lcount, strpart(str, 0, j + 1) . strpart(str, j + 2))
       call cursor(line + lcount, j + 2)
       return
@@ -3108,7 +3108,7 @@ function! s:SkkAppendRules(line)
   return line
 endfunction
 
-" RULES ¤òºï½ü¤¹¤ë¡£
+" RULES ã‚’å‰Šé™¤ã™ã‚‹ã€‚
 function! SkkDeleteRulesSection()
   if filewritable(s:thisfile) != 1
     call s:SkkEcho("SKK: " . s:thisfile . " cannot be written.", "ErrorMsg", 0)
@@ -3132,7 +3132,7 @@ function! SkkDeleteRulesSection()
   call s:SkkConfirm()
 endfunction
 
-" ¤³¤Î´Ø¿ô¤Î¸å¤í¤Ë RULES ¤ò½ñ¤­¹ş¤à¡£
+" ã“ã®é–¢æ•°ã®å¾Œã‚ã« RULES ã‚’æ›¸ãè¾¼ã‚€ã€‚
 function! SkkAddRulesSection()
   if filewritable(s:thisfile) != 1
     call s:SkkEcho("SKK: " . s:thisfile . " cannot be written.", "ErrorMsg", 0)
@@ -3171,7 +3171,7 @@ let &cpo = s:cpo_save
 if exists("skk_debug")
 
   function! SearchTest()
-    " ¥«¥ì¥ó¥È¥Ğ¥Ã¥Õ¥¡¤Ï "^¤Ñ¤¿¡¼¤ó ", 0 ¤Î¤è¤¦¤Ê¹Ô¤À¤±¤Ç¤Ç¤­¤Æ¤¤¤ëÉ¬Í×¤¬¤¢¤ë¡£
+    " ã‚«ãƒ¬ãƒ³ãƒˆãƒãƒƒãƒ•ã‚¡ã¯ "^ã±ãŸãƒ¼ã‚“ ", 0 ã®ã‚ˆã†ãªè¡Œã ã‘ã§ã§ãã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚
     let buf = bufnr("%")
     let i = 1
     let lastline = line("$")
@@ -3207,7 +3207,7 @@ if exists("skk_debug")
   endfunction
 
   function! SearchLimitTest(...)
-    " ¥«¥ì¥ó¥È¥Ğ¥Ã¥Õ¥¡¤Ï "^¤Ñ¤¿¡¼¤ó ", 0 ¤Î¤è¤¦¤Ê¹Ô¤À¤±¤Ç¤Ç¤­¤Æ¤¤¤ëÉ¬Í×¤¬¤¢¤ë¡£
+    " ã‚«ãƒ¬ãƒ³ãƒˆãƒãƒƒãƒ•ã‚¡ã¯ "^ã±ãŸãƒ¼ã‚“ ", 0 ã®ã‚ˆã†ãªè¡Œã ã‘ã§ã§ãã¦ã„ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚
     let buf = bufnr("%")
     let i = 1
     let lastline = line("$")
@@ -3248,13 +3248,13 @@ if v:version < 700
 endif
 
 " for vim7 {{{
-" vim7 ¤Î sandbox ÂĞºö (¥³¥Ş¥ó¥É¥é¥¤¥ó¤Î <C-r>=)
-" ¼­½ñ¤ò¥Ğ¥Ã¥Õ¥¡¤Ç¤Ê¤¯¤Æ¥ê¥¹¥È¤Ç»ı¤Ä¡£
-" ¥ê¥¹¥È¤Ë¤ÏÀ¸¤Î¥Ç¡¼¥¿¤òÆÉ¤ß¹ş¤ß¡¢¸¡º÷»ş¤Ë¥­¡¼¤ò¼­½ñ¤Î¥¨¥ó¥³¡¼¥Ç¥£¥ó¥°¤Ë
-" ÊÑ´¹¤·¤ÆÃµ¤¹¡£
+" vim7 ã® sandbox å¯¾ç­– (ã‚³ãƒãƒ³ãƒ‰ãƒ©ã‚¤ãƒ³ã® <C-r>=)
+" è¾æ›¸ã‚’ãƒãƒƒãƒ•ã‚¡ã§ãªãã¦ãƒªã‚¹ãƒˆã§æŒã¤ã€‚
+" ãƒªã‚¹ãƒˆã«ã¯ç”Ÿã®ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã¿ã€æ¤œç´¢æ™‚ã«ã‚­ãƒ¼ã‚’è¾æ›¸ã®ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã«
+" å¤‰æ›ã—ã¦æ¢ã™ã€‚
 
-" list ¤òÊÖ¤¹¡£ºÇ½é¤ÎÍ×ÁÇ¤Ë
-" [Á÷¤ê¤¢¤ê¤Î°ÌÃÖ, Á÷¤ê¤Ê¤·¤Î°ÌÃÖ, ¥¨¥ó¥³¡¼¥Ç¥£¥ó¥°, ²ş¹Ô¥³¡¼¥É] ¤òÆş¤ì¤ë¡£
+" list ã‚’è¿”ã™ã€‚æœ€åˆã®è¦ç´ ã«
+" [é€ã‚Šã‚ã‚Šã®ä½ç½®, é€ã‚Šãªã—ã®ä½ç½®, ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°, æ”¹è¡Œã‚³ãƒ¼ãƒ‰] ã‚’å…¥ã‚Œã‚‹ã€‚
 function! s:SkkGetJisyoBuf(var)
   if exists("s:{a:var}_list")
     return s:{a:var}_list
@@ -3265,7 +3265,7 @@ function! s:SkkGetJisyoBuf(var)
   let s:{a:var}_modified = 0
   silent! exe "let s:{a:var}_list = readfile('" . fname . "', 'b')"
   if len(s:{a:var}_list) == 0
-    " ¿·µ¬¥Õ¥¡¥¤¥ë
+    " æ–°è¦ãƒ•ã‚¡ã‚¤ãƒ«
     let s:{a:var}_list = [[1, 2, &enc, "unix"], ";; okuri-ari entries." , ";; okuri-nasi entries."]
   else
     if len(s:{a:var}_list) == 1 && stridx(s:{a:var}_list[0], "\<CR>") >= 0
@@ -3274,7 +3274,7 @@ function! s:SkkGetJisyoBuf(var)
     endif
     let ari = index(s:{a:var}_list, ";; okuri-ari entries.") + 1
     let nasi = index(s:{a:var}_list, ";; okuri-nasi entries.") + 1
-    " ¤¢¤ä¤·¤¤Ê¸»ú¥³¡¼¥ÉÈ½Äê
+    " ã‚ã‚„ã—ã„æ–‡å­—ã‚³ãƒ¼ãƒ‰åˆ¤å®š
     let s = string(s:{a:var}_list[ari : ari + 30])
     let exp = "'[" . s:skk_hiragana . ']\+[a-z]\? '
     for enc in ["euc-jp", "cp932", "iso-2022-jp", "utf-8", &enc]
@@ -3328,7 +3328,7 @@ function! SkkSearchLinear(buf, key, okuri)
     let i = a:buf[0][1] + 1
   endif
   let key = escape(a:key, '$.*\[]') . '\m\C'
-  " b:skk_found_lnum ¤Ï¸½ºß¤Î¥Ğ¥Ã¥Õ¥¡¤ËÊİÂ¸¤µ¤ì¤ë¡£
+  " b:skk_found_lnum ã¯ç¾åœ¨ã®ãƒãƒƒãƒ•ã‚¡ã«ä¿å­˜ã•ã‚Œã‚‹ã€‚
   let b:skk_found_lnum = match(a:buf, key, i)
   return b:skk_found_lnum > 0 ? substitute(get(a:buf, b:skk_found_lnum), key, '', '') : ""
 endfunction
