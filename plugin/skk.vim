@@ -4,7 +4,7 @@
 "
 " Author: Noriaki Yagi <no_yag@yahoo.co.jp>
 " Version: $Id: skk.vim,v 0.22 2006/10/11 09:26:53 noriaki Exp noriaki $
-" Last Change: 2010-01-15.
+" Last Change: 2010-01-30.
 "
 " 使い方:
 " skk_jisyo および skk_large_jisyo を適宜変更する。
@@ -209,242 +209,242 @@ endif
 " ちょっとした追加や変更なら skk_user_rom_kana_rules に記述したほうがいい。
 if !exists("skk_rom_kana_rules")
   let skk_rom_kana_rules = ""
-	\. "a	あ	ア\<NL>"
-	\. "bb	っ	ッ	b\<NL>"
-	\. "ba	ば	バ\<NL>"
-	\. "be	べ	ベ\<NL>"
-	\. "bi	び	ビ\<NL>"
-	\. "bo	ぼ	ボ\<NL>"
-	\. "bu	ぶ	ブ\<NL>"
-	\. "bya	びゃ	ビャ\<NL>"
-	\. "bye	びぇ	ビェ\<NL>"
-	\. "byi	びぃ	ビィ\<NL>"
-	\. "byo	びょ	ビョ\<NL>"
-	\. "byu	びゅ	ビュ\<NL>"
-	\. "cc	っ	ッ	c\<NL>"
-	\. "cha	ちゃ	チャ\<NL>"
-	\. "che	ちぇ	チェ\<NL>"
-	\. "chi	ち	チ\<NL>"
-	\. "cho	ちょ	チョ\<NL>"
-	\. "chu	ちゅ	チュ\<NL>"
-	\. "cya	ちゃ	チャ\<NL>"
-	\. "cye	ちぇ	チェ\<NL>"
-	\. "cyi	ちぃ	チィ\<NL>"
-	\. "cyo	ちょ	チョ\<NL>"
-	\. "cyu	ちゅ	チュ\<NL>"
-	\. "dd	っ	ッ	d\<NL>"
-	\. "da	だ	ダ\<NL>"
-	\. "de	で	デ\<NL>"
-	\. "dha	でゃ	デャ\<NL>"
-	\. "dhe	でぇ	デェ\<NL>"
-	\. "dhi	でぃ	ディ\<NL>"
-	\. "dho	でょ	デョ\<NL>"
-	\. "dhu	でゅ	デュ\<NL>"
-	\. "di	ぢ	ヂ\<NL>"
-	\. "do	ど	ド\<NL>"
-	\. "du	づ	ヅ\<NL>"
-	\. "dya	ぢゃ	ヂャ\<NL>"
-	\. "dye	ぢぇ	ヂェ\<NL>"
-	\. "dyi	ぢぃ	ヂィ\<NL>"
-	\. "dyo	ぢょ	ヂョ\<NL>"
-	\. "dyu	ぢゅ	ヂュ\<NL>"
-	\. "e	え	エ\<NL>"
-	\. "ff	っ	ッ	f\<NL>"
-	\. "fa	ふぁ	ファ\<NL>"
-	\. "fe	ふぇ	フェ\<NL>"
-	\. "fi	ふぃ	フィ\<NL>"
-	\. "fo	ふぉ	フォ\<NL>"
-	\. "fu	ふ	フ\<NL>"
-	\. "fya	ふゃ	フャ\<NL>"
-	\. "fye	ふぇ	フェ\<NL>"
-	\. "fyi	ふぃ	フィ\<NL>"
-	\. "fyo	ふょ	フョ\<NL>"
-	\. "fyu	ふゅ	フュ\<NL>"
-	\. "gg	っ	ッ	g\<NL>"
-	\. "ga	が	ガ\<NL>"
-	\. "ge	げ	ゲ\<NL>"
-	\. "gi	ぎ	ギ\<NL>"
-	\. "go	ご	ゴ\<NL>"
-	\. "gu	ぐ	グ\<NL>"
-	\. "gya	ぎゃ	ギャ\<NL>"
-	\. "gye	ぎぇ	ギェ\<NL>"
-	\. "gyi	ぎぃ	ギィ\<NL>"
-	\. "gyo	ぎょ	ギョ\<NL>"
-	\. "gyu	ぎゅ	ギュ\<NL>"
-	\. "ha	は	ハ\<NL>"
-	\. "he	へ	ヘ\<NL>"
-	\. "hi	ひ	ヒ\<NL>"
-	\. "ho	ほ	ホ\<NL>"
-	\. "hu	ふ	フ\<NL>"
-	\. "hya	ひゃ	ヒャ\<NL>"
-	\. "hye	ひぇ	ヒェ\<NL>"
-	\. "hyi	ひぃ	ヒィ\<NL>"
-	\. "hyo	ひょ	ヒョ\<NL>"
-	\. "hyu	ひゅ	ヒュ\<NL>"
-	\. "i	い	イ\<NL>"
-	\. "jj	っ	ッ	j\<NL>"
-	\. "ja	じゃ	ジャ\<NL>"
-	\. "je	じぇ	ジェ\<NL>"
-	\. "ji	じ	ジ\<NL>"
-	\. "jo	じょ	ジョ\<NL>"
-	\. "ju	じゅ	ジュ\<NL>"
-	\. "jya	じゃ	ジャ\<NL>"
-	\. "jye	じぇ	ジェ\<NL>"
-	\. "jyi	じぃ	ジィ\<NL>"
-	\. "jyo	じょ	ジョ\<NL>"
-	\. "jyu	じゅ	ジュ\<NL>"
-	\. "kk	っ	ッ	k\<NL>"
-	\. "ka	か	カ\<NL>"
-	\. "ke	け	ケ\<NL>"
-	\. "ki	き	キ\<NL>"
-	\. "ko	こ	コ\<NL>"
-	\. "ku	く	ク\<NL>"
-	\. "kya	きゃ	キャ\<NL>"
-	\. "kye	きぇ	キェ\<NL>"
-	\. "kyi	きぃ	キィ\<NL>"
-	\. "kyo	きょ	キョ\<NL>"
-	\. "kyu	きゅ	キュ\<NL>"
-	\. "ma	ま	マ\<NL>"
-	\. "me	め	メ\<NL>"
-	\. "mi	み	ミ\<NL>"
-	\. "mo	も	モ\<NL>"
-	\. "mu	む	ム\<NL>"
-	\. "mya	みゃ	ミャ\<NL>"
-	\. "mye	みぇ	ミェ\<NL>"
-	\. "myi	みぃ	ミィ\<NL>"
-	\. "myo	みょ	ミョ\<NL>"
-	\. "myu	みゅ	ミュ\<NL>"
-	\. "n	ん	ン\<NL>"
-	\. "n'	ん	ン\<NL>"
-	\. "na	な	ナ\<NL>"
-	\. "ne	ね	ネ\<NL>"
-	\. "ni	に	ニ\<NL>"
-	\. "nn	ん	ン\<NL>"
-	\. "no	の	ノ\<NL>"
-	\. "nu	ぬ	ヌ\<NL>"
-	\. "nya	にゃ	ニャ\<NL>"
-	\. "nye	にぇ	ニェ\<NL>"
-	\. "nyi	にぃ	ニィ\<NL>"
-	\. "nyo	にょ	ニョ\<NL>"
-	\. "nyu	にゅ	ニュ\<NL>"
-	\. "o	お	オ\<NL>"
-	\. "pp	っ	ッ	p\<NL>"
-	\. "pa	ぱ	パ\<NL>"
-	\. "pe	ぺ	ペ\<NL>"
-	\. "pi	ぴ	ピ\<NL>"
-	\. "po	ぽ	ポ\<NL>"
-	\. "pu	ぷ	プ\<NL>"
-	\. "pya	ぴゃ	ピャ\<NL>"
-	\. "pye	ぴぇ	ピェ\<NL>"
-	\. "pyi	ぴぃ	ピィ\<NL>"
-	\. "pyo	ぴょ	ピョ\<NL>"
-	\. "pyu	ぴゅ	ピュ\<NL>"
-	\. "rr	っ	ッ	r\<NL>"
-	\. "ra	ら	ラ\<NL>"
-	\. "re	れ	レ\<NL>"
-	\. "ri	り	リ\<NL>"
-	\. "ro	ろ	ロ\<NL>"
-	\. "ru	る	ル\<NL>"
-	\. "rya	りゃ	リャ\<NL>"
-	\. "rye	りぇ	リェ\<NL>"
-	\. "ryi	りぃ	リィ\<NL>"
-	\. "ryo	りょ	リョ\<NL>"
-	\. "ryu	りゅ	リュ\<NL>"
-	\. "ss	っ	ッ	s\<NL>"
-	\. "sa	さ	サ\<NL>"
-	\. "se	せ	セ\<NL>"
-	\. "sha	しゃ	シャ\<NL>"
-	\. "she	しぇ	シェ\<NL>"
-	\. "shi	し	シ\<NL>"
-	\. "sho	しょ	ショ\<NL>"
-	\. "shu	しゅ	シュ\<NL>"
-	\. "si	し	シ\<NL>"
-	\. "so	そ	ソ\<NL>"
-	\. "su	す	ス\<NL>"
-	\. "sya	しゃ	シャ\<NL>"
-	\. "sye	しぇ	シェ\<NL>"
-	\. "syi	しぃ	シィ\<NL>"
-	\. "syo	しょ	ショ\<NL>"
-	\. "syu	しゅ	シュ\<NL>"
-	\. "tt	っ	ッ	t\<NL>"
-	\. "ta	た	タ\<NL>"
-	\. "te	て	テ\<NL>"
-	\. "tha	てぁ	テァ\<NL>"
-	\. "the	てぇ	テェ\<NL>"
-	\. "thi	てぃ	ティ\<NL>"
-	\. "tho	てょ	テョ\<NL>"
-	\. "thu	てゅ	テュ\<NL>"
-	\. "ti	ち	チ\<NL>"
-	\. "to	と	ト\<NL>"
-	\. "tsu	つ	ツ\<NL>"
-	\. "tu	つ	ツ\<NL>"
-	\. "tya	ちゃ	チャ\<NL>"
-	\. "tye	ちぇ	チェ\<NL>"
-	\. "tyi	ちぃ	チィ\<NL>"
-	\. "tyo	ちょ	チョ\<NL>"
-	\. "tyu	ちゅ	チュ\<NL>"
-	\. "u	う	ウ\<NL>"
-	\. "vv	っ	ッ	v\<NL>"
-	\. "va	う゛ぁ	ヴァ\<NL>"
-	\. "ve	う゛ぇ	ヴェ\<NL>"
-	\. "vi	う゛ぃ	ヴィ\<NL>"
-	\. "vo	う゛ぉ	ヴォ\<NL>"
-	\. "vu	う゛	ヴ\<NL>"
-	\. "ww	っ	ッ	w\<NL>"
-	\. "wa	わ	ワ\<NL>"
-	\. "we	うぇ	ウェ\<NL>"
-	\. "wi	うぃ	ウィ\<NL>"
-	\. "wo	を	ヲ\<NL>"
-	\. "wu	う	ウ\<NL>"
-	\. "xx	っ	ッ	x\<NL>"
-	\. "xa	ぁ	ァ\<NL>"
-	\. "xe	ぇ	ェ\<NL>"
-	\. "xi	ぃ	ィ\<NL>"
-	\. "xka	か	ヵ\<NL>"
-	\. "xke	け	ヶ\<NL>"
-	\. "xo	ぉ	ォ\<NL>"
-	\. "xtsu	っ	ッ\<NL>"
-	\. "xtu	っ	ッ\<NL>"
-	\. "xu	ぅ	ゥ\<NL>"
-	\. "xwa	ゎ	ヮ\<NL>"
-	\. "xwe	ゑ	ヱ\<NL>"
-	\. "xwi	ゐ	ヰ\<NL>"
-	\. "xya	ゃ	ャ\<NL>"
-	\. "xyo	ょ	ョ\<NL>"
-	\. "xyu	ゅ	ュ\<NL>"
-	\. "yy	っ	ッ	y\<NL>"
-	\. "ya	や	ヤ\<NL>"
-	\. "ye	いぇ	イェ\<NL>"
-	\. "yo	よ	ヨ\<NL>"
-	\. "yu	ゆ	ユ\<NL>"
-	\. "zz	っ	ッ	z\<NL>"
-	\. "z,	‥\<NL>"
-	\. "z-	～\<NL>"
-	\. "z.	…\<NL>"
-	\. "z/	・\<NL>"
-	\. "z[	『\<NL>"
-	\. "z]	』\<NL>"
-	\. "za	ざ	ザ\<NL>"
-	\. "ze	ぜ	ゼ\<NL>"
-	\. "zh	←\<NL>"
-	\. "zi	じ	ジ\<NL>"
-	\. "zj	↓\<NL>"
-	\. "zk	↑\<NL>"
-	\. "zl	→\<NL>"
-	\. "zo	ぞ	ゾ\<NL>"
-	\. "zu	ず	ズ\<NL>"
-	\. "zya	じゃ	ジャ\<NL>"
-	\. "zye	じぇ	ジェ\<NL>"
-	\. "zyi	じぃ	ジィ\<NL>"
-	\. "zyo	じょ	ジョ\<NL>"
-	\. "zyu	じゅ	ジュ\<NL>"
-	\. "-	ー\<NL>"
-	\. ":	：\<NL>"
-	\. ";	；\<NL>"
-	\. "!	！\<NL>"
-	\. "?	？\<NL>"
-	\. "[	「\<NL>"
-	\. "]	」\<NL>"
+        \. "a	あ	ア\<NL>"
+        \. "bb	っ	ッ	b\<NL>"
+        \. "ba	ば	バ\<NL>"
+        \. "be	べ	ベ\<NL>"
+        \. "bi	び	ビ\<NL>"
+        \. "bo	ぼ	ボ\<NL>"
+        \. "bu	ぶ	ブ\<NL>"
+        \. "bya	びゃ	ビャ\<NL>"
+        \. "bye	びぇ	ビェ\<NL>"
+        \. "byi	びぃ	ビィ\<NL>"
+        \. "byo	びょ	ビョ\<NL>"
+        \. "byu	びゅ	ビュ\<NL>"
+        \. "cc	っ	ッ	c\<NL>"
+        \. "cha	ちゃ	チャ\<NL>"
+        \. "che	ちぇ	チェ\<NL>"
+        \. "chi	ち	チ\<NL>"
+        \. "cho	ちょ	チョ\<NL>"
+        \. "chu	ちゅ	チュ\<NL>"
+        \. "cya	ちゃ	チャ\<NL>"
+        \. "cye	ちぇ	チェ\<NL>"
+        \. "cyi	ちぃ	チィ\<NL>"
+        \. "cyo	ちょ	チョ\<NL>"
+        \. "cyu	ちゅ	チュ\<NL>"
+        \. "dd	っ	ッ	d\<NL>"
+        \. "da	だ	ダ\<NL>"
+        \. "de	で	デ\<NL>"
+        \. "dha	でゃ	デャ\<NL>"
+        \. "dhe	でぇ	デェ\<NL>"
+        \. "dhi	でぃ	ディ\<NL>"
+        \. "dho	でょ	デョ\<NL>"
+        \. "dhu	でゅ	デュ\<NL>"
+        \. "di	ぢ	ヂ\<NL>"
+        \. "do	ど	ド\<NL>"
+        \. "du	づ	ヅ\<NL>"
+        \. "dya	ぢゃ	ヂャ\<NL>"
+        \. "dye	ぢぇ	ヂェ\<NL>"
+        \. "dyi	ぢぃ	ヂィ\<NL>"
+        \. "dyo	ぢょ	ヂョ\<NL>"
+        \. "dyu	ぢゅ	ヂュ\<NL>"
+        \. "e	え	エ\<NL>"
+        \. "ff	っ	ッ	f\<NL>"
+        \. "fa	ふぁ	ファ\<NL>"
+        \. "fe	ふぇ	フェ\<NL>"
+        \. "fi	ふぃ	フィ\<NL>"
+        \. "fo	ふぉ	フォ\<NL>"
+        \. "fu	ふ	フ\<NL>"
+        \. "fya	ふゃ	フャ\<NL>"
+        \. "fye	ふぇ	フェ\<NL>"
+        \. "fyi	ふぃ	フィ\<NL>"
+        \. "fyo	ふょ	フョ\<NL>"
+        \. "fyu	ふゅ	フュ\<NL>"
+        \. "gg	っ	ッ	g\<NL>"
+        \. "ga	が	ガ\<NL>"
+        \. "ge	げ	ゲ\<NL>"
+        \. "gi	ぎ	ギ\<NL>"
+        \. "go	ご	ゴ\<NL>"
+        \. "gu	ぐ	グ\<NL>"
+        \. "gya	ぎゃ	ギャ\<NL>"
+        \. "gye	ぎぇ	ギェ\<NL>"
+        \. "gyi	ぎぃ	ギィ\<NL>"
+        \. "gyo	ぎょ	ギョ\<NL>"
+        \. "gyu	ぎゅ	ギュ\<NL>"
+        \. "ha	は	ハ\<NL>"
+        \. "he	へ	ヘ\<NL>"
+        \. "hi	ひ	ヒ\<NL>"
+        \. "ho	ほ	ホ\<NL>"
+        \. "hu	ふ	フ\<NL>"
+        \. "hya	ひゃ	ヒャ\<NL>"
+        \. "hye	ひぇ	ヒェ\<NL>"
+        \. "hyi	ひぃ	ヒィ\<NL>"
+        \. "hyo	ひょ	ヒョ\<NL>"
+        \. "hyu	ひゅ	ヒュ\<NL>"
+        \. "i	い	イ\<NL>"
+        \. "jj	っ	ッ	j\<NL>"
+        \. "ja	じゃ	ジャ\<NL>"
+        \. "je	じぇ	ジェ\<NL>"
+        \. "ji	じ	ジ\<NL>"
+        \. "jo	じょ	ジョ\<NL>"
+        \. "ju	じゅ	ジュ\<NL>"
+        \. "jya	じゃ	ジャ\<NL>"
+        \. "jye	じぇ	ジェ\<NL>"
+        \. "jyi	じぃ	ジィ\<NL>"
+        \. "jyo	じょ	ジョ\<NL>"
+        \. "jyu	じゅ	ジュ\<NL>"
+        \. "kk	っ	ッ	k\<NL>"
+        \. "ka	か	カ\<NL>"
+        \. "ke	け	ケ\<NL>"
+        \. "ki	き	キ\<NL>"
+        \. "ko	こ	コ\<NL>"
+        \. "ku	く	ク\<NL>"
+        \. "kya	きゃ	キャ\<NL>"
+        \. "kye	きぇ	キェ\<NL>"
+        \. "kyi	きぃ	キィ\<NL>"
+        \. "kyo	きょ	キョ\<NL>"
+        \. "kyu	きゅ	キュ\<NL>"
+        \. "ma	ま	マ\<NL>"
+        \. "me	め	メ\<NL>"
+        \. "mi	み	ミ\<NL>"
+        \. "mo	も	モ\<NL>"
+        \. "mu	む	ム\<NL>"
+        \. "mya	みゃ	ミャ\<NL>"
+        \. "mye	みぇ	ミェ\<NL>"
+        \. "myi	みぃ	ミィ\<NL>"
+        \. "myo	みょ	ミョ\<NL>"
+        \. "myu	みゅ	ミュ\<NL>"
+        \. "n	ん	ン\<NL>"
+        \. "n'	ん	ン\<NL>"
+        \. "na	な	ナ\<NL>"
+        \. "ne	ね	ネ\<NL>"
+        \. "ni	に	ニ\<NL>"
+        \. "nn	ん	ン\<NL>"
+        \. "no	の	ノ\<NL>"
+        \. "nu	ぬ	ヌ\<NL>"
+        \. "nya	にゃ	ニャ\<NL>"
+        \. "nye	にぇ	ニェ\<NL>"
+        \. "nyi	にぃ	ニィ\<NL>"
+        \. "nyo	にょ	ニョ\<NL>"
+        \. "nyu	にゅ	ニュ\<NL>"
+        \. "o	お	オ\<NL>"
+        \. "pp	っ	ッ	p\<NL>"
+        \. "pa	ぱ	パ\<NL>"
+        \. "pe	ぺ	ペ\<NL>"
+        \. "pi	ぴ	ピ\<NL>"
+        \. "po	ぽ	ポ\<NL>"
+        \. "pu	ぷ	プ\<NL>"
+        \. "pya	ぴゃ	ピャ\<NL>"
+        \. "pye	ぴぇ	ピェ\<NL>"
+        \. "pyi	ぴぃ	ピィ\<NL>"
+        \. "pyo	ぴょ	ピョ\<NL>"
+        \. "pyu	ぴゅ	ピュ\<NL>"
+        \. "rr	っ	ッ	r\<NL>"
+        \. "ra	ら	ラ\<NL>"
+        \. "re	れ	レ\<NL>"
+        \. "ri	り	リ\<NL>"
+        \. "ro	ろ	ロ\<NL>"
+        \. "ru	る	ル\<NL>"
+        \. "rya	りゃ	リャ\<NL>"
+        \. "rye	りぇ	リェ\<NL>"
+        \. "ryi	りぃ	リィ\<NL>"
+        \. "ryo	りょ	リョ\<NL>"
+        \. "ryu	りゅ	リュ\<NL>"
+        \. "ss	っ	ッ	s\<NL>"
+        \. "sa	さ	サ\<NL>"
+        \. "se	せ	セ\<NL>"
+        \. "sha	しゃ	シャ\<NL>"
+        \. "she	しぇ	シェ\<NL>"
+        \. "shi	し	シ\<NL>"
+        \. "sho	しょ	ショ\<NL>"
+        \. "shu	しゅ	シュ\<NL>"
+        \. "si	し	シ\<NL>"
+        \. "so	そ	ソ\<NL>"
+        \. "su	す	ス\<NL>"
+        \. "sya	しゃ	シャ\<NL>"
+        \. "sye	しぇ	シェ\<NL>"
+        \. "syi	しぃ	シィ\<NL>"
+        \. "syo	しょ	ショ\<NL>"
+        \. "syu	しゅ	シュ\<NL>"
+        \. "tt	っ	ッ	t\<NL>"
+        \. "ta	た	タ\<NL>"
+        \. "te	て	テ\<NL>"
+        \. "tha	てぁ	テァ\<NL>"
+        \. "the	てぇ	テェ\<NL>"
+        \. "thi	てぃ	ティ\<NL>"
+        \. "tho	てょ	テョ\<NL>"
+        \. "thu	てゅ	テュ\<NL>"
+        \. "ti	ち	チ\<NL>"
+        \. "to	と	ト\<NL>"
+        \. "tsu	つ	ツ\<NL>"
+        \. "tu	つ	ツ\<NL>"
+        \. "tya	ちゃ	チャ\<NL>"
+        \. "tye	ちぇ	チェ\<NL>"
+        \. "tyi	ちぃ	チィ\<NL>"
+        \. "tyo	ちょ	チョ\<NL>"
+        \. "tyu	ちゅ	チュ\<NL>"
+        \. "u	う	ウ\<NL>"
+        \. "vv	っ	ッ	v\<NL>"
+        \. "va	う゛ぁ	ヴァ\<NL>"
+        \. "ve	う゛ぇ	ヴェ\<NL>"
+        \. "vi	う゛ぃ	ヴィ\<NL>"
+        \. "vo	う゛ぉ	ヴォ\<NL>"
+        \. "vu	う゛	ヴ\<NL>"
+        \. "ww	っ	ッ	w\<NL>"
+        \. "wa	わ	ワ\<NL>"
+        \. "we	うぇ	ウェ\<NL>"
+        \. "wi	うぃ	ウィ\<NL>"
+        \. "wo	を	ヲ\<NL>"
+        \. "wu	う	ウ\<NL>"
+        \. "xx	っ	ッ	x\<NL>"
+        \. "xa	ぁ	ァ\<NL>"
+        \. "xe	ぇ	ェ\<NL>"
+        \. "xi	ぃ	ィ\<NL>"
+        \. "xka	か	ヵ\<NL>"
+        \. "xke	け	ヶ\<NL>"
+        \. "xo	ぉ	ォ\<NL>"
+        \. "xtsu	っ	ッ\<NL>"
+        \. "xtu	っ	ッ\<NL>"
+        \. "xu	ぅ	ゥ\<NL>"
+        \. "xwa	ゎ	ヮ\<NL>"
+        \. "xwe	ゑ	ヱ\<NL>"
+        \. "xwi	ゐ	ヰ\<NL>"
+        \. "xya	ゃ	ャ\<NL>"
+        \. "xyo	ょ	ョ\<NL>"
+        \. "xyu	ゅ	ュ\<NL>"
+        \. "yy	っ	ッ	y\<NL>"
+        \. "ya	や	ヤ\<NL>"
+        \. "ye	いぇ	イェ\<NL>"
+        \. "yo	よ	ヨ\<NL>"
+        \. "yu	ゆ	ユ\<NL>"
+        \. "zz	っ	ッ	z\<NL>"
+        \. "z,	‥\<NL>"
+        \. "z-	～\<NL>"
+        \. "z.	…\<NL>"
+        \. "z/	・\<NL>"
+        \. "z[	『\<NL>"
+        \. "z]	』\<NL>"
+        \. "za	ざ	ザ\<NL>"
+        \. "ze	ぜ	ゼ\<NL>"
+        \. "zh	←\<NL>"
+        \. "zi	じ	ジ\<NL>"
+        \. "zj	↓\<NL>"
+        \. "zk	↑\<NL>"
+        \. "zl	→\<NL>"
+        \. "zo	ぞ	ゾ\<NL>"
+        \. "zu	ず	ズ\<NL>"
+        \. "zya	じゃ	ジャ\<NL>"
+        \. "zye	じぇ	ジェ\<NL>"
+        \. "zyi	じぃ	ジィ\<NL>"
+        \. "zyo	じょ	ジョ\<NL>"
+        \. "zyu	じゅ	ジュ\<NL>"
+        \. "-	ー\<NL>"
+        \. ":	：\<NL>"
+        \. ";	；\<NL>"
+        \. "!	！\<NL>"
+        \. "?	？\<NL>"
+        \. "[	「\<NL>"
+        \. "]	」\<NL>"
 endif
 
 " ひらがな・カタカナモードのとき関数を呼び出すタイプのルール
@@ -454,13 +454,13 @@ endif
 " もしあれば skk_user_rom_func_rules が追加される。
 if !exists("skk_rom_func_rules")
   let skk_rom_func_rules = ""
-	\. ".	SkkCurrentKuten(kana)\<NL>"
-	\. ",	SkkCurrentTouten(kana)\<NL>"
-	\. "l	SkkAsciiMode(kana)\<NL>"
-	\. "L	SkkZeneiMode(kana)\<NL>"
-	\. "q	SkkToggleKana(kana)\<NL>"
-	\. "Q	SkkSetHenkanPoint1(kana)\<NL>"
-	\. "/	SkkAbbrevMode(kana)\<NL>"
+        \. ".	SkkCurrentKuten(kana)\<NL>"
+        \. ",	SkkCurrentTouten(kana)\<NL>"
+        \. "l	SkkAsciiMode(kana)\<NL>"
+        \. "L	SkkZeneiMode(kana)\<NL>"
+        \. "q	SkkToggleKana(kana)\<NL>"
+        \. "Q	SkkSetHenkanPoint1(kana)\<NL>"
+        \. "/	SkkAbbrevMode(kana)\<NL>"
 endif
 
 " 全角英数変換ルール
@@ -469,101 +469,101 @@ endif
 " SkkAscii2Zenei でも使う。
 if !exists("skk_zenei_rules")
   let skk_zenei_rules = ""
-	\. " 　\<NL>"
-	\. "!！\<NL>"
-	\. "\"”\<NL>"
-	\. "#＃\<NL>"
-	\. "$＄\<NL>"
-	\. "%％\<NL>"
-	\. "&＆\<NL>"
-	\. "'’\<NL>"
-	\. "(（\<NL>"
-	\. ")）\<NL>"
-	\. "*＊\<NL>"
-	\. "+＋\<NL>"
-	\. ",，\<NL>"
-	\. "-－\<NL>"
-	\. ".．\<NL>"
-	\. "/／\<NL>"
-	\. "0０\<NL>"
-	\. "1１\<NL>"
-	\. "2２\<NL>"
-	\. "3３\<NL>"
-	\. "4４\<NL>"
-	\. "5５\<NL>"
-	\. "6６\<NL>"
-	\. "7７\<NL>"
-	\. "8８\<NL>"
-	\. "9９\<NL>"
-	\. ":：\<NL>"
-	\. ";；\<NL>"
-	\. "<＜\<NL>"
-	\. "=＝\<NL>"
-	\. ">＞\<NL>"
-	\. "?？\<NL>"
-	\. "@＠\<NL>"
-	\. "AＡ\<NL>"
-	\. "BＢ\<NL>"
-	\. "CＣ\<NL>"
-	\. "DＤ\<NL>"
-	\. "EＥ\<NL>"
-	\. "FＦ\<NL>"
-	\. "GＧ\<NL>"
-	\. "HＨ\<NL>"
-	\. "IＩ\<NL>"
-	\. "JＪ\<NL>"
-	\. "KＫ\<NL>"
-	\. "LＬ\<NL>"
-	\. "MＭ\<NL>"
-	\. "NＮ\<NL>"
-	\. "OＯ\<NL>"
-	\. "PＰ\<NL>"
-	\. "QＱ\<NL>"
-	\. "RＲ\<NL>"
-	\. "SＳ\<NL>"
-	\. "TＴ\<NL>"
-	\. "UＵ\<NL>"
-	\. "VＶ\<NL>"
-	\. "WＷ\<NL>"
-	\. "XＸ\<NL>"
-	\. "YＹ\<NL>"
-	\. "ZＺ\<NL>"
-	\. "[［\<NL>"
-	\. "\\￥\<NL>"
-	\. "]］\<NL>"
-	\. "^＾\<NL>"
-	\. "_＿\<NL>"
-	\. "`‘\<NL>"
-	\. "aａ\<NL>"
-	\. "bｂ\<NL>"
-	\. "cｃ\<NL>"
-	\. "dｄ\<NL>"
-	\. "eｅ\<NL>"
-	\. "fｆ\<NL>"
-	\. "gｇ\<NL>"
-	\. "hｈ\<NL>"
-	\. "iｉ\<NL>"
-	\. "jｊ\<NL>"
-	\. "kｋ\<NL>"
-	\. "lｌ\<NL>"
-	\. "mｍ\<NL>"
-	\. "nｎ\<NL>"
-	\. "oｏ\<NL>"
-	\. "pｐ\<NL>"
-	\. "qｑ\<NL>"
-	\. "rｒ\<NL>"
-	\. "sｓ\<NL>"
-	\. "tｔ\<NL>"
-	\. "uｕ\<NL>"
-	\. "vｖ\<NL>"
-	\. "wｗ\<NL>"
-	\. "xｘ\<NL>"
-	\. "yｙ\<NL>"
-	\. "zｚ\<NL>"
-	\. "{｛\<NL>"
-	\. "|｜\<NL>"
-	\. "}｝\<NL>"
-	\. "~～\<NL>"
+        \. " 　\<NL>"
+        \. "!！\<NL>"
+        \. "\"”\<NL>"
+        \. "#＃\<NL>"
+        \. "$＄\<NL>"
+        \. "%％\<NL>"
+        \. "&＆\<NL>"
+        \. "'’\<NL>"
+        \. "(（\<NL>"
+        \. ")）\<NL>"
+        \. "*＊\<NL>"
+        \. "+＋\<NL>"
+        \. ",，\<NL>"
+        \. "-－\<NL>"
+        \. ".．\<NL>"
+        \. "/／\<NL>"
+        \. "0０\<NL>"
+        \. "1１\<NL>"
+        \. "2２\<NL>"
+        \. "3３\<NL>"
+        \. "4４\<NL>"
+        \. "5５\<NL>"
+        \. "6６\<NL>"
+        \. "7７\<NL>"
+        \. "8８\<NL>"
+        \. "9９\<NL>"
+        \. ":：\<NL>"
+        \. ";；\<NL>"
+        \. "<＜\<NL>"
+        \. "=＝\<NL>"
+        \. ">＞\<NL>"
+        \. "?？\<NL>"
+        \. "@＠\<NL>"
+        \. "AＡ\<NL>"
+        \. "BＢ\<NL>"
+        \. "CＣ\<NL>"
+        \. "DＤ\<NL>"
+        \. "EＥ\<NL>"
+        \. "FＦ\<NL>"
+        \. "GＧ\<NL>"
+        \. "HＨ\<NL>"
+        \. "IＩ\<NL>"
+        \. "JＪ\<NL>"
+        \. "KＫ\<NL>"
+        \. "LＬ\<NL>"
+        \. "MＭ\<NL>"
+        \. "NＮ\<NL>"
+        \. "OＯ\<NL>"
+        \. "PＰ\<NL>"
+        \. "QＱ\<NL>"
+        \. "RＲ\<NL>"
+        \. "SＳ\<NL>"
+        \. "TＴ\<NL>"
+        \. "UＵ\<NL>"
+        \. "VＶ\<NL>"
+        \. "WＷ\<NL>"
+        \. "XＸ\<NL>"
+        \. "YＹ\<NL>"
+        \. "ZＺ\<NL>"
+        \. "[［\<NL>"
+        \. "\\￥\<NL>"
+        \. "]］\<NL>"
+        \. "^＾\<NL>"
+        \. "_＿\<NL>"
+        \. "`‘\<NL>"
+        \. "aａ\<NL>"
+        \. "bｂ\<NL>"
+        \. "cｃ\<NL>"
+        \. "dｄ\<NL>"
+        \. "eｅ\<NL>"
+        \. "fｆ\<NL>"
+        \. "gｇ\<NL>"
+        \. "hｈ\<NL>"
+        \. "iｉ\<NL>"
+        \. "jｊ\<NL>"
+        \. "kｋ\<NL>"
+        \. "lｌ\<NL>"
+        \. "mｍ\<NL>"
+        \. "nｎ\<NL>"
+        \. "oｏ\<NL>"
+        \. "pｐ\<NL>"
+        \. "qｑ\<NL>"
+        \. "rｒ\<NL>"
+        \. "sｓ\<NL>"
+        \. "tｔ\<NL>"
+        \. "uｕ\<NL>"
+        \. "vｖ\<NL>"
+        \. "wｗ\<NL>"
+        \. "xｘ\<NL>"
+        \. "yｙ\<NL>"
+        \. "zｚ\<NL>"
+        \. "{｛\<NL>"
+        \. "|｜\<NL>"
+        \. "}｝\<NL>"
+        \. "~～\<NL>"
 endif
 
 " 0: IMをオンにする (set noimdisable)
@@ -616,7 +616,7 @@ endfunction
 " parent の子に ch が含まれているか?
 function! s:IsInclude(parent, ch)
   return s:HasChild(a:parent) && a:ch != '' &&
-	\stridx(s:skk_rules_{a:parent}_child, a:ch) != -1
+        \stridx(s:skk_rules_{a:parent}_child, a:ch) != -1
 endfunction
 
 " DoInclude
@@ -726,12 +726,12 @@ function! s:SkkYesNo(msg)
     while 1
       let str = input(prompt, text)
       if str == "yes"
-	return 1
+        return 1
       elseif str == "no"
-	return 0
+        return 0
       else
-	echon "\rPlease answer yes or no."
-	let text = s:SkkWait(1)
+        echon "\rPlease answer yes or no."
+        let text = s:SkkWait(1)
       endif
     endwhile
   catch /^Vim:Interrupt$/
@@ -850,22 +850,22 @@ function! SkkRuleCompile()
       let rom = matchstr(line, '^[^\t]\+')
       let kana = matchstr(line, '[^\t]\+\t\?[^\t]*\t\?', strlen(rom))
       if strlen(kana) == 0
-	continue
+        continue
       endif
       let line = strpart(line, strlen(rom) + strlen(kana) + 1)
       let idx = 0
       let romvar = ""
       while rom[idx] != ""
-	let ch = rom[idx]
-	if strlen(romvar) != 0
-	  call s:DoInclude(romvar, ch)
-	endif
-	let romvar = romvar . s:ValidVarChar(ch)
-	let idx = idx + 1
+        let ch = rom[idx]
+        if strlen(romvar) != 0
+          call s:DoInclude(romvar, ch)
+        endif
+        let romvar = romvar . s:ValidVarChar(ch)
+        let idx = idx + 1
       endwhile
       let s:skk_rules_{romvar} = kana
       if strlen(line) != 0
-	let s:skk_rules_{romvar}_rest = line
+        let s:skk_rules_{romvar}_rest = line
       endif
     endwhile
     unlet g:skk_rom_kana_rules
@@ -882,17 +882,17 @@ function! SkkRuleCompile()
       let rom = matchstr(line, '^[^\t]\+')
       let func = strpart(line, strlen(rom) + 1)
       if strlen(rom) == 0 || strlen(func) == 0
-	continue
+        continue
       endif
       let idx = 0
       let romvar = ""
       while rom[idx] != ""
-	let ch = rom[idx]
-	if strlen(romvar) != 0
-	  call s:DoInclude(romvar, ch)
-	endif
-	let romvar = romvar . s:ValidVarChar(ch)
-	let idx = idx + 1
+        let ch = rom[idx]
+        if strlen(romvar) != 0
+          call s:DoInclude(romvar, ch)
+        endif
+        let romvar = romvar . s:ValidVarChar(ch)
+        let idx = idx + 1
       endwhile
       let s:skk_rules_{romvar}_func = func
     endwhile
@@ -910,7 +910,7 @@ function! SkkRuleCompile()
       let han = char2nr(line[0])
       let zen = matchstr(line, ".*", 1)
       if han >= 0x80 || strlen(zen) == 0
-	continue
+        continue
       endif
       let s:skk_zenei_rules_{han} = zen
     endwhile
@@ -1141,21 +1141,21 @@ function! s:SkkDeleteRange(line, start, end)
     let cnum = s:SkkCursorCol()
     if s:SkkCanBS(a:line, a:start, lnum, cnum)
       if lnum == a:line
-	let s = strpart(getline(a:line), a:start - 1, cnum - a:start)
-	let s:skk_cur_col = cnum + a:start - a:end
+        let s = strpart(getline(a:line), a:start - 1, cnum - a:start)
+        let s:skk_cur_col = cnum + a:start - a:end
       else
-	let s = strpart(getline(a:line), a:start - 1) . "\n"
-	let i = a:line + 1
-	while i < lnum
-	  let s = s . getline(i) . "\n"
-	  let i = i + 1
-	endwhile
-	let s = s . strpart(getline(lnum), 0, cnum - 1)
-	if indent(lnum) > 0 && &paste == 0
-	  set paste
-	  let s:skk_pasted = 1
-	endif
-	set backspace=start,indent,eol
+        let s = strpart(getline(a:line), a:start - 1) . "\n"
+        let i = a:line + 1
+        while i < lnum
+          let s = s . getline(i) . "\n"
+          let i = i + 1
+        endwhile
+        let s = s . strpart(getline(lnum), 0, cnum - 1)
+        if indent(lnum) > 0 && &paste == 0
+          set paste
+          let s:skk_pasted = 1
+        endif
+        set backspace=start,indent,eol
       endif
       let bs = s:SkkMakeBS(strlen(substitute(s, ".", "x", "g")))
       let bs = bs . strpart(s, a:end - a:start)
@@ -1164,12 +1164,12 @@ function! s:SkkDeleteRange(line, start, end)
       let str = strpart(getline(a:line), a:start - 1, a:end - a:start)
       let len = strlen(substitute(str, ".", "x", "g"))
       if len > 0
-	if lnum == a:line && cnum > a:start
-	  let cnum = cnum + a:start - a:end
-	endif
-	call cursor(a:line, a:start)
-	exe "normal! " . len . "\"_x"
-	call cursor(lnum, cnum)
+        if lnum == a:line && cnum > a:start
+          let cnum = cnum + a:start - a:end
+        endif
+        call cursor(a:line, a:start)
+        exe "normal! " . len . "\"_x"
+        call cursor(lnum, cnum)
       endif
     endif
   else
@@ -1390,7 +1390,7 @@ function! s:SkkKey(key)
   if a:key == "\<CR>"
     if s:skk_in_cmdline && !g:skk_keep_state && (!g:skk_egg_like_newline || b:skk_henkan_mode == 0)
       if &imsearch == 1
-	let &imsearch = 0
+        let &imsearch = 0
       endif
       let &iminsert = 0
     endif
@@ -1400,8 +1400,8 @@ function! s:SkkKey(key)
     if g:skk_keep_state
       let str = s:SkkKakutei()
       if s:skk_in_cmdline == 0
-	call s:SkkMapNormal()
-	let &iminsert = 0
+        call s:SkkMapNormal()
+        let &iminsert = 0
       endif
     else
       let str = SkkMode(0)
@@ -1416,7 +1416,7 @@ function! s:SkkKey(key)
     let str = s:SkkBackspace()
     if s:skk_in_cmdline && !g:skk_keep_state && getcmdpos() == 1 && strlen(getcmdline()) == 0
       if &imsearch == 1
-	let &imsearch = 0
+        let &imsearch = 0
       endif
       let &iminsert = 0
     endif
@@ -1458,25 +1458,25 @@ function! s:SkkInsert(char)
   else		" hira|kata
     try
       if b:skk_henkan_mode == 3
-	return SkkHenkan(a:char)
+        return SkkHenkan(a:char)
       elseif stridx(g:skk_henkan_point_keys, a:char) != -1 && b:skk_abbrev_mode_on == 0
-	return SkkSetHenkanPoint(a:char)
+        return SkkSetHenkanPoint(a:char)
       elseif b:skk_henkan_mode == 1 && a:char ==# g:skk_start_henkan_key
-	return SkkStartHenkan()
+        return SkkStartHenkan()
       elseif b:skk_henkan_mode == 1 && s:SkkInCompletion() && a:char ==# g:skk_prev_comp_key
-	return s:SkkPrevComp()
+        return s:SkkPrevComp()
       elseif b:skk_henkan_mode == 1 && s:SkkInCompletion() && a:char ==# g:skk_next_comp_key
-	return s:SkkCompletion(0)
+        return s:SkkCompletion(0)
       elseif b:skk_henkan_mode == 1 && a:char ==# g:skk_completion_key
-	return s:SkkCompletion(!s:SkkInCompletion())
+        return s:SkkCompletion(!s:SkkInCompletion())
       elseif b:skk_abbrev_mode_on == 1
-	return a:char
+        return a:char
       elseif b:skk_henkan_mode == 1 && stridx(g:skk_special_midasi_keys, a:char) != -1
-	return SkkStartHenkan(">")
+        return SkkStartHenkan(">")
       elseif b:skk_henkan_mode == 2
-	return SkkSetHenkanPoint(a:char)
+        return SkkSetHenkanPoint(a:char)
       else
-	return s:SkkInsertKana(a:char)
+        return s:SkkInsertKana(a:char)
       endif
     catch /^skk .* mark$/
       return s:SkkInsert(a:char)
@@ -1505,56 +1505,56 @@ function! s:SkkInsertKana(char)
       exe "return " . s:skk_rules_{curv}_func
     elseif exists("s:skk_rules_{curv}")
       if !s:HasChild(curv)
-	" 確定する
-	let s = s:SkkGetKana(s:skk_rules_{curv})
-	let kana = kana . s
-	let cur = s:GetRest(curv)
-	let curv = s:ValidVarChar(cur)
-	let b:skk_rstart = b:skk_rstart + strlen(s)
-	let kana = kana . cur
+        " 確定する
+        let s = s:SkkGetKana(s:skk_rules_{curv})
+        let kana = kana . s
+        let cur = s:GetRest(curv)
+        let curv = s:ValidVarChar(cur)
+        let b:skk_rstart = b:skk_rstart + strlen(s)
+        let kana = kana . cur
       else
-	" 確定要素はあるがまだ続く可能性もある
-	let kana = kana . cur
+        " 確定要素はあるがまだ続く可能性もある
+        let kana = kana . cur
       endif
     elseif b:skk_rom != ''
       if exists("s:skk_rules_{b:skk_romv}")
-	if s:IsInclude(b:skk_rom, a:char)
-	  " do nothing
-	  let kana = kana . cur
-	else
-	  " rom 確定 char 残す
-	  let s = s:SkkGetKana(s:skk_rules_{b:skk_romv})
-	  let kana = kana . s
-	  let cur = s:GetRest(b:skk_romv) . a:char
-	  let curv = s:ValidVarChar(cur)
-	  let b:skk_rom = ''
-	  let b:skk_romv = ''
-	  let b:skk_rstart = b:skk_rstart + strlen(s)
-	  continue	" 次のループへ
-	endif
+        if s:IsInclude(b:skk_rom, a:char)
+          " do nothing
+          let kana = kana . cur
+        else
+          " rom 確定 char 残す
+          let s = s:SkkGetKana(s:skk_rules_{b:skk_romv})
+          let kana = kana . s
+          let cur = s:GetRest(b:skk_romv) . a:char
+          let curv = s:ValidVarChar(cur)
+          let b:skk_rom = ''
+          let b:skk_romv = ''
+          let b:skk_rstart = b:skk_rstart + strlen(s)
+          continue	" 次のループへ
+        endif
       else
-	if s:IsInclude(b:skk_romv, a:char)
-	  " do nothing
-	  let kana = kana . cur
-	else
-	  " maybe TYPO 今までのローマ字を捨てて char から始める
-	  let b:skk_rom = ''
-	  let b:skk_romv = ''
-	  let cur = a:char
-	  let curv = s:ValidVarChar(cur)
-	  continue	" 次のループへ
-	endif
+        if s:IsInclude(b:skk_romv, a:char)
+          " do nothing
+          let kana = kana . cur
+        else
+          " maybe TYPO 今までのローマ字を捨てて char から始める
+          let b:skk_rom = ''
+          let b:skk_romv = ''
+          let cur = a:char
+          let curv = s:ValidVarChar(cur)
+          continue	" 次のループへ
+        endif
       endif
     else	" b:skk_rom == ''
       if s:HasChild(curv)
-	" do nothing
-	let kana = kana . cur
+        " do nothing
+        let kana = kana . cur
       else
-	" rules にない単一の文字 (そのまま入力)
-	let cur = ''
-	let curv = ''
-	let kana = kana . a:char
-	let b:skk_rstart = b:skk_rstart + strlen(a:char)
+        " rules にない単一の文字 (そのまま入力)
+        let cur = ''
+        let curv = ''
+        let kana = kana . a:char
+        let b:skk_rstart = b:skk_rstart + strlen(a:char)
       endif
     endif
     " continue | return 以外はすべてここに来る。
@@ -1616,8 +1616,8 @@ function! SkkSetHenkanPoint(char)
       let b:skk_ostart = s:SkkCursorCol()
       " for KAnji  ▽*か → ▽かんじ
       if b:skk_ostart == b:skk_hstart + strlen(g:skk_marker_white)
-	let b:skk_ostart = 0
-	return kana
+        let b:skk_ostart = 0
+        return kana
       endif
       let b:skk_okurigana = kana
       return SkkStartHenkan()
@@ -1627,10 +1627,10 @@ function! SkkSetHenkanPoint(char)
       let b:skk_henkan_mode = 2
       " for KanJi  ▽か*んじ → ▽かん*じ
       if b:skk_ostart > s:SkkCursorCol()
-	let p = b:skk_ostart - s:SkkCursorCol()
-	return strpart(kana, 0, p) . g:skk_marker_okuri . strpart(kana, p)
+        let p = b:skk_ostart - s:SkkCursorCol()
+        return strpart(kana, 0, p) . g:skk_marker_okuri . strpart(kana, p)
       else
-	return g:skk_marker_okuri . kana
+        return g:skk_marker_okuri . kana
       endif
     endif
   else	" b:skk_henkan_mode == 2
@@ -1647,8 +1647,8 @@ function! SkkSetHenkanPoint(char)
       let kana = s:SkkCleanRom()
       let okuri = strpart(s:SkkGetLine("."), b:skk_ostart, s:SkkCursorCol() - b:skk_ostart - 1) . kana
       if okuri != ""
-	let b:skk_okurigana = okuri
-	return SkkStartHenkan()
+        let b:skk_okurigana = okuri
+        return SkkStartHenkan()
       endif
       let c = s:SkkEcho("No okurigana!", "WarningMsg", 1)
       return c == "" ? "" : SkkSetHenkanPoint(c)
@@ -1732,9 +1732,9 @@ function! s:SkkKata2Hira(str)
     else
       let pos = stridx(s:skk_katakana, char)
       if pos != -1
-	let result = result . matchstr(s:skk_hiragana, ".", pos)
+        let result = result . matchstr(s:skk_hiragana, ".", pos)
       else
-	let result = result . char
+        let result = result . char
       endif
     endif
     let i = i + strlen(char)
@@ -1762,8 +1762,8 @@ function! SkkStartHenkan(...)
     " 2回目以降の変換
     if b:skk_current_cand >= b:skk_cand_count - 1
       if !b:skk_large_jisyo_searched
-	call s:SkkAddCandidates(s:SkkSearch(1))
-	return SkkStartHenkan()
+        call s:SkkAddCandidates(s:SkkSearch(1))
+        return SkkStartHenkan()
       endif
       " 単語登録
       call s:SkkEraseYomi()
@@ -1775,7 +1775,7 @@ function! SkkStartHenkan(...)
     let b:skk_current_cand = b:skk_current_cand + 1
     if b:skk_current_cand >= g:skk_show_candidates_count
       if !b:skk_large_jisyo_searched
-	call s:SkkAddCandidates(s:SkkSearch(1))
+        call s:SkkAddCandidates(s:SkkSearch(1))
       endif
       return s:SkkSelectCandidate()
     else
@@ -1816,15 +1816,15 @@ function! SkkStartHenkan(...)
     call s:SkkEraseYomi()
     if cand == ''
       if !b:skk_large_jisyo_searched
-	call s:SkkAddCandidates(s:SkkSearch(1))
+        call s:SkkAddCandidates(s:SkkSearch(1))
       endif
       if b:skk_cand_count == 0
-	" 単語登録
-	return s:SkkTourokuMode()
+        " 単語登録
+        return s:SkkTourokuMode()
       else
-	let cand = s:SkkGetCandStrConverted(0)
-	call s:SkkFaceOn(cand)
-	return g:skk_marker_black . cand .  b:skk_okurigana
+        let cand = s:SkkGetCandStrConverted(0)
+        call s:SkkFaceOn(cand)
+        return g:skk_marker_black . cand .  b:skk_okurigana
       endif
     else
       call s:SkkFaceOn(cand)
@@ -1915,9 +1915,9 @@ function! s:SkkSelectCandidate()
     endif
     while cand < b:skk_cand_count && i < keyslen
       if g:skk_show_annotation
-	let str = str . keys[i] . ":" . s:SkkGetCandStrWithAnnotation(cand) . "  "
+        let str = str . keys[i] . ":" . s:SkkGetCandStrWithAnnotation(cand) . "  "
       else
-	let str = str . keys[i] . ":" . s:SkkGetCandStrConverted(cand) . "  "
+        let str = str . keys[i] . ":" . s:SkkGetCandStrConverted(cand) . "  "
       endif
       let i = i + 1
       let cand = cand + 1
@@ -1934,22 +1934,22 @@ function! s:SkkSelectCandidate()
       " TODO ここで関数の入れ子が深くなってしまうのをなんとかしたい。
       let key = nr2char(getchar())
       if key ==# g:skk_start_henkan_key
-	let b:skk_current_cand = b:skk_current_cand + 1
-	return s:SkkSelectCandidate()
+        let b:skk_current_cand = b:skk_current_cand + 1
+        return s:SkkSelectCandidate()
       elseif key ==# g:skk_prev_cand_key
-	if b:skk_current_cand - 1 < g:skk_show_candidates_count
-	  return SkkPreviousCand()
-	else
-	  let b:skk_current_cand = b:skk_current_cand - 1
-	  return s:SkkSelectCandidate()
-	endif
+        if b:skk_current_cand - 1 < g:skk_show_candidates_count
+          return SkkPreviousCand()
+        else
+          let b:skk_current_cand = b:skk_current_cand - 1
+          return s:SkkSelectCandidate()
+        endif
       elseif key == "\<C-g>"
-	return s:SkkCancel()
+        return s:SkkCancel()
       endif
       let select = stridx(keys, toupper(key))
       if select == -1 || select >= i
-	" TODO 何かメッセージを出したほうがいいか？
-	continue
+        " TODO 何かメッセージを出したほうがいいか？
+        continue
       endif
       let nr = cand - i + select
       let b:skk_current_cand = nr
@@ -2051,10 +2051,10 @@ function! s:SkkTourokuMode()
       call s:SkkProcessNumCandidate(result)
       let result = s:SkkGetCandStrConverted(old_count)
       if b:skk_cand_count - old_count == 1
-	let b:skk_henkan_mode = 0
+        let b:skk_henkan_mode = 0
       else
-	let result = g:skk_marker_black . result
-	call s:SkkFaceOn(result)
+        let result = g:skk_marker_black . result
+        call s:SkkFaceOn(result)
       endif
     else
       let b:skk_henkan_mode = 0
@@ -2080,7 +2080,7 @@ function! s:SkkTourokuMode()
       call SkkMap(mode() != "c")
       unlet s:skk_in_touroku
       if s:skk_in_cmdline == 0
-	exe cmd
+        exe cmd
       endif
     endif
   endtry
@@ -2164,7 +2164,7 @@ function! s:SkkSearch(large)
   if cand == '' || a:large
     if g:skk_external_prog != ""
       if b:skk_henkan_key !~ "'"
-	let cand = system(g:skk_external_prog . " '" . b:skk_henkan_key . "'")
+        let cand = system(g:skk_external_prog . " '" . b:skk_henkan_key . "'")
       endif
     else
       let buf = s:SkkGetJisyoBuf("skk_large_jisyo")
@@ -2232,15 +2232,15 @@ function! SkkSearchBinary(key, okuri, limit)
     let line = getline(mid)
     if key >=# line
       if a:okuri
-	let max = mid
+        let max = mid
       else
-	let min = mid
+        let min = mid
       endif
     else
       if a:okuri
-	let min = mid
+        let min = mid
       else
-	let max = mid
+        let max = mid
       endif
     endif
   endwhile
@@ -2371,12 +2371,12 @@ function! s:SkkSplitCandidates(str)
       call s:SkkIgnoreWords(s)
     elseif strlen(s) > 0 && s:SkkNotIgnoreWord(s)
       if match(s, "^(concat ") == 0
-	let s = s:SkkConcat(s)
+        let s = s:SkkConcat(s)
       endif
       if g:skk_use_numeric_conversion && b:skk_num_list_count > 0
-	call s:SkkProcessNumCandidate(s)
+        call s:SkkProcessNumCandidate(s)
       else
-	call s:SkkAddCand(s, "", compare)
+        call s:SkkAddCand(s, "", compare)
       endif
     endif
     let sla1 = sla2
@@ -2539,21 +2539,21 @@ function! SkkPurgeFromJisyo()
     endif
     if str != ""
       if v:version < 700
-	call append(lnum, str)
-	if okuri && b:skk_found_lnum == 0
-	  let b:skk_okuri_nasi_line = b:skk_okuri_nasi_line + 1
-	endif
+        call append(lnum, str)
+        if okuri && b:skk_found_lnum == 0
+          let b:skk_okuri_nasi_line = b:skk_okuri_nasi_line + 1
+        endif
       else	" vim7
-	if buf[0][2] != &enc
-	  let str = iconv(str, &enc, buf[0][2])
-	endif
-	if buf[0][3] == "dos"
-	  let str = str . "\<CR>"
-	endif
-	call insert(buf, str, lnum)
-	if okuri && b:skk_found_lnum < 0
-	  let buf[0][1] += 1
-	endif
+        if buf[0][2] != &enc
+          let str = iconv(str, &enc, buf[0][2])
+        endif
+        if buf[0][3] == "dos"
+          let str = str . "\<CR>"
+        endif
+        call insert(buf, str, lnum)
+        if okuri && b:skk_found_lnum < 0
+          let buf[0][1] += 1
+        endif
       endif
     endif
     let s:skk_jisyo_modified = 1
@@ -2592,48 +2592,48 @@ function! s:SkkSaveJisyo(confirm, silent)
     let cmd = s:SkkShowBuf(s:skk_jisyo_bufnr)
     try
       if v:version < 700
-	let jisyosize = line2byte(line("$")) + strlen(getline("$"))
+        let jisyosize = line2byte(line("$")) + strlen(getline("$"))
       else	" vim7
-	let buf = s:skk_jisyo_list
-	let list = buf[1:]
-	if buf[0][3] == "mac"
-	  let list[0] = join(list, "\<CR>") . "\<CR>"
-	  let list = list[0:0]
-	endif
-	let tmp = tempname()
-	call writefile(list, tmp, 'b')
-	let jisyosize = getfsize(tmp)
+        let buf = s:skk_jisyo_list
+        let list = buf[1:]
+        if buf[0][3] == "mac"
+          let list[0] = join(list, "\<CR>") . "\<CR>"
+          let list = list[0:0]
+        endif
+        let tmp = tempname()
+        call writefile(list, tmp, 'b')
+        let jisyosize = getfsize(tmp)
       endif
       if jisyosize < fsize
-	let msg = "SKK: New " . g:skk_jisyo . " will be " . (fsize - jisyosize)
-	let msg = msg . "bytes smaller.\nSKK: Stop saving " . g:skk_jisyo
-	" TODO confirm
-	echo msg
-	return
+        let msg = "SKK: New " . g:skk_jisyo . " will be " . (fsize - jisyosize)
+        let msg = msg . "bytes smaller.\nSKK: Stop saving " . g:skk_jisyo
+        " TODO confirm
+        echo msg
+        return
       endif
       if a:confirm && confirm("Do you want to save " . g:skk_jisyo . "?", "&yes\n&no") != 1
-	return
+        return
       endif
       if !a:silent
-	echo "Saving SKK jisyo..."
+        echo "Saving SKK jisyo..."
       endif
       if filereadable(jisyo)
-	call rename(jisyo, expand(g:skk_backup_jisyo))
+        call rename(jisyo, expand(g:skk_backup_jisyo))
       endif
       if v:version < 700
-	set buftype=
-	silent exe "write " . g:skk_jisyo
-	set buftype=nowrite
-	" swapfile を残さないため
-	silent exe "bw " . g:skk_jisyo
+        set buftype=
+        silent exe "write " . g:skk_jisyo
+        set buftype=nowrite
+        " swapfile を残さないため
+        silent exe "bw " . g:skk_jisyo
       else	" vim7
-	call rename(tmp, jisyo)
+        call rename(tmp, jisyo)
       endif
       let s:skk_jisyo_ftime = getftime(jisyo)
       let s:skk_jisyo_fsize = jisyosize
       let s:skk_jisyo_modified = 0
       if !a:silent
-	echon "\rSaving SKK jisyo...done"
+        echon "\rSaving SKK jisyo...done"
       endif
     finally
       exe cmd
@@ -2743,9 +2743,9 @@ function! s:SkkCompSearch(first, key, flag)
       return ""
     else
       if kata
-	return s:SkkHira2Kata(substitute(getline(lnum), ' .*', '', ''))
+        return s:SkkHira2Kata(substitute(getline(lnum), ' .*', '', ''))
       else
-	return substitute(getline(lnum), ' .*', '', '')
+        return substitute(getline(lnum), ' .*', '', '')
       endif
     endif
   finally
@@ -2862,41 +2862,41 @@ function! s:SkkNum2Kanji(num, type, conv1)
     if tail != 0
       let len = strlen(tail)
       if base != 1
-	let basestr = s:SkkGetNumKanji(base, a:type)
-	if basestr == ""
-	  " 未知の桁数に突入した!
-	  return ""
-	endif
-	let result = basestr . result
+        let basestr = s:SkkGetNumKanji(base, a:type)
+        if basestr == ""
+          " 未知の桁数に突入した!
+          return ""
+        endif
+        let result = basestr . result
       endif
       " 一の位
       let i = tail[len - 1]
       if i != 0
-	let result = s:SkkGetNumKanji(i, a:type) . result
+        let result = s:SkkGetNumKanji(i, a:type) . result
       endif
       " 十の位
       let i = tail[len - 2]
       if i != 0
-	let result = s:SkkGetNumKanji(10, a:type) . result
-	if i != 1 || a:conv1
-	  let result = s:SkkGetNumKanji(i, a:type) . result
-	endif
+        let result = s:SkkGetNumKanji(10, a:type) . result
+        if i != 1 || a:conv1
+          let result = s:SkkGetNumKanji(i, a:type) . result
+        endif
       endif
       " 百の位
       let i = tail[len - 3]
       if i != 0
-	let result = s:SkkGetNumKanji(100, a:type) . result
-	if i != 1 || a:conv1
-	  let result = s:SkkGetNumKanji(i, a:type) . result
-	endif
+        let result = s:SkkGetNumKanji(100, a:type) . result
+        if i != 1 || a:conv1
+          let result = s:SkkGetNumKanji(i, a:type) . result
+        endif
       endif
       " 千の位
       let i = tail[len - 4]
       if i != 0
-	let result = s:SkkGetNumKanji(1000, a:type) . result
-	if i != 1 || a:conv1 || (tail == 1000 && base != 1) " 一千万 一千億 ...
-	  let result = s:SkkGetNumKanji(i, a:type) . result
-	endif
+        let result = s:SkkGetNumKanji(1000, a:type) . result
+        if i != 1 || a:conv1 || (tail == 1000 && base != 1) " 一千万 一千億 ...
+          let result = s:SkkGetNumKanji(i, a:type) . result
+        endif
       endif
     endif
     let base = base . "0000"
@@ -2988,9 +2988,9 @@ function! s:SkkFaceOn(cand)
       let sl = b:skk_line - 1
       let el = b:skk_line + lc + 1
       if indent(b:skk_line) > 0
-	let cand = substitute(a:cand, "[\n\r]", "\n[[:blank:]]*", "g")
+        let cand = substitute(a:cand, "[\n\r]", "\n[[:blank:]]*", "g")
       else
-	let cand = a:cand
+        let cand = a:cand
       endif
       exe 'match skk_henkan /\%>' . sl . 'l\%<' . el . 'l' . s:SkkQuoteChar(cand, 1) . '/'
     endif
@@ -3236,8 +3236,8 @@ if exists("skk_debug")
       let before = v:version < 700 ? localtime() : reltime()
       let i = 1
       while i <= lastline
-	exe "call SkkSearchBinary(" . arg . str{i} . ", " . a:{j} . ")"
-	let i = i + 1
+        exe "call SkkSearchBinary(" . arg . str{i} . ", " . a:{j} . ")"
+        let i = i + 1
       endwhile
       let elapsed = v:version < 700 ? localtime() - before : reltimestr(reltime(before))
       let msg = msg . a:{j} . ": " . elapsed . "sec. "
@@ -3287,14 +3287,14 @@ function! s:SkkGetJisyoBuf(var)
     let exp = "'[" . s:skk_hiragana . ']\+[a-z]\? '
     for enc in ["euc-jp", "cp932", "iso-2022-jp", "utf-8", &enc]
       if iconv(s, enc, &enc) =~ exp
-	break
+        break
       endif
     endfor
     if !exists("l:ff")
       let ff = stridx(s, "\<CR>") < 0 ? "unix" : "dos"
       if ff == "dos"
-	let ari = index(s:{a:var}_list, ";; okuri-ari entries.\<CR>") + 1
-	let nasi = index(s:{a:var}_list, ";; okuri-nasi entries.\<CR>") + 1
+        let ari = index(s:{a:var}_list, ";; okuri-ari entries.\<CR>") + 1
+        let nasi = index(s:{a:var}_list, ";; okuri-nasi entries.\<CR>") + 1
       endif
     endif
     call insert(s:{a:var}_list, [ari, nasi, enc, ff], 0)
@@ -3357,15 +3357,15 @@ function! SkkSearchBinary(buf, key, okuri, limit)
     let line = get(a:buf, mid)
     if key >=# line
       if a:okuri
-	let max = mid
+        let max = mid
       else
-	let min = mid
+        let min = mid
       endif
     else
       if a:okuri
-	let min = mid
+        let min = mid
       else
-	let max = mid
+        let max = mid
       endif
     endif
   endwhile
