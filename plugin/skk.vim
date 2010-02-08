@@ -4,7 +4,7 @@
 "
 " Author: Noriaki Yagi <no_yag@yahoo.co.jp>
 " Version: $Id: skk.vim,v 0.22 2006/10/11 09:26:53 noriaki Exp noriaki $
-" Last Change: 2010-01-30.
+" Last Change: 2010-02-08.
 "
 " 使い方:
 " skk_jisyo および skk_large_jisyo を適宜変更する。
@@ -920,11 +920,16 @@ function! SkkRuleCompile()
 endfunction
 
 " global mapping
-exe "inoremap <silent> " . g:skk_control_j_key . " <C-r>=SkkMode(1)<CR>"
-exe "cnoremap " . g:skk_control_j_key . " <C-r>=SkkMode(1)<CR>"
+inoremap <silent> <Plug>(skk-enable-im)  <C-r>=SkkMode(1)<CR>
+cnoremap <Plug>(skk-enable-im)  <C-r>=SkkMode(1)<CR>
+if g:skk_control_j_key != ""
+  exe "imap" g:skk_control_j_key "<Plug>(skk-enable-im)"
+  exe "cmap" g:skk_control_j_key "<Plug>(skk-enable-im)"
+endif
 
+nnoremap <silent> <Plug>(skk-save-jisyo)    :call <SID>SkkSaveJisyo(1, 0)<CR>
 if g:skk_manual_save_jisyo_keys != ""
-  exe "nnoremap <silent> " . g:skk_manual_save_jisyo_keys . " :call <SID>SkkSaveJisyo(1, 0)<CR>"
+  exe "nmap" g:skk_manual_save_jisyo_keys "<Plug>(skk-save-jisyo)"
 endif
 
 " 終了時に辞書の保存
