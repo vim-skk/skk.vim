@@ -574,23 +574,23 @@ if !exists('skk_imdisable_state')
 endif
 
 " アスキーモードを示す文字列
-if !exists('g:skk_latin_mode_string')
-  let g:skk_latin_mode_string = 'SKK:aA'
+if !exists('g:skk_ascii_mode_string')
+  let g:skk_ascii_mode_string = 'SKK:aA'
 endif
 
 " かなモードを示す文字列
-if !exists('g:skk_hiragana_mode_string')
-  let g:skk_hiragana_mode_string = 'SKK:あ'
+if !exists('g:skk_hira_mode_string')
+  let g:skk_hira_mode_string = 'SKK:あ'
 endif
 
 " カナモードを示す文字列
-if !exists('g:skk_katakana_mode_string')
-  let g:skk_katakana_mode_string = 'SKK:ア'
+if !exists('g:skk_kata_mode_string')
+  let g:skk_kata_mode_string = 'SKK:ア'
 endif
 
 " 全英モードを示す文字列
-if !exists('g:skk_jisx0208_latin_mode_string')
-  let g:skk_jisx0208_latin_mode_string = 'SKK:Ａ'
+if !exists('g:skk_zenei_mode_string')
+  let g:skk_zenei_mode_string = 'SKK:Ａ'
 endif
 
 " SKK abbrev モードを示す文字列
@@ -604,23 +604,23 @@ if !exists('g:skk_use_color_cursor')
 endif
 
 " かなモードを示すカーソル色
-if !exists('g:skk_cursor_hiragana_color')
-  let g:skk_cursor_hiragana_color = ''
+if !exists('g:skk_cursor_hira_color')
+  let g:skk_cursor_hira_color = ''
 endif
 
 " カナモードを示すカーソル色
-if !exists('g:skk_cursor_katakana_color')
-  let g:skk_cursor_katakana_color = ''
+if !exists('g:skk_cursor_kata_color')
+  let g:skk_cursor_kata_color = ''
 endif
 
 " 全英モードを示すカーソル色
-if !exists('g:skk_cursor_jisx0208_color')
-  let g:skk_cursor_jisx0208_color = ''
+if !exists('g:skk_cursor_zenei_color')
+  let g:skk_cursor_zenei_color = ''
 endif
 
 " アスキーモードを示すカーソル色
-if !exists('g:skk_cursor_latin_color')
-  let g:skk_cursor_latin_color = ''
+if !exists('g:skk_cursor_ascii_color')
+  let g:skk_cursor_ascii_color = ''
 endif
 
 " SKK abbrev モードを示すカーソル色
@@ -874,26 +874,26 @@ function! s:SkkSetCursorColor()
     elseif b:skk_mode == 'hira'
       " coral4:#8b3e2f, pink:#ffc0cb
       let color = (&background == 'light' ? '#8b3e2f' : '#ffc0cb')
-      if g:skk_cursor_hiragana_color != ''
-	let color = g:skk_cursor_hiragana_color
+      if g:skk_cursor_hira_color != ''
+	let color = g:skk_cursor_hira_color
       endif
     elseif b:skk_mode == 'kata'
       " forestgreen:#228b22, green:#00ff00
       let color = (&background == 'light' ? '#228b22' : '#00ff00')
-      if g:skk_cursor_katakana_color != ''
-	let color = g:skk_cursor_katakana_color
+      if g:skk_cursor_kata_color != ''
+	let color = g:skk_cursor_kata_color
       endif
     elseif b:skk_mode == 'zenei'
       " gold:#ffd700
       let color = (&background == 'light' ? '#ffd700' : '#ffd700')
-      if g:skk_cursor_jisx0208_color != ''
-	let color = g:skk_cursor_jisx0208_color
+      if g:skk_cursor_zenei_color != ''
+	let color = g:skk_cursor_zenei_color
       endif
     elseif b:skk_mode == 'ascii'
       " ivory4:#8b8b83, gray:#bebebe
       let color = (&background == 'light' ? '#8b8b83' : '#bebebe')
-      if g:skk_cursor_latin_color != ''
-	let color = g:skk_cursor_latin_color
+      if g:skk_cursor_ascii_color != ''
+	let color = g:skk_cursor_ascii_color
       endif
     endif
     execute 'highlight lCursor guibg=' . color
@@ -1202,13 +1202,13 @@ function! SkkGetModeStr()
   elseif b:skk_abbrev_mode_on == 1
     let str = "[" . g:skk_abbrev_mode_string . "]"
   elseif b:skk_mode == "hira"
-    let str = "[" . g:skk_hiragana_mode_string . "]"
+    let str = "[" . g:skk_hira_mode_string . "]"
   elseif b:skk_mode == "kata"
-    let str = "[" . g:skk_katakana_mode_string . "]"
+    let str = "[" . g:skk_kata_mode_string . "]"
   elseif b:skk_mode == "zenei"
-    let str = "[" . g:skk_jisx0208_latin_mode_string . "]"
+    let str = "[" . g:skk_zenei_mode_string . "]"
   else
-    let str = "[" . g:skk_latin_mode_string . "]"
+    let str = "[" . g:skk_ascii_mode_string . "]"
   endif
   if exists("b:skk_autofill") && b:skk_autofill && str != " "
     let str = str . "FILL"
