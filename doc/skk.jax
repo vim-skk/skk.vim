@@ -217,6 +217,60 @@ g:skk_imdisable_state					*g:skk_imdisable_state*
 		1: IMをオフにする (set imdisable)
 		それ以外: &imdisableを弄らない
 
+g:skk_ascii_mode_string					*g:skk_ascii_mode_string*
+										(初期値: 'SKK:aA')
+		アスキーモードを示す文字列。
+
+g:skk_hira_mode_string					*g:skk_hira_mode_string*
+										(初期値: 'SKK:あ')
+		かなモードを示す文字列。
+
+g:skk_kata_mode_string					*g:skk_kata_mode_string*
+										(初期値: 'SKK:ア')
+		カナモードを示す文字列。
+
+g:skk_zenei_mode_string					*g:skk_zenei_mode_string*
+										(初期値: 'SKK:Ａ')
+		全英モードを示す文字列。
+
+g:skk_abbrev_mode_string				*g:skk_abbrev_mode_string*
+										(初期値: 'SKK:aあ')
+		abbrevモードを示す文字列。
+
+g:skk_use_color_cursor					*g:skk_use_color_cursor*
+										(初期値: 0)
+		カーソルに色付けする。
+
+g:skk_cursor_hira_color					*g:skk_cursor_hira_color*
+										(初期値: '')
+		かなモードを示すカーソル色。
+
+g:skk_cursor_kata_color					*g:skk_cursor_kata_color*
+										(初期値: '')
+		カナモードを示すカーソル色。
+
+g:skk_cursor_zenei_color					*g:skk_cursor_zenei_color*
+										(初期値: '')
+		全英モードを示すカーソル色。
+
+g:skk_cursor_ascii_color					*g:skk_cursor_ascii_color*
+										(初期値: '')
+		asciiモードを示すカーソル色。
+
+g:skk_cursor_abbrev_color					*g:skk_cursor_abbrev_color*
+										(初期値: '')
+		abbrevモードを示すカーソル色。
+
+g:skk_sticky_key							*g:skk_sticky_key*
+										(初期値: '')
+		入力されたら▽モードにするキー(Stickyキー)。
+		初期値はどのキーもStickyキーにマッピングしない。
+
+g:skk_kakutei_key							*g:skk_kakutei_key*
+										(初期値: "\<C-j>")
+		明示的な確定動作を行うキー。
+		入力された文字列と直接比較されるので「\」が必要。
+
 
 ==============================================================================
 TODO						*skk-TODO*
