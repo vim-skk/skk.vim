@@ -4,7 +4,7 @@
 "
 " Author: Noriaki Yagi <no_yag@yahoo.co.jp>
 " Version: $Id: skk.vim,v 0.22 2006/10/11 09:26:53 noriaki Exp noriaki $
-" Last Change: 2010-02-08.
+" Last Change: 2010-02-09.
 "
 " 使い方:
 " skk_jisyo および skk_large_jisyo を適宜変更する。
@@ -869,31 +869,31 @@ function! s:SkkSetCursorColor()
       " royalblue:#4169e1
       let color = (&background == 'light' ? '#4169e1' : '#4169e1')
       if g:skk_cursor_abbrev_color != ''
-	let color = g:skk_cursor_abbrev_color
+        let color = g:skk_cursor_abbrev_color
       endif
     elseif b:skk_mode == 'hira'
       " coral4:#8b3e2f, pink:#ffc0cb
       let color = (&background == 'light' ? '#8b3e2f' : '#ffc0cb')
       if g:skk_cursor_hira_color != ''
-	let color = g:skk_cursor_hira_color
+        let color = g:skk_cursor_hira_color
       endif
     elseif b:skk_mode == 'kata'
       " forestgreen:#228b22, green:#00ff00
       let color = (&background == 'light' ? '#228b22' : '#00ff00')
       if g:skk_cursor_kata_color != ''
-	let color = g:skk_cursor_kata_color
+        let color = g:skk_cursor_kata_color
       endif
     elseif b:skk_mode == 'zenei'
       " gold:#ffd700
       let color = (&background == 'light' ? '#ffd700' : '#ffd700')
       if g:skk_cursor_zenei_color != ''
-	let color = g:skk_cursor_zenei_color
+        let color = g:skk_cursor_zenei_color
       endif
     elseif b:skk_mode == 'ascii'
       " ivory4:#8b8b83, gray:#bebebe
       let color = (&background == 'light' ? '#8b8b83' : '#bebebe')
       if g:skk_cursor_ascii_color != ''
-	let color = g:skk_cursor_ascii_color
+        let color = g:skk_cursor_ascii_color
       endif
     endif
     execute 'highlight lCursor guibg=' . color
