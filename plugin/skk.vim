@@ -4,7 +4,7 @@
 "
 " Author: Noriaki Yagi <no_yag@yahoo.co.jp>
 " Version: $Id: skk.vim,v 0.22 2006/10/11 09:26:53 noriaki Exp noriaki $
-" Last Change: 2010-01-30.
+" Last Change: 2010-02-08.
 "
 " 使い方:
 " skk_jisyo および skk_large_jisyo を適宜変更する。
@@ -573,6 +573,71 @@ if !exists('skk_imdisable_state')
   let skk_imdisable_state = 1
 endif
 
+" アスキーモードを示す文字列
+if !exists('g:skk_latin_mode_string')
+  let g:skk_latin_mode_string = 'SKK:aA'
+endif
+
+" かなモードを示す文字列
+if !exists('g:skk_hiragana_mode_string')
+  let g:skk_hiragana_mode_string = 'SKK:あ'
+endif
+
+" カナモードを示す文字列
+if !exists('g:skk_katakana_mode_string')
+  let g:skk_katakana_mode_string = 'SKK:ア'
+endif
+
+" 全英モードを示す文字列
+if !exists('g:skk_jisx0208_latin_mode_string')
+  let g:skk_jisx0208_latin_mode_string = 'SKK:Ａ'
+endif
+
+" SKK abbrev モードを示す文字列
+if !exists('g:skk_abbrev_mode_string')
+  let g:skk_abbrev_mode_string = 'SKK:aあ'
+endif
+
+" カーソルに色付けする
+if !exists('g:skk_use_color_cursor')
+  let g:skk_use_color_cursor = 0
+endif
+
+" かなモードを示すカーソル色
+if !exists('g:skk_cursor_hiragana_color')
+  let g:skk_cursor_hiragana_color = ''
+endif
+
+" カナモードを示すカーソル色
+if !exists('g:skk_cursor_katakana_color')
+  let g:skk_cursor_katakana_color = ''
+endif
+
+" 全英モードを示すカーソル色
+if !exists('g:skk_cursor_jisx0208_color')
+  let g:skk_cursor_jisx0208_color = ''
+endif
+
+" アスキーモードを示すカーソル色
+if !exists('g:skk_cursor_latin_color')
+  let g:skk_cursor_latin_color = ''
+endif
+
+" SKK abbrev モードを示すカーソル色
+if !exists('g:skk_cursor_abbrev_color')
+  let g:skk_cursor_abbrev_color = ''
+endif
+
+" 入力されたら▽モードにするキー(sticky key)
+if !exists('g:skk_sticky_key')
+  let g:skk_sticky_key = ""
+endif
+
+" 明示的な確定動作を行うキー
+" 入力された文字列と直接比較されるので \ が必要
+if !exists('g:skk_kakutei_key')
+  let g:skk_kakutei_key = "\<C-j>"
+endif
 " }}}
 
 " script variables {{{
@@ -796,6 +861,44 @@ function! s:SkkPurge(s1, s2)
   return result == "" ? result : result . '/'
 endfunction
 
+" b:skk_mode, b:skk_abbrev_mode_on に合わせて、カーソルの色を変更する
+" NOTE: 暫定的にWin32 && gVim限定でカーソル色を変更する
+function! s:SkkSetCursorColor()
+  if has('win32') && has('gui') && g:skk_use_color_cursor
+    if b:skk_abbrev_mode_on
+      " royalblue:#4169e1
+      let color = (&background == 'light' ? '#4169e1' : '#4169e1')
+      if g:skk_cursor_abbrev_color != ''
+	let color = g:skk_cursor_abbrev_color
+      endif
+    elseif b:skk_mode == 'hira'
+      " coral4:#8b3e2f, pink:#ffc0cb
+      let color = (&background == 'light' ? '#8b3e2f' : '#ffc0cb')
+      if g:skk_cursor_hiragana_color != ''
+	let color = g:skk_cursor_hiragana_color
+      endif
+    elseif b:skk_mode == 'kata'
+      " forestgreen:#228b22, green:#00ff00
+      let color = (&background == 'light' ? '#228b22' : '#00ff00')
+      if g:skk_cursor_katakana_color != ''
+	let color = g:skk_cursor_katakana_color
+      endif
+    elseif b:skk_mode == 'zenei'
+      " gold:#ffd700
+      let color = (&background == 'light' ? '#ffd700' : '#ffd700')
+      if g:skk_cursor_jisx0208_color != ''
+	let color = g:skk_cursor_jisx0208_color
+      endif
+    elseif b:skk_mode == 'ascii'
+      " ivory4:#8b8b83, gray:#bebebe
+      let color = (&background == 'light' ? '#8b8b83' : '#bebebe')
+      if g:skk_cursor_latin_color != ''
+	let color = g:skk_cursor_latin_color
+      endif
+    endif
+    execute 'highlight lCursor guibg=' . color
+  endif
+endfunction
 " }}}
 
 " Initialization {{{
@@ -823,6 +926,7 @@ function! s:SkkBufInit()
   if !exists("b:skk_map_silent")
     let b:skk_map_silent = 2	" <silent> 付きでマップしたか？
   endif
+  call s:SkkSetCursorColor() " カーソル色の設定
 endfunction
 
 " SkkRuleCompile
@@ -1042,6 +1146,7 @@ endfunction
 function! SkkHiraMode(kana)
   let kana = a:kana . s:SkkKakutei()
   let b:skk_mode = 'hira'
+  call s:SkkSetCursorColor()
   return kana
 endfunction
 
@@ -1050,6 +1155,7 @@ endfunction
 function! SkkKataMode(kana)
   let kana = a:kana . s:SkkKakutei()
   let b:skk_mode = 'kata'
+  call s:SkkSetCursorColor()
   return kana
 endfunction
 
@@ -1058,6 +1164,7 @@ endfunction
 function! SkkZeneiMode(kana)
   let kana = a:kana . s:SkkKakutei()
   let b:skk_mode = 'zenei'
+  call s:SkkSetCursorColor()
   return kana
 endfunction
 
@@ -1066,6 +1173,7 @@ endfunction
 function! SkkAsciiMode(kana)
   let kana = a:kana . s:SkkKakutei()
   let b:skk_mode = 'ascii'
+  call s:SkkSetCursorColor()
   return kana
 endfunction
 
@@ -1076,6 +1184,7 @@ function! SkkAbbrevMode(kana)
   endif
   let kana = SkkSetHenkanPoint1(a:kana)
   let b:skk_abbrev_mode_on = 1
+  call s:SkkSetCursorColor()
   return kana
 endfunction
 
@@ -1091,15 +1200,15 @@ function! SkkGetModeStr()
   elseif m == 2 && s:skk_in_cmdline == 0
     let str = " "
   elseif b:skk_abbrev_mode_on == 1
-    let str = "[SKK:aあ]"
+    let str = "[" . g:skk_abbrev_mode_string . "]"
   elseif b:skk_mode == "hira"
-    let str = "[SKK:あ]"
+    let str = "[" . g:skk_hiragana_mode_string . "]"
   elseif b:skk_mode == "kata"
-    let str = "[SKK:ア]"
+    let str = "[" . g:skk_katakana_mode_string . "]"
   elseif b:skk_mode == "zenei"
-    let str = "[SKK:Ａ]"
+    let str = "[" . g:skk_jisx0208_latin_mode_string . "]"
   else
-    let str = "[SKK:aA]"
+    let str = "[" . g:skk_latin_mode_string . "]"
   endif
   if exists("b:skk_autofill") && b:skk_autofill && str != " "
     let str = str . "FILL"
@@ -1457,8 +1566,35 @@ function! s:SkkInsert(char)
     return s:SkkInsertZenei(a:char)
   else		" hira|kata
     try
-      if b:skk_henkan_mode == 3
+      if b:skk_henkan_mode != 0 && a:char == g:skk_kakutei_key
+        call s:SkkKakutei()
+        return ''
+      elseif b:skk_henkan_mode == 3
         return SkkHenkan(a:char)
+      elseif b:skk_henkan_mode == 0 && a:char == g:skk_sticky_key
+        return SkkSetHenkanPoint('')
+      elseif b:skk_henkan_mode == 1 && a:char == g:skk_sticky_key
+        if !s:SkkCheckMarker(g:skk_marker_white, b:skk_hstart)
+          let b:skk_henkan_mode = 0
+          throw "skk cannot find " . g:skk_marker_white . " mark"
+        endif
+        " g:skk_sticky_key 連続押下で g:skk_sticky_key 自体を返す
+        " ;; で ▽* 、;k; で ▽* ではなく、; になるように
+        let kana = s:SkkCleanRom() " kana は n の場合に ん になる
+        if kana == '' && s:SkkCursorCol() == b:skk_hstart +
+              \ strlen(g:skk_marker_white)
+          call s:SkkKakutei() " ▽の削除 ( 確定 )
+          return g:skk_sticky_key
+        endif
+        if b:skk_rstart == 0 || b:skk_line != s:SkkCursorLine()
+          let b:skk_line = s:SkkCursorLine()
+          let b:skk_rstart = s:SkkCursorCol()
+        endif
+        let b:skk_ostart = strlen(kana) + b:skk_rstart
+        let b:skk_rstart = strlen(kana) + b:skk_rstart +
+              \ strlen(g:skk_marker_okuri)
+        let b:skk_henkan_mode = 2
+        return kana . g:skk_marker_okuri
       elseif stridx(g:skk_henkan_point_keys, a:char) != -1 && b:skk_abbrev_mode_on == 0
         return SkkSetHenkanPoint(a:char)
       elseif b:skk_henkan_mode == 1 && a:char ==# g:skk_start_henkan_key
@@ -1896,6 +2032,7 @@ function! s:SkkKakutei()
   let b:skk_romv = ''
   let b:skk_rstart = 0
   let b:skk_abbrev_mode_on = 0
+  call s:SkkSetCursorColor()
   return kana
 endfunction
 
