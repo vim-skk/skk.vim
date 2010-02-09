@@ -2721,7 +2721,6 @@ endfunction
 
 " <C-r>= だと setcmdpos() が思ったように動かないため自前で組み立てる。
 function! s:SkkMakeCmdStr(str)
-  redrawstatus
   if !exists("s:skk_cmdline_str")
     return a:str
   endif
