@@ -967,7 +967,6 @@ function! SkkRuleCompile()
         endif
         let romvar = romvar . s:ValidVarChar(ch)
       endfor
-      echo line
       let s:skk_rules_{romvar} = kana
       let s:skk_rules_{romvar}_rest = strpart(line, strlen(rom) + strlen(kana) + 1)
     endfor
@@ -1264,7 +1263,7 @@ function! s:SkkDeleteRange(line, start, end)
           let cnum = cnum + a:start - a:end
         endif
         call cursor(a:line, a:start)
-        exe "normal! " . len . "\"_x"
+        silent! exe "normal! " . len . "\"_x"
         call cursor(lnum, cnum)
       endif
     endif
