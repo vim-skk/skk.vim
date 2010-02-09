@@ -28,6 +28,12 @@ if exists('plugin_skk_disable')
   finish
 endif
 
+if v:version < 700
+  echoerr 'skk.vim require vim7'
+  finish
+endif
+
+
 "if exists("skk_loaded")
 "  finish
 "endif
@@ -667,7 +673,7 @@ function! s:ValidVarChar(str)
   let result = ''
   let i = 0
   while a:str[i] != ''
-    if a:str[i] =~ '\w'	" [0-9A-Za-z_]
+    if a:str[i] =~ '\w' " [0-9A-Za-z_]
       let result = result . a:str[i]
     else
       let result = result . "__" . char2nr(a:str[i]) . "__"
@@ -948,30 +954,23 @@ function! SkkRuleCompile()
     if exists("g:skk_user_rom_kana_rules")
       let ptr = ptr . g:skk_user_rom_kana_rules
     endif
-    while ptr != ""
-      let line = matchstr(ptr, "^[^\<NL>]*")
-      let ptr = strpart(ptr, strlen(line) + 1)
+    for line in split(ptr, "\<NL>")
       let rom = matchstr(line, '^[^\t]\+')
       let kana = matchstr(line, '[^\t]\+\t\?[^\t]*\t\?', strlen(rom))
       if strlen(kana) == 0
         continue
       endif
-      let line = strpart(line, strlen(rom) + strlen(kana) + 1)
-      let idx = 0
       let romvar = ""
-      while rom[idx] != ""
-        let ch = rom[idx]
+      for ch in split(rom, '\zs')
         if strlen(romvar) != 0
           call s:DoInclude(romvar, ch)
         endif
         let romvar = romvar . s:ValidVarChar(ch)
-        let idx = idx + 1
-      endwhile
+      endfor
+      echo line
       let s:skk_rules_{romvar} = kana
-      if strlen(line) != 0
-        let s:skk_rules_{romvar}_rest = line
-      endif
-    endwhile
+      let s:skk_rules_{romvar}_rest = strpart(line, strlen(rom) + strlen(kana) + 1)
+    endfor
     unlet g:skk_rom_kana_rules
   endif
   " ローマ字→関数の処理
@@ -980,26 +979,21 @@ function! SkkRuleCompile()
     if exists("g:skk_user_rom_func_rules")
       let ptr = ptr . g:skk_user_rom_func_rules
     endif
-    while ptr != ""
-      let line = matchstr(ptr, "^[^\<NL>]*")
-      let ptr = strpart(ptr, strlen(line) + 1)
+    for line in split(ptr, "\<NL>")
       let rom = matchstr(line, '^[^\t]\+')
       let func = strpart(line, strlen(rom) + 1)
       if strlen(rom) == 0 || strlen(func) == 0
         continue
       endif
-      let idx = 0
       let romvar = ""
-      while rom[idx] != ""
-        let ch = rom[idx]
+      for ch in split(rom, '\zs')
         if strlen(romvar) != 0
           call s:DoInclude(romvar, ch)
         endif
         let romvar = romvar . s:ValidVarChar(ch)
-        let idx = idx + 1
-      endwhile
+      endfor
       let s:skk_rules_{romvar}_func = func
-    endwhile
+    endfor
     unlet g:skk_rom_func_rules
   endif
   " アルファベット→全角英数の処理
@@ -1008,16 +1002,14 @@ function! SkkRuleCompile()
     if exists("g:skk_user_zenei_rules")
       let ptr = ptr . g:skk_user_zenei_rules
     endif
-    while ptr != ''
-      let line = matchstr(ptr, "[^\<NL>]*")
-      let ptr = strpart(ptr, strlen(line) + 1)
+    for line in split(ptr, "\<NL>")
       let han = char2nr(line[0])
       let zen = matchstr(line, ".*", 1)
       if han >= 0x80 || strlen(zen) == 0
         continue
       endif
       let s:skk_zenei_rules_{han} = zen
-    endwhile
+    endfor
     unlet g:skk_zenei_rules
   endif
   let s:skk_rule_compiled = 1
@@ -1093,7 +1085,7 @@ function! SkkMode(on)
     call SkkMap(s:skk_in_cmdline == 0)
     call s:SkkMapCR()
     let &l:formatoptions = ""
-    if s:skk_in_cmdline && v:version >= 603
+    if s:skk_in_cmdline
       redrawstatus
     endif
     return "\<C-^>"
@@ -1226,13 +1218,7 @@ endfunction
 
 " n個の <C-h> を返す。
 function! s:SkkMakeBS(n)
-  let i = 0
-  let bs = ""
-  while i < a:n
-    let bs = bs . "\<C-h>"
-    let i = i + 1
-  endwhile
-  return bs
+  return repeat("\<C-h>", a:n)
 endfunction
 
 " <C-h> で組み立てられるか？ 削除ポイントがカーソル位置より前なら可。
@@ -1259,12 +1245,8 @@ function! s:SkkDeleteRange(line, start, end)
         let s:skk_cur_col = cnum + a:start - a:end
       else
         let s = strpart(getline(a:line), a:start - 1) . "\n"
-        let i = a:line + 1
-        while i < lnum
-          let s = s . getline(i) . "\n"
-          let i = i + 1
-        endwhile
-        let s = s . strpart(getline(lnum), 0, cnum - 1)
+        let s .= join(getline(a:line+1, lnum), "\n")
+        let s .= strpart(getline(lnum), 0, cnum - 1)
         if indent(lnum) > 0 && &paste == 0
           set paste
           let s:skk_pasted = 1
@@ -1337,12 +1319,8 @@ endfunction
 " SkkEraseYomi2 複数行バージョン
 function! s:SkkEraseYomi2(lstart, start, lend, end)
   let str = strpart(getline(a:lstart), a:start - 1) . "\n"
-  let i = a:lstart + 1
-  while i < a:lend
-    let str = str . getline(i) . "\n"
-    let i = i + 1
-  endwhile
-  let str = str . strpart(getline(a:lend), 0, a:end - 1)
+  let str .= join(getline(a:lstart+1, a:lend), "\n")
+  let str .= strpart(getline(a:lend), 0, a:end - 1)
   let len = strlen(substitute(str, ".", "x", "g"))
   if len > 0
     let bs = s:SkkMakeBS(len)
@@ -1472,22 +1450,16 @@ endfunction
 
 " f や r などがあるため必要
 function! s:SkkMapNormal()
-  let keys = "iIaAoOcCsSR"
-  let i = 0
-  while keys[i] != ""
-    exe "nnoremap <silent> <buffer> " . keys[i] . " :call SkkMap(1)<CR>:let &iminsert = 1<CR>" . keys[i]
-    let i = i + 1
-  endwhile
+  for ch in split("iIaAoOcCsSR", "\zs")
+    exe "nnoremap <silent> <buffer> " . ch . " :call SkkMap(1)<CR>:let &iminsert = 1<CR>" . ch
+  endfor
   call SkkMap(0)	" コマンドライン側にセットしておく。
 endfunction
 
 function! s:SkkUnmapNormal()
-  let keys = "iIaAoOcCsSR"
-  let i = 0
-  while keys[i] != ""
-    silent! exe "nunmap <buffer> " . keys[i]
-    let i = i + 1
-  endwhile
+  for ch in split("iIaAoOcCsSR", "\zs")
+    silent! exe "nunmap <buffer> " . ch
+  endfor
 endfunction
 
 function! s:SkkKey(key)
@@ -1847,40 +1819,33 @@ endfunction
 
 function! s:SkkHira2Kata(str)
   let str = substitute(a:str, "う゛", "ヴ", "g")
-  let i = 0
   let result = ''
-  let char = matchstr(str, ".", 0)
-  while char != ''
-    let pos = stridx(s:skk_hiragana, char)
+  for ch in split(str, '\zs')
+    let pos = stridx(s:skk_hiragana, ch)
     if pos != -1
       let result = result . matchstr(s:skk_katakana, ".", pos)
     else
-      let result = result . char
+      let result = result . ch
     endif
-    let i = i + strlen(char)
-    let char = matchstr(str, ".", i)
-  endwhile
+  endfor
   return result
 endfunction
 
 function! s:SkkKata2Hira(str)
   let i = 0
   let result = ''
-  let char = matchstr(a:str, ".", 0)
-  while char != ''
-    if char == "ヴ"
+  for ch in split(str, '\zs')
+    if ch == "ヴ"
       let result = result . "う゛"
     else
-      let pos = stridx(s:skk_katakana, char)
+      let pos = stridx(s:skk_katakana, ch)
       if pos != -1
         let result = result . matchstr(s:skk_hiragana, ".", pos)
       else
-        let result = result . char
+        let result = result . ch
       endif
     endif
-    let i = i + strlen(char)
-    let char = matchstr(a:str, ".", i)
-  endwhile
+  endfor
   return result
 endfunction
 
@@ -2147,12 +2112,9 @@ function! s:SkkSaveEnv()
 endfunction
 
 function! s:SkkRestoreEnv(env)
-  let ptr = a:env
-  while ptr != ''
-    let line = matchstr(ptr, "^[^\<NL>]*")
-    let ptr = strpart(ptr, strlen(line) + 1)
+  for line in split(a:env, "\<NL>")
     silent exe "let " . line
-  endwhile
+  endfor
 endfunction
 
 " 単語登録モードに入る。
@@ -2657,11 +2619,7 @@ function! SkkPurgeFromJisyo()
   let buf = s:SkkGetJisyoBuf("skk_jisyo")
   let cmd = s:SkkShowBuf(buf)
   try
-    if v:version < 700
-      let line = SkkSearchLinear("^" . key, okuri)
-    else	" vim7
-      let line = s:SkkSearchBuf(buf, 0)
-    endif
+    let line = s:SkkSearchBuf(buf, 0)
     let line = substitute(line, '/(skk-ignore-dic-word [^)]*)/', "/", "g")
     let line = s:SkkPurge(line, ex)
     if large_has
@@ -2669,33 +2627,20 @@ function! SkkPurgeFromJisyo()
     else
       let str = line == "" ? "" : key . line
     endif
-    if b:skk_found_lnum && v:version < 700
-      exe "normal! " . b:skk_found_lnum . "G\"_dd"
-    elseif b:skk_found_lnum >= 0 && v:version >= 700
+    if b:skk_found_lnum >= 0
       call remove(buf, b:skk_found_lnum)
     endif
-    if v:version < 700
-      let lnum = okuri ? b:skk_okuri_ari_line : b:skk_okuri_nasi_line
-    else	" vim7
-      let lnum = okuri ? buf[0][0] + 1 : buf[0][1] + 1
-    endif
+    let lnum = okuri ? buf[0][0] + 1 : buf[0][1] + 1
     if str != ""
-      if v:version < 700
-        call append(lnum, str)
-        if okuri && b:skk_found_lnum == 0
-          let b:skk_okuri_nasi_line = b:skk_okuri_nasi_line + 1
-        endif
-      else	" vim7
-        if buf[0][2] != &enc
-          let str = iconv(str, &enc, buf[0][2])
-        endif
-        if buf[0][3] == "dos"
-          let str = str . "\<CR>"
-        endif
-        call insert(buf, str, lnum)
-        if okuri && b:skk_found_lnum < 0
-          let buf[0][1] += 1
-        endif
+      if buf[0][2] != &enc
+        let str = iconv(str, &enc, buf[0][2])
+      endif
+      if buf[0][3] == "dos"
+        let str = str . "\<CR>"
+      endif
+      call insert(buf, str, lnum)
+      if okuri && b:skk_found_lnum < 0
+        let buf[0][1] += 1
       endif
     endif
     let s:skk_jisyo_modified = 1
@@ -2724,28 +2669,20 @@ function! s:SkkSaveJisyo(confirm, silent)
     echo msg
     return
   endif
-  if v:version < 700
-    let need = s:skk_jisyo_bufnr != -1 && bufexists(s:skk_jisyo_bufnr) && s:skk_jisyo_modified
-  else		" vim7
-    let need = exists("s:skk_jisyo_list") && s:skk_jisyo_modified
-    let s:skk_jisyo_bufnr = 0	" SkkShowBuf のエラー対策
-  endif
+  let need = exists("s:skk_jisyo_list") && s:skk_jisyo_modified
+  let s:skk_jisyo_bufnr = 0	" SkkShowBuf のエラー対策
   if need
     let cmd = s:SkkShowBuf(s:skk_jisyo_bufnr)
     try
-      if v:version < 700
-        let jisyosize = line2byte(line("$")) + strlen(getline("$"))
-      else	" vim7
-        let buf = s:skk_jisyo_list
-        let list = buf[1:]
-        if buf[0][3] == "mac"
-          let list[0] = join(list, "\<CR>") . "\<CR>"
-          let list = list[0:0]
-        endif
-        let tmp = tempname()
-        call writefile(list, tmp, 'b')
-        let jisyosize = getfsize(tmp)
+      let buf = s:skk_jisyo_list
+      let list = buf[1:]
+      if buf[0][3] == "mac"
+        let list[0] = join(list, "\<CR>") . "\<CR>"
+        let list = list[0:0]
       endif
+      let tmp = tempname()
+      call writefile(list, tmp, 'b')
+      let jisyosize = getfsize(tmp)
       if jisyosize < fsize
         let msg = "SKK: New " . g:skk_jisyo . " will be " . (fsize - jisyosize)
         let msg = msg . "bytes smaller.\nSKK: Stop saving " . g:skk_jisyo
@@ -2762,15 +2699,7 @@ function! s:SkkSaveJisyo(confirm, silent)
       if filereadable(jisyo)
         call rename(jisyo, expand(g:skk_backup_jisyo))
       endif
-      if v:version < 700
-        set buftype=
-        silent exe "write " . g:skk_jisyo
-        set buftype=nowrite
-        " swapfile を残さないため
-        silent exe "bw " . g:skk_jisyo
-      else	" vim7
-        call rename(tmp, jisyo)
-      endif
+      call rename(tmp, jisyo)
       let s:skk_jisyo_ftime = getftime(jisyo)
       let s:skk_jisyo_fsize = jisyosize
       let s:skk_jisyo_modified = 0
@@ -2793,9 +2722,7 @@ endfunction
 
 " <C-r>= だと setcmdpos() が思ったように動かないため自前で組み立てる。
 function! s:SkkMakeCmdStr(str)
-  if v:version >= 603
-    redrawstatus
-  endif
+  redrawstatus
   if !exists("s:skk_cmdline_str")
     return a:str
   endif
@@ -2901,7 +2828,6 @@ endfunction
 
 " 数字変換用に数字の連なりを保存して一つの # に変える。
 function! s:SkkGetNumHenkanKey(key)
-  let num = '[0-9]\+'
   let key = a:key
   let key = substitute(key, "０", "0", "g")
   let key = substitute(key, "１", "1", "g")
@@ -2914,15 +2840,12 @@ function! s:SkkGetNumHenkanKey(key)
   let key = substitute(key, "８", "8", "g")
   let key = substitute(key, "９", "9", "g")
   let i = 0
-  let pos = match(key, num, 0)
-  while pos != -1
-    let end = matchend(key, num, pos)
-    let b:skk_num_list_{i} = strpart(key, pos, end - pos)
+  for word in split(key, '[^0-9]\+')
+    let b:skk_num_list_{i} = word
     let i= i + 1
-    let pos = match(key, num, end)
-  endwhile
+  endfor
   let b:skk_num_list_count = i
-  let key = substitute(key, num, "#", "g")
+  let key = substitute(key, '[0-9]\+', "#", "g")
   return key
 endfunction
 
@@ -3329,28 +3252,23 @@ if exists("skk_debug")
       let str{i} = getline(i)
       let i = i + 1
     endwhile
-    if v:version < 700
-      exe s:SkkGetJisyoBuf("skk_large_jisyo") . "buffer"
-      let arg = ""
-    else
-      let list = s:SkkGetJisyoBuf("skk_large_jisyo")
-      let arg = "list,"
-    endif
+    let list = s:SkkGetJisyoBuf("skk_large_jisyo")
+    let arg = "list,"
     let i = 1
-    let before = v:version < 700 ? localtime() : reltime()
+    let before = reltime()
     while i <= lastline
       exe "call SkkSearchLinear(" . arg  . str{i} . ")"
       let i = i + 1
     endwhile
-    let elapsed = v:version < 700 ? localtime() - before : reltimestr(reltime(before))
+    let elapsed = reltimestr(reltime(before))
     let msg = "SearchLinear: " . elapsed . "sec. "
     let i = 1
-    let before = v:version < 700 ? localtime() : reltime()
+    let before = reltime()
     while i <= lastline
       exe "call SkkSearchBinary(" . arg  . str{i} . ",1000)"
       let i = i + 1
     endwhile
-    let elapsed = v:version < 700 ? localtime() - before : reltimestr(reltime(before))
+    let elapsed = reltimestr(reltime(before))
     let msg = msg . "SearchBinary: " . elapsed . "sec. "
     exe buf . "buffer"
     call confirm(msg)
@@ -3365,23 +3283,18 @@ if exists("skk_debug")
       let str{i} = getline(i)
       let i = i + 1
     endwhile
-    if v:version < 700
-      exe s:SkkGetJisyoBuf("skk_large_jisyo") . "buffer"
-      let arg = ""
-    else
-      let list = s:SkkGetJisyoBuf("skk_large_jisyo")
-      let arg = "list,"
-    endif
+    let list = s:SkkGetJisyoBuf("skk_large_jisyo")
+    let arg = "list,"
     let j = 1
     let msg = ''
     while j <= a:0
-      let before = v:version < 700 ? localtime() : reltime()
+      let before = reltime()
       let i = 1
       while i <= lastline
         exe "call SkkSearchBinary(" . arg . str{i} . ", " . a:{j} . ")"
         let i = i + 1
       endwhile
-      let elapsed = v:version < 700 ? localtime() - before : reltimestr(reltime(before))
+      let elapsed = reltimestr(reltime(before))
       let msg = msg . a:{j} . ": " . elapsed . "sec. "
       let j = j + 1
     endwhile
@@ -3392,10 +3305,6 @@ if exists("skk_debug")
 endif
 
 " }}}
-
-if v:version < 700
-  finish
-endif
 
 " for vim7 {{{
 " vim7 の sandbox 対策 (コマンドラインの <C-r>=)
