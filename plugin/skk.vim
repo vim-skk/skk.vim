@@ -1,10 +1,10 @@
-" vim: set sw=2 fdm=marker nowrap:
+" vim: set sw=2 fdm=marker nowrap et:
 "
 " skk.vim
 "
 " Author: Noriaki Yagi <no_yag@yahoo.co.jp>
 " Version: $Id: skk.vim,v 0.22 2006/10/11 09:26:53 noriaki Exp noriaki $
-" Last Change: 2010-02-09.
+" Last Change: 09-Feb-2010.
 "
 " 使い方:
 " skk_jisyo および skk_large_jisyo を適宜変更する。
