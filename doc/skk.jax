@@ -273,6 +273,10 @@ g:skk_kakutei_key							*g:skk_kakutei_key*
 		明示的な確定動作を行うキー。
 		入力された文字列と直接比較されるので「\」が必要。
 
+g:skk_remap_lang_mode						*g:skk_remap_lang_mode*
+										(初期値: 0)
+		もし真なら`lmap`で、もし偽なら`lnoremap`で
+		キーをマッピングする。
 
 ==============================================================================
 TODO						*skk-TODO*
