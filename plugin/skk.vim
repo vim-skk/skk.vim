@@ -4,7 +4,7 @@
 "
 " Author: Noriaki Yagi <no_yag@yahoo.co.jp>
 " Version: $Id: skk.vim,v 0.22 2006/10/11 09:26:53 noriaki Exp noriaki $
-" Last Change: 09-Feb-2010.
+" Last Change: 2010-02-19.
 "
 " 使い方:
 " skk_jisyo および skk_large_jisyo を適宜変更する。
@@ -637,6 +637,10 @@ endif
 " 入力された文字列と直接比較されるので \ が必要
 if !exists('g:skk_kakutei_key')
   let g:skk_kakutei_key = "\<C-j>"
+endif
+
+if !exists('skk_remap_lang_mode')
+  let skk_remap_lang_mode = 0
 endif
 " }}}
 
@@ -1425,11 +1429,11 @@ function! SkkMap(silent)
     return
   endif
   let b:skk_map_silent = a:silent
+  let mapstr = (g:skk_remap_lang_mode ? 'lmap' : 'lnoremap') . ' <buffer>'
   if b:skk_map_silent
-    let mapstr = "lnoremap <buffer> <silent> "
-  else
-    let mapstr = "lnoremap <buffer> "
+    let mapstr .= '<silent>'
   endif
+  let mapstr .= ' '
   lmapclear <buffer>
   let i = char2nr(" ")
   let tilde = char2nr("~")
@@ -1463,10 +1467,11 @@ function! SkkMap(silent)
 endfunction
 
 function! s:SkkMapCR()
+  let mapstr = g:skk_remap_lang_mode ? 'lmap' : 'lnoremap'
   if g:skk_egg_like_newline && b:skk_henkan_mode != 0
-    lnoremap <buffer> <CR> <C-r>=<SID>SkkKey("<C-v><CR>")<CR>
+    exe mapstr '<buffer> <CR> <C-r>=<SID>SkkKey("<C-v><CR>")<CR>'
   else
-    lnoremap <buffer> <CR> <C-r>=<SID>SkkKey("<C-v><CR>")<CR><CR>
+    exe mapstr '<buffer> <CR> <C-r>=<SID>SkkKey("<C-v><CR>")<CR><CR>'
   endif
 endfunction
 
