@@ -1152,48 +1152,6 @@ function! SkkToggle()
   endif
 endfunction
 
-" SkkMode
-" skk を on/off する。
-"
-" TODO
-" SkkEnable()/SkkDisable()/SkkToggle()に置き換える
-function! SkkMode(on)
-  if !exists("b:skk_on")
-    call s:SkkBufInit()
-  endif
-  let s:skk_in_cmdline = mode() == "c"
-  if a:on
-    if s:skk_rule_compiled == 0
-      call SkkRuleCompile()
-    endif
-    call s:SkkOn()
-    set cpo-=v
-    set cpo-=<
-    call SkkMap(s:skk_in_cmdline == 0)
-    call s:SkkMapCR()
-    let &l:formatoptions = ""
-    if s:skk_in_cmdline && v:version >= 603
-      redrawstatus
-    endif
-    return "\<C-^>"
-  else
-    let kana = s:SkkKakutei()
-    if !g:skk_keep_state
-      call s:SkkBufInit()
-    endif
-    if s:skk_in_cmdline == 0
-      call s:SkkUnmapNormal()
-    endif
-    call SkkMap(0)
-    let b:skk_on = 0
-    let &rulerformat = s:skk_saved_ruf
-    let &ruler = s:skk_saved_ru
-    let &backspace = s:bs_save
-    let &l:formatoptions = b:skk_fo_save
-    return kana . "\<C-^>"
-  endif
-endfunction
-
 " SkkToggleKana
 " ■モード・▼モード時にはひらがな入力モード・カタカナ入力モードを切り替える。
 " ▽モード時には b:skk_hstart からカーソルの間をひらがな入力モードのときには
@@ -1445,7 +1403,7 @@ function! s:SkkControlJ()
     if b:skk_henkan_mode != 0
       return s:SkkKakutei()
     else
-      return SkkMode(0)
+      return SkkDisable()
     endif
   else		" zenei|ascii
     return SkkHiraMode("")
@@ -1598,7 +1556,7 @@ function! s:SkkKey(key)
         let &iminsert = 0
       endif
     else
-      let str = SkkMode(0)
+      let str = SkkDisable()
     endif
     let &backspace = s:bs_save
     let &l:formatoptions = b:skk_fo_save
