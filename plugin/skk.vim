@@ -4,7 +4,7 @@
 "
 " Author: Noriaki Yagi <no_yag@yahoo.co.jp>
 " Version: $Id: skk.vim,v 0.22 2006/10/11 09:26:53 noriaki Exp noriaki $
-" Last Change: 2010-02-19.
+" Last Change: 2010-04-01.
 "
 " 使い方:
 " skk_jisyo および skk_large_jisyo を適宜変更する。
@@ -920,7 +920,7 @@ function! s:SkkBufInit()
   " 0=■モード 1=▽モード 2=▽モード (送りがな入力中) 3=▼モード
   " 4=選択方式で確定したとき
   let b:skk_abbrev_mode_on = 0	" abbrev モードか？
-  if g:skk_imdisable_state == 1 || g:skk_imdisable_state == 2
+  if g:skk_imdisable_state == 0 || g:skk_imdisable_state == 1
     let &imdisable = g:skk_imdisable_state
   endif
   if !exists("b:skk_fo_save")
