@@ -40,173 +40,130 @@ set cpo&vim
 
 " Global variables {{{
 
-" ユーザー辞書
 if !exists("skk_jisyo")
   let skk_jisyo = "~/.skk-jisyo"
 endif
 
-" ユーザー辞書のバックアップファイル
 if !exists("skk_backup_jisyo")
   let skk_backup_jisyo = skk_jisyo . ".BAK"
 endif
 
-" 終了時に辞書を保存するか？ :so skk.vim した後は
-" :call SkkSetAutoSaveJisyo(nr) で設定する。
-" 負: 保存しない。0: 聞いてから保存する。正: 聞かずに保存する。
 if !exists("skk_auto_save_jisyo")
   let skk_auto_save_jisyo = 0
 endif
 
-" ノーマルモードで辞書の手動セーブをするキー (空白なら mapping しない)
 if !exists("skk_manual_save_jisyo_keys")
   let skk_manual_save_jisyo_keys = "gS"
 endif
 
-" ユーザー辞書の後に検索する辞書 (ソート済みの必要あり)
 if !exists("skk_large_jisyo")
   let skk_large_jisyo = "/usr/local/share/skk/SKK-JISYO.L"
 endif
 
-" ユーザ辞書の後に検索する外部プログラム (空白でなければskk_large_jisyoは無視)
 if !exists("skk_external_prog")
   let skk_external_prog = ""
 endif
 
-" <C-j> の働きをするキー。map に渡すので `\' はつけない。
 if !exists("skk_control_j_key")
   let skk_control_j_key = "<C-j>"
 endif
 
-" abbrevモードで全角英数に変換するキー。`\' はつけない。
-" コンソールで <C-q> がこない場合は vim 起動前に stty -ixon するか
-" 他のキーにする。
 if !exists("skk_abbrev_to_zenei_key")
   let skk_abbrev_to_zenei_key = "<C-q>"
 endif
 
-" Insert モードを抜けて再び Insert モードにしたときに前の状態を維持しておくか？
 if !exists("skk_keep_state")
   let skk_keep_state = 0
 endif
 
-" skk をオンにしたときの初期モード
 if !exists("skk_initial_mode")
   let skk_initial_mode = 'hira'
 endif
 
-" ▽モードのマーク
 if !exists("skk_marker_white")
   let skk_marker_white = '▽'
 endif
 
-" ▼モードのマーク
 if !exists("skk_marker_black")
   let skk_marker_black = '▼'
 endif
 
-" 送りがな開始位置のマーク
 if !exists("skk_marker_okuri")
   let skk_marker_okuri = '*'
 endif
 
-" 変換/次候補キー
 if !exists("skk_start_henkan_key")
   let skk_start_henkan_key = " "
 endif
 
-" 前候補キー
 if !exists("skk_prev_cand_key")
   let skk_prev_cand_key = "x"
 endif
 
-" 現在の候補を辞書から削除するキー
 if !exists("skk_purge_cand_key")
   let skk_purge_cand_key = "X"
 endif
 
-" 入力されたら▽モードにするキー
 if !exists("skk_henkan_point_keys")
   let skk_henkan_point_keys = 'ABCDEFGHIJKMNOPRSTUVWYZ'
 endif
 
-" 選択方式のときに選択に利用するキー
 if !exists("skk_select_cand_keys")
   let skk_select_cand_keys = "ASDFJKL"
 endif
 
-" 何回目の変換で選択方式にするか?
 if !exists("skk_show_candidates_count")
   let skk_show_candidates_count = 4
 endif
 
-" 見出し語の補完動作を行うキー
 if !exists("skk_completion_key")
   let skk_completion_key = "\<Tab>"
 endif
 
-" 見出し語の補完で次の候補を出力するキー
 if !exists("skk_next_comp_key")
   let skk_next_comp_key = "."
 endif
 
-" 見出し語の補完で前の候補を出力するキー
 if !exists("skk_prev_comp_key")
   let skk_prev_comp_key = ","
 endif
 
-" 接頭辞・接尾辞の入力をするキー
 if !exists("skk_special_midasi_keys")
   let skk_special_midasi_keys = "<>?"
 endif
 
-" 句読点のタイプ
-" "jp" なら skk_kutouten_jp を見る。"en" なら skk_kutouten_en を見る。
 if !exists("skk_kutouten_type")
   let skk_kutouten_type = "jp"
 endif
 
-" 句読点のタイプ "jp" の場合 (最初の一文字が句点、最後の一文字が読点)
 if !exists("skk_kutouten_jp")
   let skk_kutouten_jp = "。、"
 endif
 
-" 句読点のタイプ "en" の場合 (最初の一文字が句点、最後の一文字が読点)
 if !exists("skk_kutouten_en")
   let skk_kutouten_en = "．，"
 endif
 
-" 数値変換を行うか？
 if !exists("skk_use_numeric_conversion")
   let skk_use_numeric_conversion = 1
 endif
 
-" non-zeroなら<CR>で確定した時に改行文字を出力しない
 if !exists("skk_egg_like_newline")
   let skk_egg_like_newline = 0
 endif
 
-" non-zeroなら候補選択時に註釈を表示する (インラインでは未対応)
 if !exists("skk_show_annotation")
   let skk_show_annotation = 0
 endif
 
-" non-zeroなら変換時に色を付ける。
-" ただし変換時に skk_henkan というハイライトグループがないと 0 にされる。
 if !exists("skk_use_face")
   let skk_use_face = 0
 endif
 
-" Auto Fillのトグルをするキー (空白なら mapping しない) `\' はつけない。
-" format.vim が読み込まれていないと mapping しない。
 if !exists("skk_autofill_toggle_key")
   let skk_autofill_toggle_key = "<C-k>"
 endif
 
-" ローマ字の変換ルール
-" 行頭からタブ文字までがローマ字、次のタブまでがひらがな、
-" その次のタブまでがカタカナ、その次が残す文字、最後は \<NL>。
-" もしあれば skk_user_rom_kana_rules が追加されるので、
-" ちょっとした追加や変更なら skk_user_rom_kana_rules に記述したほうがいい。
 if !exists("skk_rom_kana_rules")
   let skk_rom_kana_rules = ""
         \. "a	あ	ア\<NL>"
@@ -447,11 +404,6 @@ if !exists("skk_rom_kana_rules")
         \. "]	」\<NL>"
 endif
 
-" ひらがな・カタカナモードのとき関数を呼び出すタイプのルール
-" 行頭からタブ文字までがローマ字、次から \<NL> までが関数呼出し。
-" このローマ字が入力されたときはこの関数の戻り値が返る。
-" かなでも関数でも子がある場合はこの関数は実行されない。
-" もしあれば skk_user_rom_func_rules が追加される。
 if !exists("skk_rom_func_rules")
   let skk_rom_func_rules = ""
         \. ".	SkkCurrentKuten(kana)\<NL>"
@@ -463,10 +415,6 @@ if !exists("skk_rom_func_rules")
         \. "/	SkkAbbrevMode(kana)\<NL>"
 endif
 
-" 全角英数変換ルール
-" 各行の1バイト目の入力を2バイト以降 <NL> の前までに変換する
-" もしあれば skk_user_zenei_rules が追加される。
-" SkkAscii2Zenei でも使う。
 if !exists("skk_zenei_rules")
   let skk_zenei_rules = ""
         \. " 　\<NL>"
@@ -566,9 +514,6 @@ if !exists("skk_zenei_rules")
         \. "~～\<NL>"
 endif
 
-" 0: IMをオンにする (set noimdisable)
-" 1: IMをオフにする (set imdisable)
-" それ以外: &imdisableを弄らない
 if !exists('skk_imdisable_state')
   let skk_imdisable_state = 1
 endif
