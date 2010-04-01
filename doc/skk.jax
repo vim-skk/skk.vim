@@ -46,6 +46,13 @@ SkkAddRulesSection() を実行する必要がある。
 
 |skk-global-variables|を参照。
 
+<Plug>(skk-toggle-im)				*<Plug>(skk-toggle-im)*
+	これはデフォルトで|g:skk_control_j_key|に割り当てられています。
+	割り当てたくない場合は|g:skk_control_j_key|を空文字にしてください。
+
+<Plug>(skk-enable-im)				*<Plug>(skk-enable-im)*
+<Plug>(skk-disable-im)				*<Plug>(skk-disable-im)*
+<
 
 ==============================================================================
 グローバル変数					*skk-global-variables*
@@ -85,6 +92,7 @@ g:skk_control_j_key						*g:skk_control_j_key*
 										(初期値: "<C-j>")
 		<C-j> の働きをするキー。
 		map に渡すので `\' はつけない。
+		割り当てたくない場合は空文字にする。
 
 g:skk_abbrev_to_zenei_key				*g:skk_abbrev_to_zenei_key*
 										(初期値: "<C-q>")
