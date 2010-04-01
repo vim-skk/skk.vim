@@ -1028,11 +1028,18 @@ function! SkkRuleCompile()
 endfunction
 
 " global mapping
-inoremap <silent> <Plug>(skk-enable-im)  <C-r>=SkkMode(1)<CR>
-cnoremap <Plug>(skk-enable-im)  <C-r>=SkkMode(1)<CR>
+inoremap <silent> <Plug>(skk-toggle-im) <C-r>=SkkToggle()<CR>
+cnoremap          <Plug>(skk-toggle-im) <C-r>=SkkToggle()<CR>
+
+inoremap <silent> <Plug>(skk-enable-im) <C-r>=SkkEnable()<CR>
+cnoremap          <Plug>(skk-enable-im) <C-r>=SkkEnable()<CR>
+
+inoremap <silent> <Plug>(skk-disable-im) <C-r>=SkkDisable()<CR>
+cnoremap          <Plug>(skk-disable-im) <C-r>=SkkDisable()<CR>
+
 if g:skk_control_j_key != ""
-  exe "imap" g:skk_control_j_key "<Plug>(skk-enable-im)"
-  exe "cmap" g:skk_control_j_key "<Plug>(skk-enable-im)"
+  exe "imap" g:skk_control_j_key "<Plug>(skk-toggle-im)"
+  exe "cmap" g:skk_control_j_key "<Plug>(skk-toggle-im)"
 endif
 
 nnoremap <silent> <Plug>(skk-save-jisyo)    :call <SID>SkkSaveJisyo(1, 0)<CR>
@@ -1080,8 +1087,76 @@ function! s:SkkOn()
   let &ruler = 1
 endfunction
 
+function! s:SkkIsEnabled()
+  return &iminsert == 1
+endfunction
+
+function! SkkEnable()
+  if !exists("b:skk_on")
+    call s:SkkBufInit()
+  endif
+  if s:SkkIsEnabled()
+    return ''
+  endif
+
+  let s:skk_in_cmdline = mode() == "c"
+  if s:skk_rule_compiled == 0
+    call SkkRuleCompile()
+  endif
+  call s:SkkOn()
+  set cpo-=v
+  set cpo-=<
+  call SkkMap(s:skk_in_cmdline == 0)
+  call s:SkkMapCR()
+  let &l:formatoptions = ""
+  if s:skk_in_cmdline && v:version >= 603
+    redrawstatus
+  endif
+  return "\<C-^>"
+endfunction
+
+function! SkkDisable()
+  if !exists("b:skk_on")
+    call s:SkkBufInit()
+  endif
+  if !s:SkkIsEnabled()
+    return ''
+  endif
+
+  let s:skk_in_cmdline = mode() == "c"
+  let kana = s:SkkKakutei()
+  if !g:skk_keep_state
+    call s:SkkBufInit()
+  endif
+  if s:skk_in_cmdline == 0
+    call s:SkkUnmapNormal()
+  endif
+  call SkkMap(0)
+  let b:skk_on = 0
+  let &rulerformat = s:skk_saved_ruf
+  let &ruler = s:skk_saved_ru
+  let &backspace = s:bs_save
+  let &l:formatoptions = b:skk_fo_save
+  return kana . "\<C-^>"
+endfunction
+
+function! SkkToggle()
+  if !exists("b:skk_on")
+    call s:SkkBufInit()
+  endif
+
+  if s:SkkIsEnabled()
+    return SkkDisable()
+  else
+    return SkkEnable()
+  endif
+endfunction
+
 " SkkMode
 " skk を on/off する。
+"
+" TODO
+" SkkEnable()/SkkDisable()/SkkToggle()に置き換える
 function! SkkMode(on)
   if !exists("b:skk_on")
     call s:SkkBufInit()
