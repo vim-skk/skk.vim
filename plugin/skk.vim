@@ -4,7 +4,7 @@
 "
 " Author: Noriaki Yagi <no_yag@yahoo.co.jp>
 " Version: $Id: skk.vim,v 0.22 2006/10/11 09:26:53 noriaki Exp noriaki $
-" Last Change: 2010-04-01.
+" Last Change: 2010-04-13.
 "
 " 使い方:
 " skk_jisyo および skk_large_jisyo を適宜変更する。
@@ -28,10 +28,10 @@ if exists('plugin_skk_disable')
   finish
 endif
 
-"if exists("skk_loaded")
-"  finish
-"endif
-"let skk_loaded = 1
+if exists("loaded_skk")
+  finish
+endif
+let loaded_skk = 1
 
 let s:cpo_save = &cpo
 set cpo&vim
