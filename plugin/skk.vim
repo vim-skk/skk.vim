@@ -4,7 +4,7 @@
 "
 " Author: Noriaki Yagi <no_yag@yahoo.co.jp>
 " Version: $Id: skk.vim,v 0.22 2006/10/11 09:26:53 noriaki Exp noriaki $
-" Last Change: 2010-04-13.
+" Last Change: 2010-04-16.
 "
 " 使い方:
 " skk_jisyo および skk_large_jisyo を適宜変更する。
@@ -587,6 +587,10 @@ endif
 if !exists('skk_remap_lang_mode')
   let skk_remap_lang_mode = 0
 endif
+
+if !exists('skk_enable_hook')
+  let skk_enable_hook = ''
+endif
 " }}}
 
 " script variables {{{
@@ -1053,6 +1057,24 @@ function! SkkEnable()
   set cpo-=<
   call SkkMap(s:skk_in_cmdline == 0)
   call s:SkkMapCR()
+
+  " Call each function separated by ','.
+  let hook = g:skk_enable_hook
+  while hook != ''
+    let comma_pos = stridx(g:skk_enable_hook, ',')
+    if comma_pos !=# -1
+      let fn = strpart(hook, 0, comma_pos)
+      let hook = strpart(hook, strlen(fn) + 1)
+    else
+      let fn = hook
+      let hook = strpart(hook, strlen(fn))
+    endif
+
+    if exists('*' . fn)    " XXX `exists('*' . fn)` is supported by old Vim?
+      call {fn}()
+    endif
+  endwhile
+
   let &l:formatoptions = ""
   if s:skk_in_cmdline && v:version >= 603
     redrawstatus
