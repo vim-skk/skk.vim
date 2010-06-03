@@ -1063,13 +1063,13 @@ function! SkkEnable()
   " Call each function separated by ','.
   let hook = g:skk_enable_hook
   while hook != ''
-    let comma_pos = stridx(g:skk_enable_hook, ',')
+    let comma_pos = stridx(hook, ',')
     if comma_pos !=# -1
       let fn = strpart(hook, 0, comma_pos)
       let hook = strpart(hook, strlen(fn) + 1)
     else
       let fn = hook
-      let hook = strpart(hook, strlen(fn))
+      let hook = ''
     endif
 
     if exists('*' . fn)    " XXX `exists('*' . fn)` is supported by old Vim?
