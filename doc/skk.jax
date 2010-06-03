@@ -287,6 +287,27 @@ g:skk_remap_lang_mode						*g:skk_remap_lang_mode*
 		キーをマッピングする。
 		これはimapやcmapのマッピングを生かしたい場合に便利。
 
+
+g:skk_enable_hook							*g:skk_enable_hook*
+										(初期値: "")
+		次のようにしてマッピングが行われる直後に呼ばれるフック関数を登録する。
+>
+		" Do not map `<Plug>(skk-toggle-im)`.
+		let skk_control_j_key = ''
+
+		" `<C-j><C-e>` to enable, `<C-j><C-d>` to disable.
+		map! <C-j><C-e> <Plug>(skk-enable-im)
+		map! <C-j><C-d> <Nop>
+		function! MySkkMap()
+			lunmap <buffer> <C-j>
+			lmap <buffer> <C-j><C-d> <Plug>(skk-disable-im)
+		endfunction
+		let skk_enable_hook = 'MySkkMap'
+<
+		この例では<C-j><C-e>でskk.vimを有効に、
+		<C-j><C-d>でskk.vimを無効にしている。
+		このようにデフォルトマッピングを上書きしたい時に便利。
+
 ==============================================================================
 TODO						*skk-TODO*
 
