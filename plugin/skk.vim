@@ -4,7 +4,7 @@
 "
 " Author: Noriaki Yagi <no_yag@yahoo.co.jp>
 " Version: $Id: skk.vim,v 0.22 2006/10/11 09:26:53 noriaki Exp noriaki $
-" Last Change: 2010-06-03.
+" Last Change: 2010-06-09.
 "
 " 使い方:
 " skk_jisyo および skk_large_jisyo を適宜変更する。
@@ -1433,9 +1433,9 @@ function! SkkMap(silent)
   let b:skk_map_silent = a:silent
   let mapstr = (g:skk_remap_lang_mode ? 'lmap' : 'lnoremap') . ' <buffer>'
   if b:skk_map_silent
-    let mapstr .= '<silent>'
+    let mapstr = mapstr . '<silent>'
   endif
-  let mapstr .= ' '
+  let mapstr = mapstr . ' '
   lmapclear <buffer>
   let i = char2nr(" ")
   let tilde = char2nr("~")
