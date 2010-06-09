@@ -1039,7 +1039,7 @@ function! s:SkkOn()
 endfunction
 
 function! s:SkkIsEnabled()
-  return &iminsert == 1
+  return b:skk_on
 endfunction
 
 function! SkkEnable()
