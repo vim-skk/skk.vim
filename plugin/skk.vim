@@ -4,7 +4,7 @@
 "
 " Author: Noriaki Yagi <no_yag@yahoo.co.jp>
 " Version: $Id: skk.vim,v 0.22 2006/10/11 09:26:53 noriaki Exp noriaki $
-" Last Change: 2010-06-10.
+" Last Change: 2010-06-12.
 "
 " 使い方:
 " skk_jisyo および skk_large_jisyo を適宜変更する。
@@ -1039,15 +1039,11 @@ function! s:SkkOn()
   let &ruler = 1
 endfunction
 
-function! s:SkkIsEnabled()
-  return b:skk_on
-endfunction
-
 function! SkkEnable()
   if !exists("b:skk_on")
     call s:SkkBufInit()
   endif
-  if s:SkkIsEnabled()
+  if b:skk_on
     return ''
   endif
 
@@ -1089,7 +1085,7 @@ function! SkkDisable()
   if !exists("b:skk_on")
     call s:SkkBufInit()
   endif
-  if !s:SkkIsEnabled()
+  if !b:skk_on
     return ''
   endif
 
@@ -1115,7 +1111,7 @@ function! SkkToggle()
     call s:SkkBufInit()
   endif
 
-  if s:SkkIsEnabled()
+  if b:skk_on
     return SkkDisable()
   else
     return SkkEnable()
