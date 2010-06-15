@@ -34,7 +34,7 @@ endif
 let skk_loaded = 1
 
 let g:skk_version = '0.23'
-let g:skk_minor_version = '4'
+let g:skk_minor_version = '5'
 
 let s:cpo_save = &cpo
 set cpo&vim
@@ -3584,5 +3584,14 @@ function! s:SkkCompSearch(first, key, flag)
     return kata ? s:SkkHira2Kata(line) : line
   endif
 endfunction
+
+
+
+" 高速化のため。単純にrepeat()使った方が速いはず。
+if exists('*repeat')
+  function! s:SkkMakeBS(n)
+    return repeat("\<C-h>", a:n)
+  endfunction
+endif
 
 " }}}
