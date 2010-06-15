@@ -21,15 +21,15 @@ TODO						|skk-TODO|
 
 
 ==============================================================================
-使い方						*skk-usage*
+使い方						*skk-usage* {{{
 
 skk_jisyo および skk_large_jisyo を適宜変更する。
 :so skk.vim
 Insert Mode で <C-j> (デフォルトでは) を押すと skk が起動する。
 
-
+}}}
 ==============================================================================
-TIPS						*skk-tips*
+TIPS						*skk-tips* {{{
 
 最初のもたつきは :call SkkAddRulesSection()
 を実行するとコンパイル済のデータをこのファイルに書き込むのでだいぶストレスが減る。
@@ -37,12 +37,12 @@ TIPS						*skk-tips*
 一回 :call SkkDeleteRulesSection() を実行して次回起動時以降に
 SkkAddRulesSection() を実行する必要がある。
 
-
+}}}
 ==============================================================================
-インターフェース				*skk-interface*
+インターフェース				*skk-interface* {{{
 
 ------------------------------------------------------------------------------
-キーマッピング					*skk-keymappings*
+キーマッピング					*skk-keymappings* {{{
 
 |skk-global-variables|を参照。
 
@@ -54,8 +54,10 @@ SkkAddRulesSection() を実行する必要がある。
 <Plug>(skk-disable-im)				*<Plug>(skk-disable-im)*
 <
 
+}}}
+}}}
 ==============================================================================
-グローバル変数					*skk-global-variables*
+グローバル変数					*skk-global-variables* {{{
 
 
 g:skk_jisyo								*g:skk_jisyo*
@@ -308,14 +310,15 @@ g:skk_enable_hook							*g:skk_enable_hook*
 		<C-j><C-d>でskk.vimを無効にしている。
 		このようにデフォルトマッピングを上書きしたい時に便利。
 
+}}}
 ==============================================================================
-TODO						*skk-TODO*
+TODO						*skk-TODO* {{{
 
 - Insertモードで <Esc> をマップするとコンソールで矢印キーが使えない。
 - 辞書の候補に Lisp の式が書かれている場合の処理
 - undo がぐちゃぐちゃになる。
 - vim7 で ff=mac の辞書は読み込み・書き込みが遅い。
 
-
+}}}
 ==============================================================================
-vim:tw=78:fo=tcq2mM:ts=4:ft=help:norl
+vim:tw=78:fo=tcq2mM:ts=4:ft=help:norl:fen:fdm=marker:fmr={{{,}}}
