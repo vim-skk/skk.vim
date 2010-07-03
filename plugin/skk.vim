@@ -4,7 +4,7 @@
 "
 " Author: Noriaki Yagi <no_yag@yahoo.co.jp>
 " Version: $Id: skk.vim,v 0.22 2006/10/11 09:26:53 noriaki Exp noriaki $
-" Last Change: 2010-06-16.
+" Last Change: 2010-07-03.
 "
 " 使い方:
 " skk_jisyo および skk_large_jisyo を適宜変更する。
@@ -34,7 +34,7 @@ endif
 let skk_loaded = 1
 
 let g:skk_version = '0.23'
-let g:skk_minor_version = '5'
+let g:skk_minor_version = '6'
 
 let s:cpo_save = &cpo
 set cpo&vim
@@ -593,6 +593,14 @@ endif
 
 if !exists('skk_enable_hook')
   let skk_enable_hook = ''
+endif
+
+if !exists('skk_jisyo_encoding')
+  let skk_jisyo_encoding = 'guess'
+endif
+
+if !exists('skk_large_jisyo_encoding')
+  let skk_large_jisyo_encoding = 'guess'
 endif
 " }}}
 
@@ -3428,14 +3436,8 @@ function! s:SkkGetJisyoBuf(var)
     endif
     let ari = index(s:{a:var}_list, ";; okuri-ari entries.") + 1
     let nasi = index(s:{a:var}_list, ";; okuri-nasi entries.") + 1
-    " あやしい文字コード判定
     let s = string(s:{a:var}_list[ari : ari + 30])
-    let exp = "'[" . s:skk_hiragana . ']\+[a-z]\? '
-    for enc in ["euc-jp", "cp932", "iso-2022-jp", "utf-8", &enc]
-      if iconv(s, enc, &enc) =~ exp
-        break
-      endif
-    endfor
+    let enc = s:SkkDetectJisyoEnc(a:var, s:{a:var}_list, s)
     if !exists("l:ff")
       let ff = stridx(s, "\<CR>") < 0 ? "unix" : "dos"
       if ff == "dos"
@@ -3446,6 +3448,41 @@ function! s:SkkGetJisyoBuf(var)
     call insert(s:{a:var}_list, [ari, nasi, enc, ff], 0)
   endif
   return s:{a:var}_list
+endfunction
+
+function! s:SkkDetectJisyoEnc(var, list, conv_str)
+  let jisyo_enc_var = a:var ==# 'skk_jisyo' ? 'g:skk_jisyo_encoding' : 'g:skk_large_jisyo_encoding'
+  let jisyo_enc = {jisyo_enc_var}
+
+  if (type(jisyo_enc) == type("") && jisyo_enc ==# 'guess')
+  \   || type(jisyo_enc) == type([])
+    " あやしい文字コード判定
+    let exp = "'[" . s:skk_hiragana . ']\+[a-z]\? '
+    for enc in (type(jisyo_enc) == type([]) ?
+    \             jisyo_enc : ["euc-jp", "cp932", "iso-2022-jp", "utf-8", &enc])
+      if iconv(a:conv_str, enc, &enc) =~ exp
+        return enc
+      endif
+    endfor
+
+    let msg = printf("Failed to detect %s encoding.", jisyo_enc_var)
+    call s:SkkEcho(msg, 'ErrorMsg', 1)
+  elseif type(jisyo_enc) == type("")
+    return jisyo_enc
+  else
+    let msg = printf("Invalid %s value. Try default value...", jisyo_enc_var)
+    call s:SkkEcho(msg, 'WarningMsg', 1)
+
+    let save_val = jisyo_enc
+    unlet {jisyo_enc_var}
+    let {jisyo_enc_var} = 'guess'
+    try
+      return s:SkkDetectJisyoEnc(a:var, a:list, a:conv_str)
+    finally
+      unlet {jisyo_enc_var}
+      let {jisyo_enc_var} = save_val
+    endtry
+  endif
 endfunction
 
 function! s:SkkShowBuf(buf)
