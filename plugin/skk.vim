@@ -4,7 +4,7 @@
 "
 " Author: Noriaki Yagi <no_yag@yahoo.co.jp>
 " Version: $Id: skk.vim,v 0.22 2006/10/11 09:26:53 noriaki Exp noriaki $
-" Last Change: 2010-06-16.
+" Last Change: 2010-07-03.
 "
 " 使い方:
 " skk_jisyo および skk_large_jisyo を適宜変更する。
@@ -34,7 +34,7 @@ endif
 let skk_loaded = 1
 
 let g:skk_version = '0.23'
-let g:skk_minor_version = '5'
+let g:skk_minor_version = '6'
 
 let s:cpo_save = &cpo
 set cpo&vim
@@ -1116,6 +1116,10 @@ function! SkkToggle()
   else
     return SkkEnable()
   endif
+endfunction
+
+function! SkkIsEnabled()
+  return exists('b:skk_on') && b:skk_on
 endfunction
 
 " SkkToggleKana
