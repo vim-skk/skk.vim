@@ -4,7 +4,7 @@
 "
 " Author: Noriaki Yagi <no_yag@yahoo.co.jp>
 " Version: $Id: skk.vim,v 0.22 2006/10/11 09:26:53 noriaki Exp noriaki $
-" Last Change: 2010-07-03.
+" Last Change: 2010-07-06.
 "
 " 使い方:
 " skk_jisyo および skk_large_jisyo を適宜変更する。
@@ -33,8 +33,8 @@ if exists("skk_loaded")
 endif
 let skk_loaded = 1
 
-let g:skk_version = '0.23'
-let g:skk_minor_version = '6'
+let g:skk_version = '0.24'
+let g:skk_minor_version = '0'
 
 let s:cpo_save = &cpo
 set cpo&vim
