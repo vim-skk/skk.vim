@@ -327,6 +327,38 @@ g:skk_enable_hook							*g:skk_enable_hook*
 		<C-j><C-d>でskk.vimを無効にしている。
 		このようにデフォルトマッピングを上書きしたい時に便利。
 
+
+g:skk_jisyo_encoding						*g:skk_jisyo_encoding*
+										(初期値: "guess")
+		辞書の文字コードを指定する。
+		ユーザ辞書用。
+
+		指定できる値としては
+		1. "guess"
+		2. |iconv()|や|'encoding'|オプションに指定できる形の
+		文字コードを表す文字列
+		3. 2の文字列を各要素に含んだ|List|
+		がある。
+		それ以外の不正な値だと警告を表示し
+		初期値として再判定を行う。
+
+		初期値だと
+		1. euc-jp
+		2. cp932
+		3. iso-2022-jp
+		4. utf-8
+		5. 現在の'encoding'の値
+		の順に文字コードの判定を行う。
+		いわば >
+		["euc-jp", "cp932", "iso-2022-jp", "utf-8", &enc]
+<		と同じような意味だが、
+		vim6との互換性のために文字列の初期値が使われている。
+
+g:skk_large_jisyo_encoding						*g:skk_large_jisyo_encoding*
+										(初期値: "guess")
+		|g:skk_jisyo_encoding|のシステム辞書版。
+		詳しくは|g:skk_jisyo_encoding|を参照。
+
 }}}
 ==============================================================================
 TODO						*skk-TODO* {{{
