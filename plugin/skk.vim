@@ -4,7 +4,7 @@
 "
 " Author: Noriaki Yagi <no_yag@yahoo.co.jp>
 " Version: $Id: skk.vim,v 0.22 2006/10/11 09:26:53 noriaki Exp noriaki $
-" Last Change: 2010-07-06.
+" Last Change: 2010-07-09.
 "
 " 使い方:
 " skk_jisyo および skk_large_jisyo を適宜変更する。
@@ -34,7 +34,7 @@ endif
 let skk_loaded = 1
 
 let g:skk_version = '0.24'
-let g:skk_minor_version = '0'
+let g:skk_minor_version = '1'
 
 let s:cpo_save = &cpo
 set cpo&vim
@@ -1469,8 +1469,10 @@ function! SkkMap(silent)
   exe mapstr . '<C-f>	<C-r>=<SID>SkkKey("<C-v><C-a>")<CR><Right>'
   exe mapstr . '<C-w>	<C-r>=<SID>SkkKey("<C-v><C-u>")<CR><C-w>'
   exe mapstr . '<C-u>	<C-r>=<SID>SkkKey("<C-v><C-u>")<CR><C-u>'
-  exe mapstr . '<Esc>	<C-r>=<SID>SkkKey("<C-v><Esc>")<CR><Esc>'
-  exe mapstr . '<C-c>	<C-r>=<SID>SkkKey("<C-v><Esc>")<CR><C-c>'
+  if mode() !=# 'c'
+    exe mapstr . '<Esc>	<C-r>=<SID>SkkKey("<C-v><Esc>")<CR><Esc>'
+    exe mapstr . '<C-c>	<C-r>=<SID>SkkKey("<C-v><Esc>")<CR><C-c>'
+  endif
   exe mapstr . g:skk_abbrev_to_zenei_key . " <C-r>=<SID>SkkKey(\"<C-v><C-q>\")<CR>"
   if exists("g:format_command") && g:skk_autofill_toggle_key != ""
     exe mapstr . g:skk_autofill_toggle_key . " <C-r>=<SID>SkkKey(\"<C-v><C-k>\")<CR>"
