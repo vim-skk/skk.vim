@@ -34,7 +34,7 @@ endif
 let skk_loaded = 1
 
 let g:skk_version = '0.24'
-let g:skk_minor_version = '2'
+let g:skk_minor_version = '3'
 
 let s:cpo_save = &cpo
 set cpo&vim
@@ -827,7 +827,7 @@ endfunction
 
 " b:skk_mode, b:skk_abbrev_mode_on に合わせて、カーソルの色を変更する
 function! s:SkkSetCursorColor()
-  if has('gui') && g:skk_use_color_cursor
+  if has('gui_running') && g:skk_use_color_cursor
     if b:skk_abbrev_mode_on
       " royalblue:#4169e1
       let color = (&background == 'light' ? '#4169e1' : '#4169e1')
