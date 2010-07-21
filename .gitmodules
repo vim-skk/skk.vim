@@ -1,0 +1,3 @@
+[submodule "syntax"]
+	path = syntax
+	url = git://gist.github.com/472491.git
