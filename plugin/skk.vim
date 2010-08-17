@@ -34,7 +34,7 @@ endif
 let skk_loaded = 1
 
 let g:skk_version = '0.25'
-let g:skk_minor_version = '0'
+let g:skk_minor_version = '1'
 
 let s:cpo_save = &cpo
 set cpo&vim
