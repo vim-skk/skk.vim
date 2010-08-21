@@ -371,4 +371,4 @@ TODO						*skk-TODO* {{{
 
 }}}
 ==============================================================================
-vim:tw=78:fo=tcq2mM:ts=4:ft=help:norl:fen:fdm=marker:fmr={{{,}}}
+vim:tw=78:fo=tcq2mM:ts=4:ft=help:noet:norl:fen:fdm=marker:fmr={{{,}}}
