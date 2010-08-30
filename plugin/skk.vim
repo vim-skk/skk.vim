@@ -33,8 +33,8 @@ if exists("skk_loaded")
 endif
 let skk_loaded = 1
 
-let g:skk_version = '0.25'
-let g:skk_minor_version = '2'
+let g:skk_version = '0.26'
+let g:skk_minor_version = '0'
 
 let s:cpo_save = &cpo
 set cpo&vim
