@@ -4,7 +4,7 @@
 "
 " Author: Noriaki Yagi <no_yag@yahoo.co.jp>
 " Version: $Id: skk.vim,v 0.22 2006/10/11 09:26:53 noriaki Exp noriaki $
-" Last Change: 2010-08-17.
+" Last Change: 2010-08-30.
 "
 " 使い方:
 " skk_jisyo および skk_large_jisyo を適宜変更する。
@@ -34,7 +34,7 @@ endif
 let skk_loaded = 1
 
 let g:skk_version = '0.25'
-let g:skk_minor_version = '1'
+let g:skk_minor_version = '2'
 
 let s:cpo_save = &cpo
 set cpo&vim
@@ -2341,7 +2341,7 @@ function! s:SkkMapNormal()
   let keys = "iIaAoOcCsSR"
   let i = 0
   while keys[i] != ""
-    exe "nnoremap <silent> <buffer> " . keys[i] . " :call SkkMap(1)<CR>:let &iminsert = 1<CR>" . keys[i]
+    exe "nnoremap <silent> <buffer> " . keys[i] . " :<C-u>call SkkMap(1)<CR>:let &iminsert = 1<CR>" . keys[i]
     let i = i + 1
   endwhile
   call SkkMap(0)	" コマンドライン側にセットしておく。
