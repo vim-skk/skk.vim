@@ -3025,6 +3025,9 @@ function! s:SkkInsert(char)
         return SkkStartHenkan(">")
       elseif b:skk_henkan_mode == 2
         return SkkSetHenkanPoint(a:char)
+      elseif b:skk_henkan_mode == 0 && a:char == 'l'
+        " Force AsciiMode
+        return SkkAsciiMode("")
       else
         return s:SkkInsertKana(a:char)
       endif
