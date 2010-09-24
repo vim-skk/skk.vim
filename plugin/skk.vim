@@ -4,7 +4,7 @@
 "
 " Author: Noriaki Yagi <no_yag@yahoo.co.jp>
 " Version: $Id: skk.vim,v 0.22 2006/10/11 09:26:53 noriaki Exp noriaki $
-" Last Change: 2010-09-03.
+" Last Change: 2010-09-25.
 "
 " 使い方:
 " skk_jisyo および skk_large_jisyo を適宜変更する。
@@ -111,8 +111,16 @@ if !exists('skk_enable_jlod_layout')
   let skk_enable_jlod_layout = 0
 endif
 
-if !exists("skk_henkan_point_keys")
+if !exists('skk_keyboard_layout')
   if g:skk_enable_jlod_layout
+    let skk_keyboard_layout = 'jlod'
+  else
+    let skk_keyboard_layout = 'normal'
+  endif
+endif
+
+if !exists("skk_henkan_point_keys")
+  if g:skk_keyboard_layout ==# 'jlod'
     let skk_henkan_point_keys = 'ABCDEFGHIJKMNOPQRSTUVWXZ":<>'
   else
     let skk_henkan_point_keys = 'ABCDEFGHIJKMNOPRSTUVWYZ'
@@ -120,7 +128,7 @@ if !exists("skk_henkan_point_keys")
 endif
 
 if !exists("skk_select_cand_keys")
-  if g:skk_enable_jlod_layout
+  if g:skk_keyboard_layout ==# 'jlod'
     let skk_select_cand_keys = "AOEUHTNS"
   else
     let skk_select_cand_keys = "ASDFJKL"
@@ -180,7 +188,7 @@ if !exists("skk_autofill_toggle_key")
 endif
 
 if !exists("skk_rom_kana_rules")
-  if g:skk_enable_jlod_layout
+  if g:skk_keyboard_layout ==# 'jlod'
     let skk_rom_kana_rules = ""
           \. "!	!\<NL>"
           \. "'	っ	ッ\<NL>"
@@ -1229,7 +1237,7 @@ if !exists("skk_rom_kana_rules")
 endif
 
 if !exists("skk_rom_func_rules")
-  if g:skk_enable_jlod_layout
+  if g:skk_keyboard_layout ==# 'jlod'
     let skk_rom_func_rules = ""
           \. ".	SkkCurrentKuten(kana)\<NL>"
           \. ",	SkkCurrentTouten(kana)\<NL>"
@@ -1509,7 +1517,7 @@ endfunction
 " SkkDowncase
 " JLOD: Shift を押してないつもりにする
 " Not JLOD: 現時点ではただ小文字を返す
-if g:skk_enable_jlod_layout
+if g:skk_keyboard_layout ==# 'jlod'
   function! s:SkkDowncase(ch)
     if a:ch == '"'
       return "'"
