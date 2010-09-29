@@ -361,15 +361,28 @@ g:skk_large_jisyo_encoding						*g:skk_large_jisyo_encoding*
 		詳しくは|g:skk_jisyo_encoding|を参照。
 
 g:skk_enable_jlod_layout						*g:skk_enable_jlod_layout*
-										(初期値: 0)
-	この値を真にするといくつかの変数のデフォルト値が変わる。
+										(初期値: 0) >
+	let g:skk_keyboard_layout = 'jlod'
+<	と同じ。
+
+g:skk_keyboard_layout							*g:skk_keyboard_layout*
+										(初期値: "normal")
+	この値を変えるといくつかの変数のデフォルト値が変わる。
 	変わる変数とその値は以下の通り。
 
+g:skk_keyboard_layout が "jlod"の場合
+----------------------------------------
 	変数							値 ~
 	g:skk_henkan_point_keys			"ABCDEFGHIJKMNOPQRSTUVWXZ":<>"
 	g:skk_select_cand_keys			"AOEUHTNS"
 	g:skk_rom_kana_rules			(とても長いのでplugin/skk.vimを参照)
 	g:skk_rom_func_rules			(とても長いのでplugin/skk.vimを参照)
+
+g:skk_keyboard_layout が "azik"の場合
+----------------------------------------
+	変数							値 ~
+	g:skk_henkan_point_keys			"ABCDEFGHIJKMNOPRSTUVWXYZ"
+	g:skk_rom_kana_rules			(とても長いのでplugin/skk.vimを参照)
 
 }}}
 ==============================================================================
