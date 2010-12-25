@@ -1434,6 +1434,10 @@ endif
 if !exists('skk_large_jisyo_encoding')
   let skk_large_jisyo_encoding = 'guess'
 endif
+
+if !exists('skk_external_prog_encoding')
+  let skk_external_prog_encoding = 'euc-jp'
+endif
 " }}}
 
 " script variables {{{
@@ -3183,7 +3187,9 @@ function! s:SkkSearch(large)
   if cand == '' || a:large
     if g:skk_external_prog != ""
       if b:skk_henkan_key !~ "'"
-        let cand = system(g:skk_external_prog . " '" . b:skk_henkan_key . "'")
+        let key = iconv(b:skk_henkan_key, &enc, g:skk_external_prog_encoding)
+        let cand = system(g:skk_external_prog . " '" . key . "'")
+        let cand = iconv(cand, g:skk_external_prog_encoding, &enc)
       endif
     else
       let buf = s:SkkGetJisyoBuf("skk_large_jisyo")
