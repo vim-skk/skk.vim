@@ -2952,6 +2952,7 @@ function! s:SkkSelectCandidate()
       let saved_cmdheight = &cmdheight
       let &cmdheight = lines
     endif
+    redraw
     echo str
     while 1
       " TODO ここで関数の入れ子が深くなってしまうのをなんとかしたい。
