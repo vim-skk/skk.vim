@@ -2461,6 +2461,7 @@ function! s:SkkInsert(char)
         endif
         " g:skk_sticky_key 連続押下で g:skk_sticky_key 自体を返す
         " ;; で ▽* 、;k; で ▽* ではなく、; になるように
+        let rom = b:skk_rom != 'n' ? b:skk_rom : ''
         let kana = s:SkkCleanRom() " kana は n の場合に ん になる
         if kana == '' && s:SkkCursorCol() == b:skk_hstart +
               \ strlen(g:skk_marker_white)
@@ -2475,7 +2476,7 @@ function! s:SkkInsert(char)
         let b:skk_rstart = strlen(kana) + b:skk_rstart +
               \ strlen(g:skk_marker_okuri)
         let b:skk_henkan_mode = 2
-        return kana . g:skk_marker_okuri
+        return kana . g:skk_marker_okuri . s:SkkInsertKana(rom)
       elseif stridx(g:skk_henkan_point_keys, a:char) != -1 && b:skk_abbrev_mode_on == 0
         return SkkSetHenkanPoint(a:char)
       elseif b:skk_henkan_mode == 1 && a:char ==# g:skk_start_henkan_key
