@@ -1582,6 +1582,11 @@ function! s:SkkCursorCol()
   endif
 endfunction
 
+function! s:SkkMarkerCol(marker)
+  let line = strpart(s:SkkGetLine('.'), 0, s:SkkCursorCol() - 1)
+  return strridx(line, a:marker) + 1
+endfunction
+
 " SkkWait sec秒間待つ。何か入力があれば、その文字を返す。
 function! s:SkkWait(sec)
   let i = a:sec * 10
@@ -2462,7 +2467,7 @@ function! s:SkkInsert(char)
       elseif b:skk_henkan_mode == 0 && a:char == g:skk_sticky_key
         return SkkSetHenkanPoint('')
       elseif b:skk_henkan_mode == 1 && a:char == g:skk_sticky_key
-        let b:skk_hstart = strridx(s:SkkGetLine('.')[:(s:SkkCursorCol()-1)], g:skk_marker_white) + 1
+        let b:skk_hstart = s:SkkMarkerCol(g:skk_marker_white)
         if !s:SkkCheckMarker(g:skk_marker_white, b:skk_hstart)
           let b:skk_henkan_mode = 0
           let &l:formatoptions = b:skk_fo_save
@@ -2636,7 +2641,7 @@ function! SkkSetHenkanPoint(char)
     let kana = SkkSetHenkanPoint1("")
     return kana . s:SkkInsertKana(s:SkkDowncase(a:char))
   elseif b:skk_henkan_mode == 1
-    let b:skk_hstart = strridx(s:SkkGetLine('.')[:(s:SkkCursorCol()-1)], g:skk_marker_white) + 1
+    let b:skk_hstart = s:SkkMarkerCol(g:skk_marker_white)
     if !s:SkkCheckMarker(g:skk_marker_white, b:skk_hstart)
       let b:skk_henkan_mode = 0
       let &l:formatoptions = b:skk_fo_save
@@ -2666,13 +2671,13 @@ function! SkkSetHenkanPoint(char)
       endif
     endif
   else	" b:skk_henkan_mode == 2
-    let b:skk_ostart = strridx(s:SkkGetLine('.')[:(s:SkkCursorCol()-1)], g:skk_marker_okuri) + 1
+    let b:skk_ostart = s:SkkMarkerCol(g:skk_marker_okuri)
     if !s:SkkCheckMarker(g:skk_marker_okuri, b:skk_ostart)
       let b:skk_henkan_mode = 1
       let b:skk_ostart = 0
       throw "skk cannot find " . g:skk_marker_okuri . " mark"
     endif
-    let b:skk_hstart = strridx(s:SkkGetLine('.')[:(s:SkkCursorCol()-1)], g:skk_marker_white) + 1
+    let b:skk_hstart = s:SkkMarkerCol(g:skk_marker_white)
     if !s:SkkCheckMarker(g:skk_marker_white, b:skk_hstart)
       let b:skk_henkan_mode = 0
       let &l:formatoptions = b:skk_fo_save
@@ -2820,7 +2825,7 @@ function! SkkStartHenkan(...)
     endif
   else
     " 初めての変換
-    let b:skk_hstart = strridx(s:SkkGetLine('.')[:(s:SkkCursorCol()-1)], g:skk_marker_white) + 1
+    let b:skk_hstart = s:SkkMarkerCol(g:skk_marker_white)
     if !s:SkkCheckMarker(g:skk_marker_white, b:skk_hstart)
       let b:skk_henkan_mode = 0
       let &l:formatoptions = b:skk_fo_save
