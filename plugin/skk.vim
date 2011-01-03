@@ -4,7 +4,7 @@
 "
 " Author: Noriaki Yagi <no_yag@yahoo.co.jp>
 " Version: $Id: skk.vim,v 0.22 2006/10/11 09:26:53 noriaki Exp noriaki $
-" Last Change: 2010-12-27.
+" Last Change: 2011-01-03.
 "
 " 使い方:
 " skk_jisyo および skk_large_jisyo を適宜変更する。
@@ -3073,6 +3073,7 @@ function! s:SkkTourokuMode()
     let s:skk_in_touroku = 1
     call SkkMap(0)
     cnoremap <buffer> <C-g> <C-\>e<SID>SkkCmdCancel()<CR>
+    cnoremap <buffer> <C-c> <C-\>e<SID>SkkCmdCancel()<CR>
     let cmd = "call cursor(" . line(".") . ", " . col(".") . ")"
   endif
   let prev = s:SkkGetLine(0)
