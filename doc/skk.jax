@@ -108,6 +108,11 @@ g:skk_external_prog						*g:skk_external_prog*
 										(初期値: "")
 		ユーザ辞書の後に検索する外部プログラム (空白でなければskk_large_jisyoは無視)
 
+g:skk_external_prog_encoding			*g:skk_external_prog_encoding*
+										(初期値: "")
+		|g:skk_external_prog|に渡す文字列をこの文字コードに変換する。
+		初期値は空文字で、変換せずそのまま渡す。
+
 g:skk_control_j_key						*g:skk_control_j_key*
 										(初期値: "<C-j>")
 		<C-j> の働きをするキー。
