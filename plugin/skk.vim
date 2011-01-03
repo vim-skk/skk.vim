@@ -4,7 +4,7 @@
 "
 " Author: Noriaki Yagi <no_yag@yahoo.co.jp>
 " Version: $Id: skk.vim,v 0.22 2006/10/11 09:26:53 noriaki Exp noriaki $
-" Last Change: 2010-09-03.
+" Last Change: 2010-12-27.
 "
 " 使い方:
 " skk_jisyo および skk_large_jisyo を適宜変更する。
@@ -3213,9 +3213,13 @@ function! s:SkkSearch(large)
   if cand == '' || a:large
     if g:skk_external_prog != ""
       if b:skk_henkan_key !~ "'"
-        let key = iconv(b:skk_henkan_key, &enc, g:skk_external_prog_encoding)
-        let cand = system(g:skk_external_prog . " '" . key . "'")
-        let cand = iconv(cand, g:skk_external_prog_encoding, &enc)
+        if g:skk_external_prog_encoding == ''
+          let cand = system(g:skk_external_prog . " '" . b:skk_henkan_key . "'")
+        else
+          let key = iconv(b:skk_henkan_key, &enc, g:skk_external_prog_encoding)
+          let cand = system(g:skk_external_prog . " '" . key . "'")
+          let cand = iconv(cand, g:skk_external_prog_encoding, &enc)
+        endif
       endif
     else
       let buf = s:SkkGetJisyoBuf("skk_large_jisyo")
