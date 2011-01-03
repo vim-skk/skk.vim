@@ -1436,7 +1436,7 @@ if !exists('skk_large_jisyo_encoding')
 endif
 
 if !exists('skk_external_prog_encoding')
-  let skk_external_prog_encoding = 'euc-jp'
+  let skk_external_prog_encoding = ''
 endif
 " }}}
 
