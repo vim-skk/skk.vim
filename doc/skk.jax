@@ -406,6 +406,16 @@ CHANGELOG					*skk-changelog* {{{
 0.26.2:
 - Fix fatal bug: g:skk_henkan_point_keys default value was wrongly changed (was enbugged with 0.26.0 changes)
 - Fix bug: Several keys in normal mode mapped by skk.vim do not accept [count]. Thanks Toshiki Kataoka for reporting the bug.
+0.27.0:
+- Apply the changes of Anyakichi repository. thanks Anyakichi.
+-- Add g:skk_external_prog_encoding option.
+-- Improve text-wrapping behavior.
+-- Add <C-c> as cancel key for word-registration.
+-- Fix ";hass;uru" conversion problem when using sticky shift.
+-- Do ":redraw" before showing conversion candidates.
+- Move syntax/skkdict.vim to https://github.com/tyru/skkdict.vim
+-- Bundle syntax/skkdict.vim and ftdetect/skkdict.vim
+into zip file uploaded to www.vim.org
 
 }}}
 ==============================================================================
