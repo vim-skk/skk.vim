@@ -18,6 +18,7 @@ TIPS						|skk-tips|
 インターフェース			|skk-interface|
   キーマッピング			|skk-keymappings|
 グローバル変数				|skk-global-variables|
+Changelog					|skk-changelog|
 TODO						|skk-TODO|
 
 
@@ -384,6 +385,27 @@ TODO						*skk-TODO* {{{
 - 辞書の候補に Lisp の式が書かれている場合の処理
 - undo がぐちゃぐちゃになる。
 - vim7 で ff=mac の辞書は読み込み・書き込みが遅い。
+
+}}}
+==============================================================================
+CHANGELOG					*skk-changelog* {{{
+
+2.3.2:
+- Initial upload
+0.24.0:
+- Fix/Add more tips to skk.jax
+- Implement g:skk_jisyo_encoding, g:skk_large_jisyo_encoding.
+(And previous version number on vim.org was wrong: 2.3.2 => 0.23.2)
+0.25.0:
+- Allow non-win32 environment to use g:skk_use_color_cursor. (it was win32 only)
+- Add syntax/skk.vim (SKK dictionary)
+0.26.0:
+- NOTE: Removed v0.26.0 from vim.org
+- Applied super blooper's JLOD patch. Thanks.
+-- Added g:skk_enable_jlod_layout
+0.26.2:
+- Fix fatal bug: g:skk_henkan_point_keys default value was wrongly changed (was enbugged with 0.26.0 changes)
+- Fix bug: Several keys in normal mode mapped by skk.vim do not accept [count]. Thanks Toshiki Kataoka for reporting the bug.
 
 }}}
 ==============================================================================
