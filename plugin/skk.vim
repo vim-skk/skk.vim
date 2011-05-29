@@ -4,7 +4,7 @@
 "
 " Author: Noriaki Yagi <no_yag@yahoo.co.jp>
 " Version: $Id: skk.vim,v 0.22 2006/10/11 09:26:53 noriaki Exp noriaki $
-" Last Change: 2011-03-11.
+" Last Change: 2011-05-29.
 "
 " 使い方:
 " skk_jisyo および skk_large_jisyo を適宜変更する。
@@ -1051,6 +1051,7 @@ if !exists("skk_rom_kana_rules")
           \. "gyi	ぎぃ	ギィ\<NL>"
           \. "gyo	ぎょ	ギョ\<NL>"
           \. "gyu	ぎゅ	ギュ\<NL>"
+          \. "hh	っ	ッ	h\<NL>"
           \. "ha	は	ハ\<NL>"
           \. "he	へ	ヘ\<NL>"
           \. "hi	ひ	ヒ\<NL>"
