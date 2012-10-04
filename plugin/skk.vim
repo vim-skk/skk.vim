@@ -1910,6 +1910,7 @@ function! SkkEnable()
     call s:SkkBufInit()
   endif
   if b:skk_on
+    let b:skk_mode = g:skk_initial_mode
     return ''
   endif
 
