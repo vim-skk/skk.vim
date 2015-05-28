@@ -2665,6 +2665,11 @@ function! SkkSetHenkanPoint(char)
       return SkkStartHenkan()
     else
       let b:skk_ostart = b:skk_rstart
+      " for KYa  ▽*ky → ▽ky
+      if b:skk_ostart == b:skk_hstart + strlen(g:skk_marker_white)
+	let b:skk_ostart = 0
+	return kana
+      endif
       let b:skk_rstart = b:skk_rstart + strlen(g:skk_marker_okuri)
       let b:skk_henkan_mode = 2
       " for KanJi  ▽か*んじ → ▽かん*じ
