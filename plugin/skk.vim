@@ -1890,7 +1890,6 @@ function! s:SkkSetup()
   augroup skk-setup
     autocmd!
   augroup END
-  augroup! skk-setup
   if s:skk_rule_compiled == 0
     call SkkRuleCompile()
   endif
