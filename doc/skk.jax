@@ -1,7 +1,8 @@
 *skk.jax* skk.vim 日本語ドキュメント
 
-Author:
+Original Author:
   Noriaki Yagi <no_yag@yahoo.co.jp>
+Author:
   tyru <tyru.exe@gmail.com>
   thinca <thinca@gmail.com>
   Shougo Matsu <Shougo.Matsu@gmail.com>
@@ -28,6 +29,11 @@ TODO						|skk-TODO|
 skk_jisyo および skk_large_jisyo を適宜変更する。
 :so skk.vim
 Insert Mode で <C-j> (デフォルトでは) を押すと skk が起動する。
+
+このプラグインは原作者である Noriaki Yagi 氏によるプラグインに改良を加えたものである。
+
+オリジナル：
+https://www.vim.org/scripts/script.php?script_id=1589
 
 }}}
 ==============================================================================
