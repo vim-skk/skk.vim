@@ -4409,7 +4409,11 @@ function! s:SkkSearchBuf(buf, limit)
     if &enc != enc
       let key = iconv(key, &enc, enc)
       let l:enc_save = &enc
-      set enc=latin1
+      if has('nvim')
+        set fenc=latin1
+      else
+        set enc=latin1
+      endif
     endif
     if a:limit == 0
       let str = SkkSearchLinear(a:buf, key, okuri)
@@ -4511,7 +4515,11 @@ function! s:SkkCompSearch(first, key, flag)
     if buf[0][2] != &enc
       let key = iconv(key, &enc, buf[0][2])
       let l:enc_save = &enc
-      set enc=latin1
+      if has('nvim')
+        set fenc=latin1
+      else
+        set enc=latin1
+      endif
     endif
     let key = escape(key, '$.*\[]')
     let key = s:SkkGetCompKey(key) . '\m\C'
